@@ -73,7 +73,7 @@ namespace Mwa.Chronomountain
             //! Set les vecteur pour le deplacement du joueur
             initialMovementPosition = transform.position;
             positionToGo = GetNextTarget(directionList[directionIndex], initialMovementPosition);
-            //TODO Fonction pour recentrer le joueur sur sa tile
+            CenterPlayerOnTile();
 
             isMoving = true;
             CanvasManager.manager.CollorArrow(directionIndex);
@@ -97,6 +97,7 @@ namespace Mwa.Chronomountain
                 isMoving = false;
                 lerpT = 0;
                 directionIndex++; 
+                transform.position = positionToGo;
                 GetNextMove();
             }
 
@@ -107,9 +108,10 @@ namespace Mwa.Chronomountain
         //TODO Fonction pour recentrer le joueur sur sa tile
         void CenterPlayerOnTile()
         {
-            Tile tile = (Tile)tileMap.GetTile(tileMap.WorldToCell(transform.position));
-            
-            transform.position = tile.transform.GetPosition();
+            // Vector3 newPos = tileMap.CellToWorld(tileMap.WorldToCell(transform.position));
+            // transform.position = Mathf.rou
+            // print("player recenter");
+
         }
 
         public void AddDirection(ScriptableDirection toAdd)
