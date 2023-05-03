@@ -9,30 +9,30 @@ namespace Mwa.Chronomountain
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] Tilemap tileMap;
-        [SerializeField] Sprite wall;
+        [SerializeField] Tilemap levelTileMap;
+        [SerializeField] Sprite wallSprite;
+        [SerializeField] Sprite pathSprite;
+        [SerializeField] Sprite bumperSprite;
         [SerializeField] float speed;
         [SerializeField] UnityEvent onEndMove;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
-        Sprite targetSprite;
-        Tile targetTile;
         bool isMoving = false;
 
         //! Verefie la distance entre la position du joueur et le prochain mur
-        int DistanceWithWall(ScriptableDirection direction, Vector3 playerPosition)
+        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, Sprite spriteToCheck)
         {
             int distance = 0;
-            targetTile = (Tile)tileMap.GetTile(tileMap.WorldToCell(playerPosition));
-            targetSprite = targetTile.sprite;
+            Tile targetTile = (Tile)levelTileMap.GetTile(levelTileMap.WorldToCell(playerPosition));
+            Sprite targetSprite = targetTile.sprite;
             // print("Initial Sprite : " + targetSprite.name);
             for(int i = 0; i < 100; i++) 
             {
                 Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
-                targetTile = (Tile)tileMap.GetTile(tileMap.WorldToCell(targetToCheck));
+                targetTile = (Tile)levelTileMap.GetTile(levelTileMap.WorldToCell(targetToCheck));
                 targetSprite = targetTile.sprite;
 
                 // print("n+" + i + " sprite = " + targetSprite);
-                if(targetSprite == wall)
+                if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
                     break;
@@ -44,7 +44,7 @@ namespace Mwa.Chronomountain
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
-            distanceToTravel = DistanceWithWall(direction, playerPosition);
+            distanceToTravel = DistanceWithNextSprite(direction, playerPosition, wallSprite);
             Vector3 nextTarget = transform.position += direction.GetDirection() * distanceToTravel;
             return nextTarget;
         }
@@ -73,7 +73,6 @@ namespace Mwa.Chronomountain
             //! Set les vecteur pour le deplacement du joueur
             initialMovementPosition = transform.position;
             positionToGo = GetNextTarget(directionList[directionIndex], initialMovementPosition);
-            CenterPlayerOnTile();
 
             isMoving = true;
             CanvasManager.manager.CollorArrow(directionIndex);
@@ -97,7 +96,9 @@ namespace Mwa.Chronomountain
                 isMoving = false;
                 lerpT = 0;
                 directionIndex++; 
+                //! recentre le player sur la tile ou il est
                 transform.position = positionToGo;
+
                 GetNextMove();
             }
 
@@ -105,18 +106,22 @@ namespace Mwa.Chronomountain
                 transform.position = Vector3.Lerp(initialMovementPosition, positionToGo, lerpT);
         }
 
-        //TODO Fonction pour recentrer le joueur sur sa tile
-        void CenterPlayerOnTile()
+        Tile GetTileUnderPlayer()
         {
-            // Vector3 newPos = tileMap.CellToWorld(tileMap.WorldToCell(transform.position));
-            // transform.position = Mathf.rou
-            // print("player recenter");
-
+            return (Tile)levelTileMap.GetTile(levelTileMap.WorldToCell(transform.position));
         }
 
         public void AddDirection(ScriptableDirection toAdd)
         {
             directionList.Add(toAdd);
+        }
+
+
+        //! Call par le reseter
+        public void Reseter()
+        {
+            directionIndex = 0;
+            directionList.Clear();
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Mwa.Chronomountain
         {
             player.transform.position = playerTransformSave;
             player.GetComponent<TrailRenderer>().Clear();
+            player.GetComponent<PlayerMovement>().Reseter();
 
             CanvasManager.manager.ClearArrow();
         }
