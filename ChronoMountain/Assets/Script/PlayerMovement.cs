@@ -10,17 +10,14 @@ namespace Mwa.Chronomountain
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] Tilemap levelPathTileMap;
-
-        //TODO Externaliser les variable des sprites dans un sigleton
-        // [SerializeField] Sprite wallSprite;
-        // [SerializeField] Sprite pathSprite;
-        // [SerializeField] Sprite bumperSprite;
         [SerializeField] UnityEvent onEndMove;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
         [SerializeField] float speed;
+        float speedBackup;
 
         [Header("Bumping :")]
+        [SerializeField][Range(0, 1)] float bumpSpeedFactor;
         [SerializeField] AnimationCurve bumpAnimationCurve;
         [SerializeField] float scaleOffset;
 
@@ -34,10 +31,16 @@ namespace Mwa.Chronomountain
         int directionIndex = 0;
         float lerpT = 0;
 
+        void Start()
+        {
+            speedBackup = speed;
+        }
+
         public void GetNextMove()
         {
-            // print("Indexdirection : " + directionIndex);
-            // print("Direction " + directionIndex + " = " + directionList[directionIndex]);
+            //! Variable reset qui on étais changer pour la bumper
+            GetComponent<Collider2D>().enabled = true;
+            speed = speedBackup;
 
             //! Si le nombre de deplacement est plus grand que le nombre de diection on stop.
             if(directionIndex >= directionList.Count)
@@ -128,13 +131,23 @@ namespace Mwa.Chronomountain
             print("SetLevelElement Call !");
             if(levelElement.type == LevelElementType.bumper)
             {
+                GetComponent<Collider2D>().enabled = false;
+                speed *= bumpSpeedFactor;
                 isBumping = true;
                 lerpT = 0;
                 transform.position = levelElementPosition;
                 initialMovementPosition = levelElementPosition;
                 positionToGo = levelElement.target.position;
             }
+            else if(levelElement.type == LevelElementType.conveyor)
+            {
+                lerpT = 0;
+                transform.position = levelElementPosition;
+                initialMovementPosition = transform.position;
+                positionToGo = GetNextTarget(levelElement.direction, initialMovementPosition);
+            }
         }
+
 
         Tile GetTileUnderPlayer()
         {

@@ -7,5 +7,6 @@ namespace Mwa.Chronomountain
     public enum LevelElementType
     {
         bumper,
+        conveyor,
     }
 }

@@ -10,5 +10,8 @@ namespace Mwa.Chronomountain
         
         [Header("Bumper :")]
         public Transform target;
+
+        [Header("Conveyor :")]
+        public ScriptableDirection direction;
     }
 }
