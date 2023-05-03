@@ -85,12 +85,6 @@ namespace Mwa.Chronomountain
 
         void Update()
         {
-            //! Regarde si on marche sur un bumper
-            if(GetTileUnderPlayer() == LevelSprite.manager.bumper)
-            {
-                
-            }
-
             if(isMoving)
             {
                 lerpT += Time.deltaTime * (speed / distanceToTravel);

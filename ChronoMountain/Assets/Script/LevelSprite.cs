@@ -9,6 +9,7 @@ public class LevelSprite : MonoBehaviour
     public Sprite wall;
     public Sprite path;
     public Sprite bumper;
+    public Sprite end;
 
     void Awake()
     {

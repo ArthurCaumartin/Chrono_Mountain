@@ -13,8 +13,6 @@ public class EndLevelManager : MonoBehaviour
 
     [SerializeField] Transform playerTransrom;
     [SerializeField] Tilemap levelMap;
-    [SerializeField] Sprite endSprite;
-    [SerializeField] Sprite pathSprite;
     [SerializeField] UnityEvent onWin;
     [SerializeField] UnityEvent onLose;
 
@@ -29,12 +27,12 @@ public class EndLevelManager : MonoBehaviour
     //! Call par un event sur player Movement a chaque fin de sequence de move
     public void EndLevelCheck()
     {
-        if(GetPlayerTileSprite() == endSprite)
+        if(GetPlayerTileSprite() == LevelSprite.manager.end)
         {
             print("Level Complet !");
             onWin.Invoke();
         }
-        else if(GetPlayerTileSprite() == pathSprite)
+        else if(GetPlayerTileSprite() == LevelSprite.manager.path)
         {
             print("Level not Complete !");
             onLose.Invoke();
