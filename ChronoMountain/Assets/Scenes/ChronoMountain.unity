@@ -572,18 +572,30 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 860107685}
     - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2130784135}
+    - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
@@ -591,8 +603,16 @@ PrefabInstance:
       value: GetNextMove
       objectReference: {fileID: 0}
     - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActiveButtonDirection
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Mwa.Chronomountain.PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Mwa.Chronomountain.CanvasManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -600,6 +620,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433544940766792560, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2564473456954378957, guid: 45b43bb16be5c494fb270ba47ac0ae44, type: 3}
@@ -3233,6 +3257,7 @@ MonoBehaviour:
   onLose:
     m_PersistentCalls:
       m_Calls: []
+  directionButton: []
   arrowObjectPrefab: {fileID: 8723339515629408766, guid: 6edb1563a1fa7ce438fc3e41f930ccc5, type: 3}
   initialPosition: {fileID: 346853972}
   gap: 2
@@ -3309,7 +3334,31 @@ MonoBehaviour:
   timeToComplete: 4
   onTimerComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 860107685}
+        m_TargetAssemblyTypeName: Mwa.Chronomountain.PlayerMovement, Assembly-CSharp
+        m_MethodName: GetNextMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2130784135}
+        m_TargetAssemblyTypeName: Mwa.Chronomountain.CanvasManager, Assembly-CSharp
+        m_MethodName: SetActiveButtonDirection
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   timerImage: {fileID: 2131381282}
   oMin: {r: 0.066957, g: 1, b: 0, a: 1}
   oMax: {r: 1, g: 0, b: 0.018431664, a: 1}
@@ -3575,9 +3624,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 627532270}
     - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onEndMove.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onEndMove.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: onEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2130784137}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onEndMove.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onEndMove.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: EndLevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 9210665812408380731, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: m_RootOrder
       value: 2
