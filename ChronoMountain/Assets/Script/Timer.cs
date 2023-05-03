@@ -10,7 +10,7 @@ namespace Mwa.Chronomountain
     {
         [Header("Timer Data :")]
         [SerializeField] float timeToComplete;
-        [SerializeField] UnityEvent onComplete;
+        [SerializeField] UnityEvent onTimerComplete;
         float currentTime;
         bool isRuning = false;
 
@@ -36,7 +36,7 @@ namespace Mwa.Chronomountain
             {
                 if(currentTime >= timeToComplete)
                 {
-                    onComplete.Invoke();
+                    onTimerComplete.Invoke();
                     isRuning = false;
                     return;
                 }
@@ -44,7 +44,7 @@ namespace Mwa.Chronomountain
                 currentTime += Time.deltaTime;
                 //! set le fil de l'image
                 timerImage.fillAmount = currentTime / timeToComplete;
-                ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
+                timerImage.color = ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
             }
         }
     }

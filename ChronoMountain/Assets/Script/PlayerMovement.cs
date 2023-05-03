@@ -66,21 +66,17 @@ namespace Mwa.Chronomountain
             Tile targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
             Sprite targetSprite = targetTile.sprite;
 
-            // print("Initial Sprite : " + targetSprite.name);
             for(int i = 0; i < 100; i++) 
             {
                 Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
                 targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
                 targetSprite = targetTile.sprite;
-
-                // print("n+" + i + " sprite = " + targetSprite);
                 if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
                     break;
                 }
             }
-            // print("Distance whit next wall in " + direction.direction + " = " + distance);
             return distance; 
         }
 
