@@ -133,14 +133,17 @@ namespace Mwa.Chronomountain
             {
                 GetComponent<Collider2D>().enabled = false;
                 speed *= bumpSpeedFactor;
+                isMoving = true;
                 isBumping = true;
                 lerpT = 0;
                 transform.position = levelElementPosition;
                 initialMovementPosition = levelElementPosition;
                 positionToGo = levelElement.target.position;
             }
-            else if(levelElement.type == LevelElementType.conveyor)
+            
+            if(levelElement.type == LevelElementType.conveyor)
             {
+                isMoving = true;
                 lerpT = 0;
                 transform.position = levelElementPosition;
                 initialMovementPosition = transform.position;
