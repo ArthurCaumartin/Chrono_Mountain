@@ -15,10 +15,18 @@ namespace Mwa.Chronomountain
         // [SerializeField] Sprite wallSprite;
         // [SerializeField] Sprite pathSprite;
         // [SerializeField] Sprite bumperSprite;
-        [SerializeField] float speed;
         [SerializeField] UnityEvent onEndMove;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
+        [Header("Movement :")]
+        [SerializeField] float speed;
+
+        [Header("Bumping :")]
+        [SerializeField] AnimationCurve bumpAnimationCurve;
+        [SerializeField] float scaleOffset;
+
+        Tilemap levelElementTileMap;
         bool isMoving = false;
+        bool isBumping = false;
         Vector3 positionToGo;
         Vector3 lastFramePositionToGo;
         Vector3 initialMovementPosition;
@@ -42,6 +50,7 @@ namespace Mwa.Chronomountain
             initialMovementPosition = transform.position;
             positionToGo = GetNextTarget(directionList[directionIndex], initialMovementPosition);
             isMoving = true;
+            isBumping = false;
             CanvasManager.manager.CollorArrow(directionIndex);
         }
 
@@ -80,11 +89,20 @@ namespace Mwa.Chronomountain
             return distance; 
         }
 
+        public Vector3 newScale;
+
         void Update()
         {
             if(isMoving)
             {
                 lerpT += Time.deltaTime * (speed / distanceToTravel);
+            }
+
+            if(isBumping == true)
+            {
+                // scaleOffset *= bumpAnimationCurve.Evaluate(lerpT);
+                // newScale = new Vector3(1 + scaleOffset, 1 + scaleOffset, 0);
+                transform.localScale = Vector3.one * bumpAnimationCurve.Evaluate(lerpT);
             }
 
             //! Quand le lerp est fini, on reset et rapelle DoMove
@@ -95,12 +113,26 @@ namespace Mwa.Chronomountain
                 directionIndex++; 
                 //! recentre le player sur la tile ou il est
                 transform.position = positionToGo;
+                transform.localScale = Vector3.one;
                 GetNextMove();
             }
 
             if(isMoving)
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, positionToGo, lerpT);
+            }
+        }
+
+        public void SetLevelElement(LevelElement levelElement, Vector3 levelElementPosition)
+        {
+            print("SetLevelElement Call !");
+            if(levelElement.type == LevelElementType.bumper)
+            {
+                isBumping = true;
+                lerpT = 0;
+                transform.position = levelElementPosition;
+                initialMovementPosition = levelElementPosition;
+                positionToGo = levelElement.target.position;
             }
         }
 
@@ -113,6 +145,7 @@ namespace Mwa.Chronomountain
         {
             directionList.Add(toAdd);
         }
+
 
         public void Reseter()
         {
