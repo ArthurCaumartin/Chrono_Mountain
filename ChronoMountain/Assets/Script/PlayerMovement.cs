@@ -10,7 +10,7 @@ namespace Mwa.Chronomountain
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] Tilemap levelPathTileMap;
-        [SerializeField] UnityEvent onEndMove;
+        [SerializeField] UnityEvent onDeath;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
         [SerializeField] float speed;
@@ -21,9 +21,16 @@ namespace Mwa.Chronomountain
         [SerializeField] AnimationCurve bumpAnimationCurve;
         [SerializeField] float scaleOffset;
 
+        [Header("Falling :")]
+        [SerializeField] float fallingRotationSpeed;
+        [SerializeField] float scaleChangeSpeed;
+        bool isAlreadyFalling = false;
+
+
         Tilemap levelElementTileMap;
         bool isMoving = false;
         bool isBumping = false;
+        bool isFalling = false;
         Vector3 positionToGo;
         Vector3 lastFramePositionToGo;
         Vector3 initialMovementPosition;
@@ -62,7 +69,6 @@ namespace Mwa.Chronomountain
             directionList.Clear();
             directionIndex = 0;
             CanvasManager.manager.ClearArrow();
-            onEndMove.Invoke();
         }
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
@@ -92,10 +98,20 @@ namespace Mwa.Chronomountain
             return distance; 
         }
 
-        public Vector3 newScale;
-
         void Update()
         {
+            //! Fait tomber le joueur si il touche une tile hole
+            if(isBumping == false && GetTileUnderPlayer().sprite == LevelSprite.manager.hole && !isAlreadyFalling)
+            {
+                Falling();
+            }
+
+            if(isFalling == true)
+            {
+                //! Rotate player pour la chute, scale changé par un tween dans Falling()
+                transform.Rotate(new Vector3(0, 0, fallingRotationSpeed * Time.deltaTime));
+            }
+
             if(isMoving)
             {
                 lerpT += Time.deltaTime * (speed / distanceToTravel);
@@ -125,10 +141,18 @@ namespace Mwa.Chronomountain
                 transform.position = Vector3.Lerp(initialMovementPosition, positionToGo, lerpT);
             }
         }
+        
+        void Falling()
+        {
+            isMoving = false;
+            isFalling = true;
+            isAlreadyFalling = true;
+            transform.DOScale(Vector3.zero, scaleChangeSpeed).SetEase(Ease.InOutElastic).SetSpeedBased();
+        }
 
         public void SetLevelElement(LevelElement levelElement, Vector3 levelElementPosition)
         {
-            print("SetLevelElement Call !");
+            // print("SetLevelElement Call !");
             if(levelElement.type == LevelElementType.bumper)
             {
                 GetComponent<Collider2D>().enabled = false;
@@ -143,6 +167,7 @@ namespace Mwa.Chronomountain
             
             if(levelElement.type == LevelElementType.conveyor)
             {
+                isBumping = false;
                 isMoving = true;
                 lerpT = 0;
                 transform.position = levelElementPosition;
