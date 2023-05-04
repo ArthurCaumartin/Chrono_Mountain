@@ -29,7 +29,7 @@ namespace Mwa.Chronomountain
 
             timer.Reset();
 
-            CanvasManager.manager.ClearArrow();
+            InGameCanvasManager.manager.ClearArrow();
         }
     }
 }

@@ -68,14 +68,14 @@ namespace Mwa.Chronomountain
             positionToGo = GetNextTarget(directionList[directionIndex], initialMovementPosition);
             isMoving = true;
             isBumping = false;
-            CanvasManager.manager.CollorArrow(directionIndex);
+            InGameCanvasManager.manager.CollorArrow(directionIndex);
         }
 
         void ResetMovement()
         {
             directionList.Clear();
             directionIndex = 0;
-            CanvasManager.manager.ClearArrow();
+            InGameCanvasManager.manager.ClearArrow();
         }
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)

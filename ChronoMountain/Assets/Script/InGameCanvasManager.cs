@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 namespace Mwa.Chronomountain
 {
-    public class CanvasManager : MonoBehaviour
+    public class InGameCanvasManager : MonoBehaviour
     {
-        public static CanvasManager manager;
+        public static InGameCanvasManager manager;
         [Header("End Level")]
         [SerializeField] UnityEvent onWin;
         [SerializeField] UnityEvent onLose;

@@ -11,7 +11,7 @@ namespace Mwa.Chronomountain
         public void AddDirection(ScriptableDirection toAdd)
         {
             playerMovement.AddDirection(toAdd);
-            CanvasManager.manager.AddArrow(toAdd);
+            InGameCanvasManager.manager.AddArrow(toAdd);
         }
     }
 }

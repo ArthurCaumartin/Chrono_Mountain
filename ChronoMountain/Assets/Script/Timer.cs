@@ -48,6 +48,7 @@ namespace Mwa.Chronomountain
             }
         }
 
+        //! Call par onMovementStart dans PlayerMovement
         public void PauseTimer()
         {
             isRuning = false;
