@@ -54,7 +54,7 @@ namespace Mwa.Chronomountain
             isRuning = false;
         }
 
-        public void Reset()
+        public void ResetTimer()
         {
             currentTime = 0;
             timerImage.fillAmount = 0;

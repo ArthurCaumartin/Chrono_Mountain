@@ -27,7 +27,7 @@ namespace Mwa.Chronomountain
             player.GetComponent<PlayerMovement>().Reseter();
             player.GetComponent<TrailRenderer>().Clear();
 
-            timer.Reset();
+            timer.ResetTimer();
 
             InGameCanvasManager.manager.ClearArrow();
         }
