@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelSelector : MonoBehaviour
+namespace Mwa.Chronomountain
 {
-    [SerializeField] Scene myScene;
-    [SerializeField] List<GameObject> levelButtonList;
-
-    void Update()
+    public class LevelSelector : MonoBehaviour
     {
-        
+        public void LoadScene(ScriptableScene sceneToLoad)
+        {
+            SceneManager.LoadScene(sceneToLoad.levelName);
+        }
     }
-
-
 }

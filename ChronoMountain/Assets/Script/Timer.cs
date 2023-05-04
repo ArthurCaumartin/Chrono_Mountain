@@ -47,5 +47,17 @@ namespace Mwa.Chronomountain
                 timerImage.color = ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
             }
         }
+
+        public void PauseTimer()
+        {
+            isRuning = false;
+        }
+
+        public void Reset()
+        {
+            currentTime = 0;
+            timerImage.fillAmount = 0;
+            isRuning = true;
+        }
     }
 }

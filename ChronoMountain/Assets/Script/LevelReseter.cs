@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Mwa.Chronomountain
 {
     public class LevelReseter : MonoBehaviour
     {
         [SerializeField] GameObject player;
+        [SerializeField] Timer timer;
         Vector3 playerTransformSave;
 
         void Start()
@@ -22,8 +24,10 @@ namespace Mwa.Chronomountain
         public void ResteLevel()
         {
             player.transform.position = playerTransformSave;
-            player.GetComponent<TrailRenderer>().Clear();
             player.GetComponent<PlayerMovement>().Reseter();
+            player.GetComponent<TrailRenderer>().Clear();
+
+            timer.Reset();
 
             CanvasManager.manager.ClearArrow();
         }

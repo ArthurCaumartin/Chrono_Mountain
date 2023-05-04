@@ -10,10 +10,10 @@ namespace Mwa.Chronomountain
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] Tilemap levelPathTileMap;
-        [SerializeField] UnityEvent onDeath;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
         [SerializeField] float speed;
+        [SerializeField] UnityEvent onMovementStart;
         float speedBackup;
 
         [Header("Bumping :")]
@@ -41,6 +41,13 @@ namespace Mwa.Chronomountain
         void Start()
         {
             speedBackup = speed;
+        }
+
+        //! Call par le button Do Move et onTimerComplete
+        public void StartMovement()
+        {
+            GetNextMove();
+            onMovementStart.Invoke();
         }
 
         public void GetNextMove()
@@ -187,11 +194,19 @@ namespace Mwa.Chronomountain
             directionList.Add(toAdd);
         }
 
-
         public void Reseter()
         {
             directionIndex = 0;
             directionList.Clear();
+            transform.localScale = Vector3.one;
+
+            isFalling = false;
+            isBumping = false;
+            isMoving = false;
+            isAlreadyFalling = false;
+            lerpT = 0;
+
+            GetComponent<Collider2D>().enabled = true;
         }
     }
 }
