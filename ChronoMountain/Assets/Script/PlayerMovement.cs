@@ -162,11 +162,11 @@ namespace Mwa.Chronomountain
             // print("SetLevelElement Call !");
             if(levelElement.type == LevelElementType.bumper)
             {
+                lerpT = 0;
                 GetComponent<Collider2D>().enabled = false;
                 speed *= bumpSpeedFactor;
                 isMoving = true;
                 isBumping = true;
-                lerpT = 0;
                 transform.position = levelElementPosition;
                 initialMovementPosition = levelElementPosition;
                 positionToGo = levelElement.target.position;
