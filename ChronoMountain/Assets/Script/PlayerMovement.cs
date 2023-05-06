@@ -24,10 +24,9 @@ namespace Mwa.Chronomountain
         [Header("Falling :")]
         [SerializeField] float fallingRotationSpeed;
         [SerializeField] float scaleChangeSpeed;
-        bool isAlreadyFalling = false;
-
 
         Tilemap levelElementTileMap;
+        bool isAlreadyFalling = false;
         bool isMoving = false;
         bool isBumping = false;
         bool isFalling = false;
@@ -47,9 +46,9 @@ namespace Mwa.Chronomountain
         public void StartMovement()
         {
             GetNextMove();
+            // GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
             onMovementStart.Invoke();
         }
-
         public void GetNextMove()
         {
             //! Variable reset qui on étais changer pour la bumper
@@ -59,7 +58,7 @@ namespace Mwa.Chronomountain
             //! Si le nombre de deplacement est plus grand que le nombre de diection on stop.
             if(directionIndex >= directionList.Count)
             {   
-                ResetMovement();
+                EndMovementSequence();
                 return;
             }
 
@@ -71,7 +70,7 @@ namespace Mwa.Chronomountain
             InGameCanvasManager.manager.CollorArrow(directionIndex);
         }
 
-        void ResetMovement()
+        void EndMovementSequence()
         {
             directionList.Clear();
             directionIndex = 0;
@@ -148,7 +147,7 @@ namespace Mwa.Chronomountain
                 transform.position = Vector3.Lerp(initialMovementPosition, positionToGo, lerpT);
             }
         }
-        
+
         void Falling()
         {
             isMoving = false;
@@ -157,6 +156,7 @@ namespace Mwa.Chronomountain
             transform.DOScale(Vector3.zero, scaleChangeSpeed).SetEase(Ease.InOutElastic).SetSpeedBased();
         }
 
+        //! Set les parametre pour addapter l'update au level element rencontrer
         public void SetLevelElement(LevelElement levelElement, Vector3 levelElementPosition)
         {
             // print("SetLevelElement Call !");
@@ -183,7 +183,6 @@ namespace Mwa.Chronomountain
             }
         }
 
-
         Tile GetTileUnderPlayer()
         {
             return (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(transform.position));
@@ -194,7 +193,7 @@ namespace Mwa.Chronomountain
             directionList.Add(toAdd);
         }
 
-        public void Reseter()
+        public void ResetMovement()
         {
             directionIndex = 0;
             directionList.Clear();

@@ -50,11 +50,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPathTileMap: {fileID: 0}
-  onEndMove:
-    m_PersistentCalls:
-      m_Calls: []
   directionList: []
   speed: 10
+  onMovementStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2485895916475095275, guid: 1336883ba63654045b72505f193ab319, type: 3}
+        m_TargetAssemblyTypeName: Mwa.Chronomountain.Timer, Assembly-CSharp
+        m_MethodName: PauseTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   bumpSpeedFactor: 0.788
   bumpAnimationCurve:
     serializedVersion: 2
@@ -90,7 +102,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   scaleOffset: 5
-  newScale: {x: 0, y: 0, z: 0}
+  fallingRotationSpeed: 0
+  scaleChangeSpeed: 0
 --- !u!96 &9210665812408380729
 TrailRenderer:
   serializedVersion: 2
