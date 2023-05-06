@@ -27,6 +27,7 @@ namespace Mwa.Chronomountain
         {
             manager = this;    
         }
+        
 #region Arrow UI
         //! Ajoute une interface, set le sprite en avec celui de la direction
         public void AddArrow(ScriptableDirection direction)

@@ -12,26 +12,24 @@ namespace Mwa.Chronomountain
         [SerializeField] Tilemap levelPathTileMap;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
-        [SerializeField] float speed;
-        [SerializeField] UnityEvent onMovementStart;
+        [SerializeField][Range(1, 10)] float speed;
+        [SerializeField]UnityEvent onMovementStart;
+        [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
         float speedBackup;
 
         [Header("Bumping :")]
         [SerializeField][Range(0, 1)] float bumpSpeedFactor;
         [SerializeField] AnimationCurve bumpAnimationCurve;
-        [SerializeField] float scaleOffset;
 
         [Header("Falling :")]
         [SerializeField] float fallingRotationSpeed;
         [SerializeField] float scaleChangeSpeed;
 
-        Tilemap levelElementTileMap;
         bool isAlreadyFalling = false;
         bool isMoving = false;
         bool isBumping = false;
         bool isFalling = false;
         Vector3 positionToGo;
-        Vector3 lastFramePositionToGo;
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
@@ -49,6 +47,8 @@ namespace Mwa.Chronomountain
             // GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
             onMovementStart.Invoke();
         }
+
+        [ContextMenu("GetNextMove")]
         public void GetNextMove()
         {
             //! Variable reset qui on étais changer pour la bumper
@@ -72,9 +72,11 @@ namespace Mwa.Chronomountain
 
         void EndMovementSequence()
         {
-            directionList.Clear();
-            directionIndex = 0;
-            InGameCanvasManager.manager.ClearArrow();
+            // directionList.Clear();
+            // directionIndex = 0;
+            // InGameCanvasManager.manager.ClearArrow();
+
+            onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
         }
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
@@ -106,6 +108,11 @@ namespace Mwa.Chronomountain
 
         void Update()
         {
+            if(isMoving)
+            {
+                lerpT += Time.deltaTime * (speed / distanceToTravel);
+            }
+            
             //! Fait tomber le joueur si il touche une tile hole
             if(isBumping == false && GetTileUnderPlayer().sprite == LevelSprite.manager.hole && !isAlreadyFalling)
             {
@@ -118,20 +125,13 @@ namespace Mwa.Chronomountain
                 transform.Rotate(new Vector3(0, 0, fallingRotationSpeed * Time.deltaTime));
             }
 
-            if(isMoving)
-            {
-                lerpT += Time.deltaTime * (speed / distanceToTravel);
-            }
-
             if(isBumping == true)
             {
-                // scaleOffset *= bumpAnimationCurve.Evaluate(lerpT);
-                // newScale = new Vector3(1 + scaleOffset, 1 + scaleOffset, 0);
                 transform.localScale = Vector3.one * bumpAnimationCurve.Evaluate(lerpT);
             }
 
             //! Quand le lerp est fini, on reset et rapelle DoMove
-            if(lerpT >= 1)
+            if(lerpT >= 1.1f)
             {
                 isMoving = false;
                 lerpT = 0;
@@ -183,11 +183,6 @@ namespace Mwa.Chronomountain
             }
         }
 
-        Tile GetTileUnderPlayer()
-        {
-            return (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(transform.position));
-        }
-
         public void AddDirection(ScriptableDirection toAdd)
         {
             directionList.Add(toAdd);
@@ -206,6 +201,11 @@ namespace Mwa.Chronomountain
             lerpT = 0;
 
             GetComponent<Collider2D>().enabled = true;
+        }
+
+        Tile GetTileUnderPlayer()
+        {
+            return (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(transform.position));
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Mwa.Chronomountain
             LevelElement levelElement = other.GetComponent<LevelElement>();
             if(levelElement)
             {
-                playerMovement.SetLevelElement(levelElement, other.transform.position);
+                playerMovement.SetLevelElement(levelElement, levelElement.transform.position);
             }
         }
     }

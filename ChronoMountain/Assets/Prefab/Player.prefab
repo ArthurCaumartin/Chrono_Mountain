@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 860107688}
   - component: {fileID: 860107687}
   - component: {fileID: 860107689}
+  - component: {fileID: 1994852097792780992}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,14 +52,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelPathTileMap: {fileID: 0}
   directionList: []
-  speed: 10
+  speed: 1
   onMovementStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2485895916475095275, guid: 1336883ba63654045b72505f193ab319, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Mwa.Chronomountain.Timer, Assembly-CSharp
         m_MethodName: PauseTimer
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMoveSequenceEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1994852097792780992}
+        m_TargetAssemblyTypeName: Mwa.Chronomountain.LevelEndCheck, Assembly-CSharp
+        m_MethodName: EndCheck
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -102,8 +118,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   scaleOffset: 5
-  fallingRotationSpeed: 0
-  scaleChangeSpeed: 0
+  fallingRotationSpeed: -500
+  scaleChangeSpeed: 1.5
 --- !u!96 &9210665812408380729
 TrailRenderer:
   serializedVersion: 2
@@ -263,6 +279,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 9210665812408380730}
+--- !u!114 &1994852097792780992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210665812408380733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216bb1a27590db24ab56489becbf79f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9210665813871530135
 GameObject:
   m_ObjectHideFlags: 0
