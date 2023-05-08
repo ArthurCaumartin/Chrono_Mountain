@@ -7,9 +7,13 @@ namespace Mwa.Chronomountain
 {
     public class GetCanvasReference : MonoBehaviour
     {
+        [Header("In Game button :")]
         [SerializeField] Button resetButton;
         [SerializeField] Button moveButton;
         [SerializeField] Button pauseButton;
+
+        [Header("Pause Overlay button :")]
+        [SerializeField] Button continueButton;
 
         GameObject gameManager;
         GameObject player;
@@ -29,6 +33,8 @@ namespace Mwa.Chronomountain
 
             //! Reference Button Pause
             pauseButton.onClick.AddListener(gameManager.GetComponent<PauseGame>().SwitchPauseState);
+
+            continueButton.onClick.AddListener(gameManager.GetComponent<PauseGame>().SwitchPauseState);
         }
     }
 }
