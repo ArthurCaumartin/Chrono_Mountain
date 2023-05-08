@@ -131,7 +131,7 @@ namespace Mwa.Chronomountain
             }
 
             //! Quand le lerp est fini, on reset et rapelle DoMove
-            if(lerpT >= 1.1f)
+            if(lerpT >= 1f)
             {
                 isMoving = false;
                 lerpT = 0;
