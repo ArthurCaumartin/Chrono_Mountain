@@ -5,14 +5,17 @@ using UnityEngine;
 
 namespace Mwa.Chronomountain
 {
+    // [ExecuteInEditMode]
     public class MenuCanvasManager : MonoBehaviour
     {
         [SerializeField] List<LevelDescriptor> levelDescriptorsList;
 
+        // [ContextMenu("StartAMoi")]
         void Start()
         {
             foreach (var item in levelDescriptorsList)
             {
+                print(item);
                 SetButtonState(item, false);
             }
             ActivateButtonPlayableLevel();
@@ -20,12 +23,19 @@ namespace Mwa.Chronomountain
 
         //TODO Boucle a ajuster
         //! Avtive les button pour chaque niveau jouable
+
+        // [ContextMenu("ActivateButtonPlayableLevel")]
         public void ActivateButtonPlayableLevel()
         {
+            // print("Activate Button");
             SetButtonState(levelDescriptorsList[0], true);
 
-            for (int i = 0; i < levelDescriptorsList.Count; i++)
+            if(levelDescriptorsList[0].IsLevelWin() == false)
+                return;
+
+            for (int i = 1; i < levelDescriptorsList.Count - 1; i++)
             {
+
                 //! Si le niveau est win active le button
                 if(levelDescriptorsList[i].IsLevelWin())
                 {
