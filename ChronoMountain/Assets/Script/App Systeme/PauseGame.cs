@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PauseGame : MonoBehaviour
 {
-    //! Ce scripte dois gerer la mise en pause du jeu
     bool isPause = false;
 
     void Awake()

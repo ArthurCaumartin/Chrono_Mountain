@@ -20,6 +20,7 @@ namespace Mwa.Chronomountain
         [SerializeField] GameObject arrowObjectPrefab;
         [SerializeField] Transform initialPosition;
         [SerializeField] float gap;
+        [SerializeField] Color arrowPlayColor;
         [SerializeField] List<GameObject> arrowPrefabList;
         int arrowNumber = 0;
 
@@ -33,16 +34,16 @@ namespace Mwa.Chronomountain
         public void AddArrow(ScriptableDirection direction)
         {
             Vector3 posToInstantiate = new Vector3(initialPosition.position.x + (gap * arrowNumber), initialPosition.position.y, initialPosition.position.z);
-            GameObject newArrow = Instantiate(arrowObjectPrefab, posToInstantiate, Quaternion.identity);
-
-            newArrow.GetComponent<SpriteRenderer>().sprite = direction.arrowSprite;
+            GameObject newArrow = Instantiate(arrowObjectPrefab, posToInstantiate, Quaternion.identity, initialPosition);
+    
+            newArrow.GetComponent<Image>().sprite = direction.arrowSprite;
             arrowPrefabList.Add(newArrow);
             arrowNumber++;
         }
         
         public void CollorArrow(int indextoColor)
         {
-            arrowPrefabList[indextoColor].GetComponent<SpriteRenderer>().color = Color.cyan;
+            arrowPrefabList[indextoColor].GetComponent<Image>().color = arrowPlayColor;
         }
 
         //! reset le compteur et clear la list

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 860107687}
   - component: {fileID: 860107689}
   - component: {fileID: 1994852097792780992}
+  - component: {fileID: 8865594114028067492}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -52,22 +53,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelPathTileMap: {fileID: 0}
   directionList: []
-  speed: 1
+  speed: 20
   onMovementStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Mwa.Chronomountain.Timer, Assembly-CSharp
-        m_MethodName: PauseTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onMoveSequenceEnd:
     m_PersistentCalls:
       m_Calls:
@@ -117,7 +106,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  scaleOffset: 5
   fallingRotationSpeed: -500
   scaleChangeSpeed: 1.5
 --- !u!96 &9210665812408380729
@@ -291,6 +279,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216bb1a27590db24ab56489becbf79f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 0}
+--- !u!114 &8865594114028067492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210665812408380733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b11d3290c6faf4c83924c9095bbc5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 9210665812408380730}
 --- !u!1 &9210665813871530135
 GameObject:
   m_ObjectHideFlags: 0

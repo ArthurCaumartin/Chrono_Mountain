@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LevelElement
   - GameManager
+  - TimerImage
   layers:
   - Default
   - TransparentFX

@@ -7,17 +7,19 @@ namespace Mwa.Chronomountain
 {
     public class LevelEndCheck : MonoBehaviour
     {
+        [SerializeField] ScriptableLevel level;
         public void EndCheck(Tile underPlayerTile)
         {
-            print("Level Check End tile = " + underPlayerTile);
+            // print("Level Check End tile = " + underPlayerTile);
             if(underPlayerTile.sprite == LevelSprite.manager.end)
             {
-                print("Win");
+                // print("Win");
+                level.SetIsWin(true);
                 InGameCanvasManager.manager.SetWin();
             }
             else
             {
-                print("Lose");
+                // print("Lose");
                 InGameCanvasManager.manager.SetLose();
             }
         }

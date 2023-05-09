@@ -15,6 +15,12 @@ namespace Mwa.Chronomountain
         [Header("Pause Overlay button :")]
         [SerializeField] Button continueButton;
 
+        [Header("Win Menu :")]
+        [SerializeField] Button winResetButton;
+
+        [Header("Lose Menu :")]
+        [SerializeField] Button loseResetButton;
+
         GameObject gameManager;
         GameObject player;
 
@@ -31,10 +37,16 @@ namespace Mwa.Chronomountain
             moveButton.onClick.AddListener(gameManager.GetComponent<Timer>().PauseTimer);
             moveButton.onClick.AddListener(player.GetComponent<PlayerMovement>().GetNextMove);
 
-            //! Reference Button Pause
+            //! Reference Button Pause Menu
             pauseButton.onClick.AddListener(gameManager.GetComponent<PauseGame>().SwitchPauseState);
 
             continueButton.onClick.AddListener(gameManager.GetComponent<PauseGame>().SwitchPauseState);
+
+            //! Reference Button Win Menu
+            winResetButton.onClick.AddListener(gameManager.GetComponent<LevelReseter>().ResteLevel);
+            
+            //! Reference Button Lose Menu
+            loseResetButton.onClick.AddListener(gameManager.GetComponent<LevelReseter>().ResteLevel);
         }
     }
 }

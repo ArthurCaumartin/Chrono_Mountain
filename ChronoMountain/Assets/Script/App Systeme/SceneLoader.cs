@@ -1,12 +1,27 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace Mwa.Chronomountain
 {
-    public void LoadScene(string toLoad)
+    public class SceneLoader : MonoBehaviour
     {
-        SceneManager.LoadScene(toLoad);
+        public void LoadScene(string toLoad)
+        {
+            SceneManager.LoadScene(toLoad);
+        }
+
+        [ContextMenu("LoadNextLevel")]
+        public void LoadNextLevel()
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+            int nextSceneIndex = Convert.ToInt32(sceneName.Split("_")[1]) + 1;
+
+            string sceneToLoad = sceneName.Split("_")[0] + "_" + Convert.ToString(nextSceneIndex);
+            // print("Next scene = " + sceneToLoad);
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 }

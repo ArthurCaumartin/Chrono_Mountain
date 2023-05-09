@@ -25,6 +25,11 @@ namespace Mwa.Chronomountain
             StartTimer();
         }
 
+        void Start()
+        {
+            timerImage = GameObject.FindGameObjectWithTag("TimerImage").GetComponent<Image>();
+        }
+
         public void StartTimer()
         {
             isRuning = true;
@@ -36,7 +41,7 @@ namespace Mwa.Chronomountain
             {
                 if(currentTime >= timeToComplete)
                 {
-                    onTimerComplete.Invoke();
+                    InGameCanvasManager.manager.SetLose();
                     isRuning = false;
                     return;
                 }

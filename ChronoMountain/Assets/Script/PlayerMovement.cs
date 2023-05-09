@@ -12,8 +12,8 @@ namespace Mwa.Chronomountain
         [SerializeField] Tilemap levelPathTileMap;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
-        [SerializeField][Range(1, 10)] float speed;
-        [SerializeField]UnityEvent onMovementStart;
+        [SerializeField] float speed;
+        public UnityEvent onMovementStart;
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
         float speedBackup;
 
@@ -103,6 +103,8 @@ namespace Mwa.Chronomountain
                     break;
                 }
             }
+
+            // print("Distance to travel = " + distance);
             return distance; 
         }
 
@@ -113,11 +115,7 @@ namespace Mwa.Chronomountain
                 lerpT += Time.deltaTime * (speed / distanceToTravel);
             }
             
-            //! Fait tomber le joueur si il touche une tile hole
-            if(isBumping == false && GetTileUnderPlayer().sprite == LevelSprite.manager.hole && !isAlreadyFalling)
-            {
-                Falling();
-            }
+            // //! Fait tomber le joueur si il touche une tile hole
 
             if(isFalling == true)
             {
@@ -142,9 +140,19 @@ namespace Mwa.Chronomountain
                 GetNextMove();
             }
 
+            //? Pas sur de comprendre pourquoi l'ordre d'execution import autant
             if(isMoving)
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, positionToGo, lerpT);
+            }
+
+            //? Pas sur de comprendre pourquoi l'ordre d'execution import autant
+            if(GetTileUnderPlayer().sprite == LevelSprite.manager.hole)
+            {
+                if(isBumping == false && isAlreadyFalling == false)
+                {
+                    Falling();
+                }
             }
         }
 
@@ -153,7 +161,7 @@ namespace Mwa.Chronomountain
             isMoving = false;
             isFalling = true;
             isAlreadyFalling = true;
-            transform.DOScale(Vector3.zero, scaleChangeSpeed).SetEase(Ease.InOutElastic).SetSpeedBased();
+            transform.DOScale(Vector3.zero, scaleChangeSpeed).SetEase(Ease.InOutElastic).SetSpeedBased().OnComplete(EndMovementSequence);
         }
 
         //! Set les parametre pour addapter l'update au level element rencontrer

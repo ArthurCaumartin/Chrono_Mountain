@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2485895916475095275}
   - component: {fileID: 2485895916475095277}
   - component: {fileID: 2485895916475095276}
+  - component: {fileID: 2130784143}
   m_Layer: 0
   m_Name: ___-GAME MANAGER-___
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2485895916475095269}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb42dd3912ad3b4da3020b3563a76a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 9210665812408380733, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+  player: {fileID: 0}
   timer: {fileID: 2485895916475095275}
 --- !u!114 &2485895916475095275
 MonoBehaviour:
@@ -61,22 +62,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a90bf0f92a1994697f1bf9f5862ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToComplete: 4
+  timeToComplete: 5
   onTimerComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
-        m_TargetAssemblyTypeName: Mwa.Chronomountain.PlayerMovement, Assembly-CSharp
-        m_MethodName: GetNextMove
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   timerImage: {fileID: 0}
   oMin: {r: 1, g: 1, b: 1, a: 1}
   oMax: {r: 1, g: 1, b: 1, a: 1}
@@ -131,5 +120,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7afff11ee8f90448b2fb40d76a106b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2130784143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485895916475095269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e197a3086f3bda4fb38f7b0037d261b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
