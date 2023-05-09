@@ -82,6 +82,7 @@ namespace Mwa.Chronomountain
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
             distanceToTravel = DistanceWithNextSprite(direction, playerPosition, LevelSprite.manager.wall);
+            Debug.Log(distanceToTravel);
             Vector3 nextTarget = transform.position += direction.GetDirection() * distanceToTravel;
             return nextTarget;
         }
@@ -115,7 +116,7 @@ namespace Mwa.Chronomountain
                 lerpT += Time.deltaTime * (speed / distanceToTravel);
             }
             
-            // //! Fait tomber le joueur si il touche une tile hole
+            //! Fait tomber le joueur si il touche une tile hole
 
             if(isFalling == true)
             {
@@ -137,6 +138,7 @@ namespace Mwa.Chronomountain
                 //! recentre le player sur la tile ou il est
                 transform.position = positionToGo;
                 transform.localScale = Vector3.one;
+                Debug.Log(positionToGo);
                 GetNextMove();
             }
 
@@ -185,6 +187,7 @@ namespace Mwa.Chronomountain
                 isBumping = false;
                 isMoving = true;
                 lerpT = 0;
+                Debug.Log(levelElementPosition);
                 transform.position = levelElementPosition;
                 initialMovementPosition = transform.position;
                 positionToGo = GetNextTarget(levelElement.direction, initialMovementPosition);

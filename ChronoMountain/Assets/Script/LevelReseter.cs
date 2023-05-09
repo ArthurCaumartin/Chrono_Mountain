@@ -24,6 +24,7 @@ namespace Mwa.Chronomountain
         public void ResteLevel()
         {
             player.transform.position = playerTransformSave;
+            player.transform.rotation = Quaternion.identity;
             player.GetComponent<PlayerMovement>().ResetMovement();
             player.GetComponent<TrailRenderer>().Clear();
             timer.ResetTimer();
