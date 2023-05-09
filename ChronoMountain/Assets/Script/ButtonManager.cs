@@ -6,7 +6,12 @@ namespace Mwa.Chronomountain
 {
     public class ButtonManager : MonoBehaviour
     {
-        [SerializeField] PlayerMovement playerMovement;
+        PlayerMovement playerMovement;
+
+        void Start()
+        {
+            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        }
 
         public void AddDirection(ScriptableDirection toAdd)
         {

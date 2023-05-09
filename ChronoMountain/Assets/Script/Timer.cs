@@ -25,6 +25,11 @@ namespace Mwa.Chronomountain
             StartTimer();
         }
 
+        void Start()
+        {
+            timerImage = GameObject.FindGameObjectWithTag("TimerImage").GetComponent<Image>();
+        }
+
         public void StartTimer()
         {
             isRuning = true;
@@ -36,7 +41,7 @@ namespace Mwa.Chronomountain
             {
                 if(currentTime >= timeToComplete)
                 {
-                    onTimerComplete.Invoke();
+                    InGameCanvasManager.manager.SetLose();
                     isRuning = false;
                     return;
                 }
@@ -47,5 +52,21 @@ namespace Mwa.Chronomountain
                 timerImage.color = ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
             }
         }
+<<<<<<< HEAD
+=======
+
+        //! Call par onMovementStart dans PlayerMovement
+        public void PauseTimer()
+        {
+            isRuning = false;
+        }
+
+        public void ResetTimer()
+        {
+            currentTime = 0;
+            timerImage.fillAmount = 0;
+            isRuning = true;
+        }
+>>>>>>> origin/Dev
     }
 }

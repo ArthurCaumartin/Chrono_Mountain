@@ -14,25 +14,26 @@ namespace Mwa.Chronomountain
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
         [SerializeField] float speed;
+<<<<<<< HEAD
+=======
+        public UnityEvent onMovementStart;
+        [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
+>>>>>>> origin/Dev
         float speedBackup;
 
         [Header("Bumping :")]
         [SerializeField][Range(0, 1)] float bumpSpeedFactor;
         [SerializeField] AnimationCurve bumpAnimationCurve;
-        [SerializeField] float scaleOffset;
 
         [Header("Falling :")]
         [SerializeField] float fallingRotationSpeed;
         [SerializeField] float scaleChangeSpeed;
+
         bool isAlreadyFalling = false;
-
-
-        Tilemap levelElementTileMap;
         bool isMoving = false;
         bool isBumping = false;
         bool isFalling = false;
         Vector3 positionToGo;
-        Vector3 lastFramePositionToGo;
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
@@ -43,6 +44,18 @@ namespace Mwa.Chronomountain
             speedBackup = speed;
         }
 
+<<<<<<< HEAD
+=======
+        //! Call par le button Do Move et onTimerComplete
+        public void StartMovement()
+        {
+            GetNextMove();
+            // GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
+            onMovementStart.Invoke();
+        }
+
+        [ContextMenu("GetNextMove")]
+>>>>>>> origin/Dev
         public void GetNextMove()
         {
             //! Variable reset qui on étais changer pour la bumper
@@ -52,7 +65,7 @@ namespace Mwa.Chronomountain
             //! Si le nombre de deplacement est plus grand que le nombre de diection on stop.
             if(directionIndex >= directionList.Count)
             {   
-                ResetMovement();
+                EndMovementSequence();
                 return;
             }
 
@@ -64,11 +77,19 @@ namespace Mwa.Chronomountain
             CanvasManager.manager.CollorArrow(directionIndex);
         }
 
-        void ResetMovement()
+        void EndMovementSequence()
         {
+<<<<<<< HEAD
             directionList.Clear();
             directionIndex = 0;
             CanvasManager.manager.ClearArrow();
+=======
+            // directionList.Clear();
+            // directionIndex = 0;
+            // InGameCanvasManager.manager.ClearArrow();
+
+            onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+>>>>>>> origin/Dev
         }
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
@@ -95,16 +116,19 @@ namespace Mwa.Chronomountain
                     break;
                 }
             }
+
+            // print("Distance to travel = " + distance);
             return distance; 
         }
 
         void Update()
         {
-            //! Fait tomber le joueur si il touche une tile hole
-            if(isBumping == false && GetTileUnderPlayer().sprite == LevelSprite.manager.hole && !isAlreadyFalling)
+            if(isMoving)
             {
-                Falling();
+                lerpT += Time.deltaTime * (speed / distanceToTravel);
             }
+            
+            // //! Fait tomber le joueur si il touche une tile hole
 
             if(isFalling == true)
             {
@@ -112,20 +136,13 @@ namespace Mwa.Chronomountain
                 transform.Rotate(new Vector3(0, 0, fallingRotationSpeed * Time.deltaTime));
             }
 
-            if(isMoving)
-            {
-                lerpT += Time.deltaTime * (speed / distanceToTravel);
-            }
-
             if(isBumping == true)
             {
-                // scaleOffset *= bumpAnimationCurve.Evaluate(lerpT);
-                // newScale = new Vector3(1 + scaleOffset, 1 + scaleOffset, 0);
                 transform.localScale = Vector3.one * bumpAnimationCurve.Evaluate(lerpT);
             }
 
             //! Quand le lerp est fini, on reset et rapelle DoMove
-            if(lerpT >= 1)
+            if(lerpT >= 1f)
             {
                 isMoving = false;
                 lerpT = 0;
@@ -136,30 +153,41 @@ namespace Mwa.Chronomountain
                 GetNextMove();
             }
 
+            //? Pas sur de comprendre pourquoi l'ordre d'execution import autant
             if(isMoving)
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, positionToGo, lerpT);
             }
+
+            //? Pas sur de comprendre pourquoi l'ordre d'execution import autant
+            if(GetTileUnderPlayer().sprite == LevelSprite.manager.hole)
+            {
+                if(isBumping == false && isAlreadyFalling == false)
+                {
+                    Falling();
+                }
+            }
         }
-        
+
         void Falling()
         {
             isMoving = false;
             isFalling = true;
             isAlreadyFalling = true;
-            transform.DOScale(Vector3.zero, scaleChangeSpeed).SetEase(Ease.InOutElastic).SetSpeedBased();
+            transform.DOScale(Vector3.zero, scaleChangeSpeed).SetEase(Ease.InOutElastic).SetSpeedBased().OnComplete(EndMovementSequence);
         }
 
+        //! Set les parametre pour addapter l'update au level element rencontrer
         public void SetLevelElement(LevelElement levelElement, Vector3 levelElementPosition)
         {
             // print("SetLevelElement Call !");
             if(levelElement.type == LevelElementType.bumper)
             {
+                lerpT = 0;
                 GetComponent<Collider2D>().enabled = false;
                 speed *= bumpSpeedFactor;
                 isMoving = true;
                 isBumping = true;
-                lerpT = 0;
                 transform.position = levelElementPosition;
                 initialMovementPosition = levelElementPosition;
                 positionToGo = levelElement.target.position;
@@ -176,22 +204,25 @@ namespace Mwa.Chronomountain
             }
         }
 
-
-        Tile GetTileUnderPlayer()
-        {
-            return (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(transform.position));
-        }
-
         public void AddDirection(ScriptableDirection toAdd)
         {
             directionList.Add(toAdd);
         }
 
+<<<<<<< HEAD
 
         public void Reseter()
+=======
+        public void ResetMovement()
+>>>>>>> origin/Dev
         {
             directionIndex = 0;
             directionList.Clear();
+        }
+
+        Tile GetTileUnderPlayer()
+        {
+            return (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(transform.position));
         }
     }
 }
