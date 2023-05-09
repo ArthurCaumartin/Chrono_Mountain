@@ -22,10 +22,18 @@ namespace Mwa.Chronomountain
         public void ResteLevel()
         {
             player.transform.position = playerTransformSave;
+<<<<<<< HEAD
             player.GetComponent<TrailRenderer>().Clear();
             player.GetComponent<PlayerMovement>().Reseter();
 
             CanvasManager.manager.ClearArrow();
+=======
+            player.GetComponent<PlayerMovement>().ResetMovement();
+            player.GetComponent<TrailRenderer>().Clear();
+            timer.ResetTimer();
+
+            InGameCanvasManager.manager.ClearArrow();
+>>>>>>> origin/Dev
         }
     }
 }
