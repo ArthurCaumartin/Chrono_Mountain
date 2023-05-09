@@ -100,6 +100,7 @@ namespace Mwa.Chronomountain
                 if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
+                    print(distance);
                     break;
                 }
             }
