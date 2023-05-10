@@ -82,8 +82,8 @@ namespace Mwa.Chronomountain
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
             distanceToTravel = DistanceWithNextSprite(direction, playerPosition, LevelSprite.manager.wall);
-            Vector3 nextTarget = transform.position += direction.GetDirection() * distanceToTravel;
-            return nextTarget;
+            Vector3 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
+            return nextTarget; 
         }
 
         int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, Sprite spriteToCheck)

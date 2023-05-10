@@ -20,9 +20,12 @@ namespace Mwa.Chronomountain
         [SerializeField] Color oMax;
         [SerializeField] AnimationCurve curve;
 
+        PlayerMovement playerMovement;
+
         void Awake()
         {
             StartTimer();
+            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         }
 
         void Start()
@@ -41,7 +44,7 @@ namespace Mwa.Chronomountain
             {
                 if(currentTime >= timeToComplete)
                 {
-                    InGameCanvasManager.manager.SetLose();
+                    playerMovement.StartMovement(); 
                     isRuning = false;
                     return;
                 }
