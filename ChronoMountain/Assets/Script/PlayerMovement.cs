@@ -9,6 +9,12 @@ namespace Mwa.Chronomountain
 {
     public class PlayerMovement : MonoBehaviour
     {
+        public enum PlayerState {
+            IDLE,
+            Moving,
+            Falling
+        }
+        public PlayerState state;
         [SerializeField] bool createDebugTarget;
         [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
@@ -52,10 +58,44 @@ namespace Mwa.Chronomountain
             onMovementStart.Invoke();
         }
 
+        public void Tweening(float t) {
+
+        }
+
         [ContextMenu("GetNextMove")]
         public void GetNextMove()
         {
+            switch(state) {
+                case PlayerState.IDLE :
+                    // DoIdle();
+                    break;
+                case PlayerState.Moving :
+                    // DoMoving();
+                    break;
+                case PlayerState.Falling :
+                    // DoFall();
+                    break;
+            }
+            
+            float t = 0;
+            Vector2 oring = transform.position;
+            Vector2 target = oring + Vector2.right * 4;
+            DOTween.To( // Tweening
+                (lerpT) => {
+                    lerpT = bumpAnimationCurve.Evaluate(lerpT);
+                    transform.position = Vector3.Lerp(oring, target, lerpT);
+                }
+                , 0, 1, Vector3.Distance(oring, target) * .5f )
+                .SetEase(Ease.Linear)
+                
+                .OnComplete( () => {
+                    if(false) {
+                        // c'est la fin
+                    } else GetNextMove();
+                });
             print("Get Next Move");
+            return;
+            
             //! Variable reset qui on étais changer pour la bumper
             speed = speedBackup;
 
@@ -93,12 +133,14 @@ namespace Mwa.Chronomountain
             {
                 Instantiate(debugTarget, nextTarget, Quaternion.identity);
             }
+            Debug.DrawLine(playerPosition,nextTarget, Color.red, 5);
 
 
             return nextTarget; 
         }
 
-        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, Sprite spriteToCheck)
+        TileBase wallTile;
+        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, Sprite spriteToCheck/* , out TileBase steppedOn */)
         {
             int distance = 0;
             Tile targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
@@ -112,17 +154,27 @@ namespace Mwa.Chronomountain
                 if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
+                    // steppedOn = null;
                     // print(distance);
                     break;
                 }
+                // if(targetSprite == LevelSprite.manager.TileStopOn)
+                // {
+                //     distance = i;
+                //     steppedOn = targetTile;
+                //     break;
+                // }
+                if(wallTile == targetTile) {}
             }
 
+            // steppedOn = null;
             // print("Distance to travel = " + distance);
             return distance; 
         }
 
         void Update()
         {
+            return;
             if(isMoving)
             {
                 lerpT += Time.deltaTime * (speed / distanceToTravel);
@@ -132,6 +184,7 @@ namespace Mwa.Chronomountain
             {
                 //! Rotate player pour la chute, scale changé par un tween dans Falling()
                 transform.Rotate(new Vector3(0, 0, fallingRotationSpeed * Time.deltaTime));
+                return;
             }
 
             if(isBumping == true)
