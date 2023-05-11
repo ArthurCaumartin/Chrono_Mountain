@@ -6,11 +6,11 @@ using DG.Tweening;
 public class LevelWorldSwitchAnimation : MonoBehaviour
 {
     public int numberOfWorld;
-    public int indexMovement;
     public float offSet;
     public RectTransform rectTransform;
     public float animationSpeed;
     public AnimationCurve curve;
+    int indexMovement;
     Vector2 newPos;
     Vector2 initialPosition;
     Vector2 posToStartMove;
@@ -35,9 +35,7 @@ public class LevelWorldSwitchAnimation : MonoBehaviour
 
     public void AddToIndexMovement(int toAdd)
     {
-        print(indexMovement + toAdd);
-
-        if(indexMovement + toAdd > 0 || indexMovement + toAdd < -2)
+        if(indexMovement + toAdd > 0 || indexMovement + toAdd < -numberOfWorld + 1)
             return;
 
         indexMovement += toAdd;
