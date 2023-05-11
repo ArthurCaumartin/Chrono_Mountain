@@ -9,6 +9,8 @@ namespace Mwa.Chronomountain
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] bool createDebugTarget;
+        [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
@@ -82,6 +84,13 @@ namespace Mwa.Chronomountain
         {
             distanceToTravel = DistanceWithNextSprite(direction, playerPosition, LevelSprite.manager.wall);
             Vector3 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
+
+            if(createDebugTarget)
+            {
+                Instantiate(debugTarget, nextTarget, Quaternion.identity);
+            }
+
+
             return nextTarget; 
         }
 
@@ -181,9 +190,9 @@ namespace Mwa.Chronomountain
             
             if(levelElement.type == LevelElementType.conveyor && isBumping == false)
             {
+                lerpT = 0;
                 isBumping = false;
                 isMoving = true;
-                lerpT = 0;
                 transform.position = levelElementPosition;
                 initialMovementPosition = transform.position;
                 positionToGo = GetNextTarget(levelElement.direction, initialMovementPosition);
