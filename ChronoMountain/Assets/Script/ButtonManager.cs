@@ -8,6 +8,7 @@ namespace Mwa.Chronomountain
     {
         PlayerMovement playerMovement;
         int directionNumber = 1;
+        float pitch;
         [SerializeField] float pitchFactor;
         [SerializeField] AudioClip clipToPlay;
 
@@ -21,9 +22,14 @@ namespace Mwa.Chronomountain
             directionNumber++;
             playerMovement.AddDirection(toAdd);
             InGameCanvasManager.manager.AddArrow(toAdd);
-            float pitch = (1 * directionNumber) * pitchFactor;
+            pitch = (1 * directionNumber) * pitchFactor;
 
             SoundManager.manager.PlaySFX(clipToPlay, pitch);
+        }
+
+        public void ResetDirectionNumber()
+        {
+            directionNumber = 1;
         }
     }
 }
