@@ -14,15 +14,18 @@ namespace Mwa.Chronomountain
         // [ContextMenu("StartAMoi")]
         void Start()
         {
-            canvasLevelSelection.SetActive(true);
+            RefreshButtonState();
+        }
 
+        public void RefreshButtonState()
+        {
+            print("RefreshButtonState");
+            canvasLevelSelection.SetActive(true);
             foreach(var item in levelDescriptorsList)
             {
-                print(item);
                 SetButtonState(item, false);
             }
             ActivateButtonPlayableLevel();
-
             canvasLevelSelection.SetActive(false);
         }
 
