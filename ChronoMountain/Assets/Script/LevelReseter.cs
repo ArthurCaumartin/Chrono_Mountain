@@ -10,6 +10,7 @@ namespace Mwa.Chronomountain
         [SerializeField] GameObject player;
         [SerializeField] Timer timer;
         Vector3 playerTransformSave;
+        Quaternion playerRotationSave;
 
         void Start()
         {
@@ -19,11 +20,13 @@ namespace Mwa.Chronomountain
         void SetLevelSave()
         {
             playerTransformSave = player.transform.position;
+            playerRotationSave = player.transform.rotation;
         }
 
         public void ResteLevel()
         {
             player.transform.position = playerTransformSave;
+            player.transform.rotation = playerRotationSave;
             player.GetComponent<PlayerMovement>().ResetMovement();
             player.GetComponent<TrailRenderer>().Clear();
             timer.ResetTimer();

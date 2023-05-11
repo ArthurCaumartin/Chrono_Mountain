@@ -217,6 +217,11 @@ namespace Mwa.Chronomountain
             lerpT = 0;
         }
 
+        void SetRotation(ScriptableDirection direction)
+        {
+
+        }
+
         Tile GetTileUnderPlayer()
         {
             return (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(transform.position));
