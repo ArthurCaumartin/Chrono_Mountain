@@ -52,7 +52,6 @@ namespace Mwa.Chronomountain
         public void GetNextMove()
         {
             //! Variable reset qui on étais changer pour la bumper
-            GetComponent<Collider2D>().enabled = true;
             speed = speedBackup;
 
             //! Si le nombre de deplacement est plus grand que le nombre de diection on stop.
@@ -172,7 +171,6 @@ namespace Mwa.Chronomountain
             if(levelElement.type == LevelElementType.bumper)
             {
                 lerpT = 0;
-                GetComponent<Collider2D>().enabled = false;
                 speed *= bumpSpeedFactor;
                 isMoving = true;
                 isBumping = true;
@@ -181,7 +179,7 @@ namespace Mwa.Chronomountain
                 positionToGo = levelElement.target.position;
             }
             
-            if(levelElement.type == LevelElementType.conveyor)
+            if(levelElement.type == LevelElementType.conveyor && isBumping == false)
             {
                 isBumping = false;
                 isMoving = true;
@@ -208,8 +206,6 @@ namespace Mwa.Chronomountain
             isMoving = false;
             isAlreadyFalling = false;
             lerpT = 0;
-
-            GetComponent<Collider2D>().enabled = true;
         }
 
         Tile GetTileUnderPlayer()
