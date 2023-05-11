@@ -8,22 +8,28 @@ namespace Mwa.Chronomountain
     // [ExecuteInEditMode]
     public class MenuCanvasManager : MonoBehaviour
     {
+        public GameObject canvasLevelSelection;
         [SerializeField] List<LevelDescriptor> levelDescriptorsList;
 
         // [ContextMenu("StartAMoi")]
         void Start()
         {
-            foreach (var item in levelDescriptorsList)
+            RefreshButtonState();
+        }
+
+        public void RefreshButtonState()
+        {
+            print("RefreshButtonState");
+            canvasLevelSelection.SetActive(true);
+            foreach(var item in levelDescriptorsList)
             {
-                print(item);
                 SetButtonState(item, false);
             }
             ActivateButtonPlayableLevel();
+            canvasLevelSelection.SetActive(false);
         }
 
-        //TODO Boucle a ajuster
         //! Avtive les button pour chaque niveau jouable
-
         // [ContextMenu("ActivateButtonPlayableLevel")]
         public void ActivateButtonPlayableLevel()
         {
@@ -33,9 +39,8 @@ namespace Mwa.Chronomountain
             if(levelDescriptorsList[0].IsLevelWin() == false)
                 return;
 
-            for (int i = 1; i < levelDescriptorsList.Count - 1; i++)
+            for (int i = 1; i < levelDescriptorsList.Count; i++)
             {
-
                 //! Si le niveau est win active le button
                 if(levelDescriptorsList[i].IsLevelWin())
                 {

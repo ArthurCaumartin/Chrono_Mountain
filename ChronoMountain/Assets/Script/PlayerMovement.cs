@@ -9,7 +9,10 @@ namespace Mwa.Chronomountain
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] bool createDebugTarget;
+        [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
+        [SerializeField] Transform playerSpriteTransform;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
         [SerializeField] float speed;
@@ -43,6 +46,7 @@ namespace Mwa.Chronomountain
         //! Call par le button Do Move et onTimerComplete
         public void StartMovement()
         {
+            print("Start Move");
             GetNextMove();
             // GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
             onMovementStart.Invoke();
@@ -51,8 +55,8 @@ namespace Mwa.Chronomountain
         [ContextMenu("GetNextMove")]
         public void GetNextMove()
         {
+            print("Get Next Move");
             //! Variable reset qui on étais changer pour la bumper
-            GetComponent<Collider2D>().enabled = true;
             speed = speedBackup;
 
             //! Si le nombre de deplacement est plus grand que le nombre de diection on stop.
@@ -64,6 +68,7 @@ namespace Mwa.Chronomountain
 
             //! Set les vecteur pour le deplacement du joueur
             initialMovementPosition = transform.position;
+            SetRotation(directionList[directionIndex]);
             positionToGo = GetNextTarget(directionList[directionIndex], initialMovementPosition);
             isMoving = true;
             isBumping = false;
@@ -82,8 +87,15 @@ namespace Mwa.Chronomountain
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
             distanceToTravel = DistanceWithNextSprite(direction, playerPosition, LevelSprite.manager.wall);
-            Vector3 nextTarget = transform.position += direction.GetDirection() * distanceToTravel;
-            return nextTarget;
+            Vector3 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
+
+            if(createDebugTarget)
+            {
+                Instantiate(debugTarget, nextTarget, Quaternion.identity);
+            }
+
+
+            return nextTarget; 
         }
 
         int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, Sprite spriteToCheck)
@@ -100,7 +112,7 @@ namespace Mwa.Chronomountain
                 if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
-                    print(distance);
+                    // print(distance);
                     break;
                 }
             }
@@ -172,7 +184,6 @@ namespace Mwa.Chronomountain
             if(levelElement.type == LevelElementType.bumper)
             {
                 lerpT = 0;
-                GetComponent<Collider2D>().enabled = false;
                 speed *= bumpSpeedFactor;
                 isMoving = true;
                 isBumping = true;
@@ -181,11 +192,11 @@ namespace Mwa.Chronomountain
                 positionToGo = levelElement.target.position;
             }
             
-            if(levelElement.type == LevelElementType.conveyor)
+            if(levelElement.type == LevelElementType.conveyor && isBumping == false)
             {
+                lerpT = 0;
                 isBumping = false;
                 isMoving = true;
-                lerpT = 0;
                 transform.position = levelElementPosition;
                 initialMovementPosition = transform.position;
                 positionToGo = GetNextTarget(levelElement.direction, initialMovementPosition);
@@ -208,8 +219,33 @@ namespace Mwa.Chronomountain
             isMoving = false;
             isAlreadyFalling = false;
             lerpT = 0;
+        }
 
-            GetComponent<Collider2D>().enabled = true;
+        void SetRotation(ScriptableDirection direction)
+        {
+                     //! direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction
+            switch(direction.direction)
+            {
+                case Pointer.Up :
+                    print(Pointer.Up);
+                    playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                break;
+
+                case Pointer.Left :
+                    print(Pointer.Left);
+                    playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                break;
+
+                case Pointer.Right :
+                    print(Pointer.Right);
+                    playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                break;
+
+                case Pointer.Down :
+                    print(Pointer.Down);
+                    playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                break;
+            }
         }
 
         Tile GetTileUnderPlayer()

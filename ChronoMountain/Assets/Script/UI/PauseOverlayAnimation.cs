@@ -31,12 +31,11 @@ public class PauseOverlayAnimation : MonoBehaviour
     
     void Update()
     {
+        if(isOpen && lerpT < 1)
+            lerpT += Time.unscaledDeltaTime * speed;
 
-            if(isOpen && lerpT < 1)
-                lerpT += Time.unscaledDeltaTime * speed;
-
-            if(!isOpen && lerpT > 0)
-                lerpT += -Time.unscaledDeltaTime * speed;
+        if(!isOpen && lerpT > 0)
+            lerpT += -Time.unscaledDeltaTime * speed;
 
         rectTransform.anchoredPosition = Vector2.Lerp(newPose, initialPos, lerpT);
     }
