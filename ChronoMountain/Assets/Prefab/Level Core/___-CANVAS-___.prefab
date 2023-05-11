@@ -1821,6 +1821,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb4c19c60d022842b368aba14be1b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pitchFactor: 0.5
+  clipToPlay: {fileID: 8300000, guid: 17f05e1ca5c0701439c85198c8aae7eb, type: 3}
 --- !u!114 &6432239516572740120
 MonoBehaviour:
   m_ObjectHideFlags: 0
