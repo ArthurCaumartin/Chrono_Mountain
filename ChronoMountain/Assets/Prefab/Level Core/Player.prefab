@@ -51,7 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d54fc5dcf997624dae428cb0f1bc21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  createDebugTarget: 0
+  debugTarget: {fileID: 0}
   levelPathTileMap: {fileID: 0}
+  playerSpriteTransform: {fileID: 9210665813871530134}
   directionList: []
   speed: 20
   onMovementStart:

@@ -12,6 +12,7 @@ namespace Mwa.Chronomountain
         [SerializeField] bool createDebugTarget;
         [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
+        [SerializeField] Transform playerSpriteTransform;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
         [SerializeField] float speed;
@@ -45,6 +46,7 @@ namespace Mwa.Chronomountain
         //! Call par le button Do Move et onTimerComplete
         public void StartMovement()
         {
+            print("Start Move");
             GetNextMove();
             // GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
             onMovementStart.Invoke();
@@ -53,6 +55,7 @@ namespace Mwa.Chronomountain
         [ContextMenu("GetNextMove")]
         public void GetNextMove()
         {
+            print("Get Next Move");
             //! Variable reset qui on étais changer pour la bumper
             speed = speedBackup;
 
@@ -65,6 +68,7 @@ namespace Mwa.Chronomountain
 
             //! Set les vecteur pour le deplacement du joueur
             initialMovementPosition = transform.position;
+            SetRotation(directionList[directionIndex]);
             positionToGo = GetNextTarget(directionList[directionIndex], initialMovementPosition);
             isMoving = true;
             isBumping = false;
@@ -219,7 +223,29 @@ namespace Mwa.Chronomountain
 
         void SetRotation(ScriptableDirection direction)
         {
+                     //! direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction
+            switch(direction.direction)
+            {
+                case Pointer.Up :
+                    print(Pointer.Up);
+                    playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                break;
 
+                case Pointer.Left :
+                    print(Pointer.Left);
+                    playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                break;
+
+                case Pointer.Right :
+                    print(Pointer.Right);
+                    playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                break;
+
+                case Pointer.Down :
+                    print(Pointer.Down);
+                    playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                break;
+            }
         }
 
         Tile GetTileUnderPlayer()

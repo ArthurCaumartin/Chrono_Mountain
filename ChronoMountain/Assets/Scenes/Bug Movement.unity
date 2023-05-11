@@ -1828,17 +1828,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: bc69cf1513e4c0e4cb203b9b57b34432, type: 2}
     - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
-      propertyPath: debugTarget
-      value: 
-      objectReference: {fileID: 3409655635115583703, guid: fb5014d1456f73c4d9fd18d9968bff6d, type: 3}
-    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: levelPathTileMap
       value: 
       objectReference: {fileID: 2136443871}
-    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
-      propertyPath: createDebugTarget
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9210665812408380731, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: m_RootOrder
       value: 3

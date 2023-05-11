@@ -36,7 +36,7 @@ namespace Mwa.Chronomountain
 
             //! Reference Button Move
             moveButton.onClick.AddListener(gameManager.GetComponent<Timer>().PauseTimer);
-            moveButton.onClick.AddListener(player.GetComponent<PlayerMovement>().GetNextMove);
+            moveButton.onClick.AddListener(player.GetComponent<PlayerMovement>().StartMovement);
 
             //! Reference Button Pause Menu
             pauseButton.onClick.AddListener(gameManager.GetComponent<PauseGame>().SwitchPauseState);
