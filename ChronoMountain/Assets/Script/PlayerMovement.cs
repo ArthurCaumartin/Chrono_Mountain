@@ -127,10 +127,8 @@ namespace Mwa.Chronomountain
             {
                 lerpT += Time.deltaTime * (speed / distanceToTravel);
             }
-            
-            // //! Fait tomber le joueur si il touche une tile hole
 
-            if(isFalling == true)
+            if(isFalling == true || isBumping == true)
             {
                 //! Rotate player pour la chute, scale changé par un tween dans Falling()
                 transform.Rotate(new Vector3(0, 0, fallingRotationSpeed * Time.deltaTime));
@@ -199,6 +197,7 @@ namespace Mwa.Chronomountain
                 isMoving = true;
                 transform.position = levelElementPosition;
                 initialMovementPosition = transform.position;
+                SetRotation(levelElement.direction);
                 positionToGo = GetNextTarget(levelElement.direction, initialMovementPosition);
             }
         }
