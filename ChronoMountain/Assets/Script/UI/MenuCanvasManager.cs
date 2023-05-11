@@ -29,9 +29,7 @@ namespace Mwa.Chronomountain
             canvasLevelSelection.SetActive(false);
         }
 
-        //TODO Boucle a ajuster
         //! Avtive les button pour chaque niveau jouable
-
         // [ContextMenu("ActivateButtonPlayableLevel")]
         public void ActivateButtonPlayableLevel()
         {
