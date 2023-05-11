@@ -14,6 +14,9 @@ namespace Mwa.Chronomountain
         [Header("Pause Overlay button :")]
         [SerializeField] Button resetButton;
         [SerializeField] Button continueButton;
+        [Space]
+        [SerializeField] Button sfxButton;
+        [SerializeField] Button musicButton;
 
         [Header("Win Menu :")]
         [SerializeField] Button winResetButton;
@@ -42,6 +45,9 @@ namespace Mwa.Chronomountain
             pauseButton.onClick.AddListener(gameManager.GetComponent<PauseGame>().SwitchPauseState);
 
             continueButton.onClick.AddListener(gameManager.GetComponent<PauseGame>().SwitchPauseState);
+
+            sfxButton.onClick.AddListener(gameManager.GetComponentInChildren<SoundSfxManager>().SwitchIsSfxPlayable);
+            musicButton.onClick.AddListener(gameManager.GetComponentInChildren<SoundMusicManager>().SwitchPauseState);
 
             //! Reference Button Win Menu
             winResetButton.onClick.AddListener(gameManager.GetComponent<LevelReseter>().ResteLevel);

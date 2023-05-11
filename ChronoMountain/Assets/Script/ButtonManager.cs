@@ -24,7 +24,7 @@ namespace Mwa.Chronomountain
             InGameCanvasManager.manager.AddArrow(toAdd);
             pitch = (1 * directionNumber) * pitchFactor;
 
-            SoundManager.manager.PlaySFX(clipToPlay, pitch);
+            SoundSfxManager.manager.PlaySFXpitch(clipToPlay, pitch);
         }
 
         public void ResetDirectionNumber()
