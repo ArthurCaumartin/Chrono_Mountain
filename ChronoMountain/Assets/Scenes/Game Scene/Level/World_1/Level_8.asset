@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level_8
   m_EditorClassIdentifier: 
   levelSceneName: Level_8
-  isWin: 0
+  isWin: 1

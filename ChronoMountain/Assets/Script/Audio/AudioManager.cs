@@ -43,6 +43,12 @@ public class AudioManager : MonoBehaviour
         Destroy(newSource, 5);
     }
 
+    //! Turn on/off les sfx
+    public void SwitchSfxOnOff()
+    {
+        isSfxPlayable = !isSfxPlayable;
+    }
+
     //! Turn on/off la music
     public void SwitchMucisOnOff()
     {
