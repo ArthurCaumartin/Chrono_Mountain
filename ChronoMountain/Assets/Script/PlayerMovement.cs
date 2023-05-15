@@ -126,6 +126,7 @@ namespace Mwa.Chronomountain
             return distance; 
         }
 
+        //TODO faire des tweens plutot qu'un update ? j'ai le courage ?
         void Update()
         {
             if(isMoving)
