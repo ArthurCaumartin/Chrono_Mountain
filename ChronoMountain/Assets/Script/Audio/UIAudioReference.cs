@@ -8,4 +8,14 @@ public class UIAudioReference : MonoBehaviour
     {
         AudioManager.manager.PlaySfx(clip);
     }
+
+    public void SwitchSfx()
+    {
+        AudioManager.manager.SwitchSfxOnOff();
+    }
+
+    public void SwitchMusic()
+    {
+        AudioManager.manager.SwitchMucisOnOff();
+    }
 }
