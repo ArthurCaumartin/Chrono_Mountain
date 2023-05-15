@@ -35,4 +35,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scene/Level/World_1/Level Scene/Level_9.unity
     guid: 159e0d819e75a214490aec57705664f4
+  - enabled: 1
+    path: Assets/Scenes/Game Scene/Level/World_2/Script/Level_1_2.unity
+    guid: ffd2e2ebbc575bf4fb459e02ab42a8e9
+  - enabled: 1
+    path: Assets/Scenes/Game Scene/Level/World_2/Script/Level_2_2.unity
+    guid: c95e5e7a71582ac48b02ee26e11afb5b
+  - enabled: 1
+    path: Assets/Scenes/Game Scene/Level/World_2/Script/Level_3_2.unity
+    guid: 7b84c89438a506442ba9d063b0a4599e
+  - enabled: 1
+    path: Assets/Scenes/Game Scene/Level/World_2/Script/Level_4_2.unity
+    guid: 06b2b65b2bc52dc4cb5f565e03285597
+  - enabled: 1
+    path: Assets/Scenes/Game Scene/Level/World_2/Script/Level_5_2.unity
+    guid: c68a7058f918cac49a25ea8e6d75341d
+  - enabled: 1
+    path: Assets/Scenes/Game Scene/Level/World_2/Script/Level_6_2.unity
+    guid: 836d06a25fecb1741a03c45da7121df4
   m_configObjects: {}

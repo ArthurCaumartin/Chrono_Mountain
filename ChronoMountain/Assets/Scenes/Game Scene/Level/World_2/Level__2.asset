@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7a4d97dabd9eb47850eb7595e5c983, type: 3}
   m_Name: Level__2
   m_EditorClassIdentifier: 
-  levelSceneName: Level__2
+  levelSceneName: Level_2_2
   isWin: 0
