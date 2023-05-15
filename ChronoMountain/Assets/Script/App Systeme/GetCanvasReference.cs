@@ -46,8 +46,9 @@ namespace Mwa.Chronomountain
 
             continueButton.onClick.AddListener(gameManager.GetComponent<PauseGame>().SwitchPauseState);
 
-            sfxButton.onClick.AddListener(gameManager.GetComponentInChildren<SoundSfxManager>().SwitchIsSfxPlayable);
-            musicButton.onClick.AddListener(gameManager.GetComponentInChildren<SoundMusicManager>().SwitchPauseState);
+            //TODO finir l'implementation du son
+            // sfxButton.onClick.AddListener(gameManager.GetComponentInChildren<SoundSfxManager>().SwitchIsSfxPlayable);
+            // musicButton.onClick.AddListener(gameManager.GetComponentInChildren<SoundMusicManager>().SwitchPauseState);
 
             //! Reference Button Win Menu
             winResetButton.onClick.AddListener(gameManager.GetComponent<LevelReseter>().ResteLevel);
