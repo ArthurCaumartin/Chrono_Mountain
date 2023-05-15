@@ -16,6 +16,7 @@ namespace Mwa.Chronomountain
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
         [Header("Movement :")]
         [SerializeField] float speed;
+        [SerializeField] AudioClip clipOnMovement;
         public UnityEvent onMovementStart;
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
         float speedBackup;
@@ -73,6 +74,7 @@ namespace Mwa.Chronomountain
             isMoving = true;
             isBumping = false;
             InGameCanvasManager.manager.CollorArrow(directionIndex);
+
         }
 
         void EndMovementSequence()
@@ -86,6 +88,10 @@ namespace Mwa.Chronomountain
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
+            //TODO fixe la condition pour que le premier movement ne joue pas de son
+            //! Joue un son a chaque changement de target
+            AudioManager.manager.PlaySfx(clipOnMovement);
+
             distanceToTravel = DistanceWithNextSprite(direction, playerPosition, LevelSprite.manager.wall);
             Vector3 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
 
@@ -93,7 +99,6 @@ namespace Mwa.Chronomountain
             {
                 Instantiate(debugTarget, nextTarget, Quaternion.identity);
             }
-
 
             return nextTarget; 
         }
