@@ -25,11 +25,11 @@ namespace Mwa.Chronomountain
         void Awake()
         {
             StartTimer();
-            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         }
 
         void Start()
         {
+            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
             timerImage = GameObject.FindGameObjectWithTag("TimerImage").GetComponent<Image>();
         }
 
