@@ -52,11 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createDebugTarget: 0
-  debugTarget: {fileID: 0}
+  debugTarget: {fileID: 3409655635115583703, guid: fb5014d1456f73c4d9fd18d9968bff6d, type: 3}
   levelPathTileMap: {fileID: 0}
   playerSpriteTransform: {fileID: 9210665813871530134}
   directionList: []
-  speed: 20
+  speed: 3
+  timeToTravel: 1
   clipOnMovement: {fileID: 8300000, guid: c5b1daaa10123144b9b4aa32b7d00809, type: 3}
   onMovementStart:
     m_PersistentCalls:
@@ -110,8 +111,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  fallingRotationSpeed: -500
-  scaleChangeSpeed: 1.5
+  bumpingRotationSpeed: -500
+  convoyingSpeedFactor: 1.5
 --- !u!96 &9210665812408380729
 TrailRenderer:
   serializedVersion: 2

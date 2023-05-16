@@ -7,15 +7,25 @@ using UnityEngine.Events;
 
 namespace Mwa.Chronomountain
 {
+
+
     public class PlayerMovement : MonoBehaviour
     {
+        public enum MovementState
+        {
+            moving,
+            bumping,
+            convoying
+        }
         [SerializeField] bool createDebugTarget;
         [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
         [SerializeField] Transform playerSpriteTransform;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
+
         [Header("Movement :")]
         [SerializeField] float speed;
+        [SerializeField] float timeToTravel;
         [SerializeField] AudioClip clipOnMovement;
         public UnityEvent onMovementStart;
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
@@ -24,20 +34,19 @@ namespace Mwa.Chronomountain
         [Header("Bumping :")]
         [SerializeField][Range(0, 1)] float bumpSpeedFactor;
         [SerializeField] AnimationCurve bumpAnimationCurve;
+        [SerializeField] float bumpingRotationSpeed;
 
-        [Header("Falling :")]
-        [SerializeField] float fallingRotationSpeed;
-        [SerializeField] float scaleChangeSpeed;
+        [Header("Convoying :")]
+        [SerializeField] float convoyingSpeedFactor;
 
-        bool isAlreadyFalling = false;
-        bool isMoving = false;
-        bool isBumping = false;
-        bool isFalling = false;
+        float lerpt;
+        Tweener currentTween;
         Vector3 positionToGo;
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
-        float lerpT = 0;
+        bool isBumping = false;
+
 
         void Start()
         {
@@ -47,48 +56,85 @@ namespace Mwa.Chronomountain
         //! Call par le button Do Move et onTimerComplete
         public void StartMovement()
         {
-            print("Start Move");
-            GetNextMove();
-            // GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
+            //! si pas d'input entrer par le joueur, alors on call onMoveSequenceEnd et return
+            if(directionList.Count == 0)
+            {
+                onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+                return;
+            }
+            initialMovementPosition = transform.position;
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition), MovementState.moving);
+            initialMovementPosition = transform.position;
             onMovementStart.Invoke();
         }
 
-        [ContextMenu("GetNextMove")]
-        public void GetNextMove()
+        public void MakeTweenMovement(Vector3 target, MovementState movementType)
         {
-            print("Get Next Move");
-            //! Variable reset qui on étais changer pour la bumper
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
+
             speed = speedBackup;
+            //TODO prise en compte des tiles de vide
+            switch (movementType)
+            {
+                //TODO voire avec une curve pour jouer sur un effet d'acceleration
+                //! Slide movement
+                case MovementState.moving :
+                    print("MovementState.moving");
+                    SetRotation(directionList[directionIndex]);
+                    InGameCanvasManager.manager.CollorArrow(directionIndex);
+                    currentTween = DOTween.To((lerpT) =>
+                    {
+                        transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
+                    },
+                    0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+                    directionIndex++;
+                break;
 
-            //! Si le nombre de deplacement est plus grand que le nombre de diection on stop.
-            if(directionIndex >= directionList.Count)
-            {   
-                EndMovementSequence();
-                return;
+                //! Bumping Movement
+                case MovementState.bumping :
+                    currentTween = DOTween.To((lerpT) =>
+                    {
+                        transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
+                        transform.localScale = Vector3.one * bumpAnimationCurve.Evaluate(lerpT);
+                        transform.Rotate(new Vector3(0, 0, bumpingRotationSpeed * Time.deltaTime));
+                    },
+                    0, 1, speed * bumpSpeedFactor).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+                break;
+
+                case MovementState.convoying :
+                    print("MovementState.convoying");
+                    currentTween = DOTween.To((lerpT) =>
+                    {
+                        transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
+                        transform.Rotate(new Vector3(0, 0, bumpingRotationSpeed * Time.deltaTime));
+                    },
+                    0, 1, speed * convoyingSpeedFactor).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+                break;
             }
-
-            //! Set les vecteur pour le deplacement du joueur
-            initialMovementPosition = transform.position;
-            SetRotation(directionList[directionIndex]);
-            positionToGo = GetNextTarget(directionList[directionIndex], initialMovementPosition);
-            isMoving = true;
-            isBumping = false;
-            InGameCanvasManager.manager.CollorArrow(directionIndex);
-
         }
 
-        void EndMovementSequence()
+        public void TweenComplete()
         {
-            // directionList.Clear();
-            // directionIndex = 0;
-            // InGameCanvasManager.manager.ClearArrow();
+            isBumping = false;
 
-            onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+            if(directionIndex >= directionList.Count)
+            {
+                print("directionIndex : " + directionIndex);
+                print("directionList.Count : " + directionList.Count);
+                //! Fin de la sequence de movement, envoi la tile sous le joueur pour etre verifier dans EndLevelCheck
+                onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+            }
+            else
+            {
+                //! Relance avec une nouvelle target
+                initialMovementPosition = transform.position;
+                MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition), MovementState.moving);
+            }
         }
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
-            //TODO fixe la condition pour que le premier movement ne joue pas de son
+            //TODO Mettre l'invok du son autre par
             //! Joue un son a chaque changement de target
             AudioManager.manager.PlaySfx(clipOnMovement);
 
@@ -114,96 +160,41 @@ namespace Mwa.Chronomountain
                 Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
                 targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
                 targetSprite = targetTile.sprite;
+                print(targetSprite);
+                if(createDebugTarget)
+                    Instantiate(debugTarget, targetToCheck, Quaternion.identity);
                 if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
-                    // print(distance);
                     break;
                 }
             }
 
-            // print("Distance to travel = " + distance);
+            print("Distance to travel = " + distance);
             return distance; 
         }
 
-        void Update()
-        {
-            if(isMoving)
-            {
-                lerpT += Time.deltaTime * (speed / distanceToTravel);
-            }
-
-            if(isFalling == true || isBumping == true)
-            {
-                //! Rotate player pour la chute, scale changé par un tween dans Falling()
-                transform.Rotate(new Vector3(0, 0, fallingRotationSpeed * Time.deltaTime));
-            }
-
-            if(isBumping == true)
-            {
-                transform.localScale = Vector3.one * bumpAnimationCurve.Evaluate(lerpT);
-            }
-
-            //! Quand le lerp est fini, on reset et rapelle DoMove
-            if(lerpT >= 1f)
-            {
-                isMoving = false;
-                lerpT = 0;
-                directionIndex++; 
-                //! recentre le player sur la tile ou il est
-                transform.position = positionToGo;
-                transform.localScale = Vector3.one;
-                GetNextMove();
-            }
-
-            //? Pas sur de comprendre pourquoi l'ordre d'execution import autant
-            if(isMoving)
-            {
-                transform.position = Vector3.Lerp(initialMovementPosition, positionToGo, lerpT);
-            }
-
-            //? Pas sur de comprendre pourquoi l'ordre d'execution import autant
-            if(GetTileUnderPlayer().sprite == LevelSprite.manager.hole)
-            {
-                if(isBumping == false && isAlreadyFalling == false)
-                {
-                    Falling();
-                }
-            }
-        }
-
-        void Falling()
-        {
-            isMoving = false;
-            isFalling = true;
-            isAlreadyFalling = true;
-            transform.DOScale(Vector3.zero, scaleChangeSpeed).SetEase(Ease.InOutElastic).SetSpeedBased().OnComplete(EndMovementSequence);
-        }
 
         //! Set les parametre pour addapter l'update au level element rencontrer
         public void SetLevelElement(LevelElement levelElement, Vector3 levelElementPosition)
         {
-            // print("SetLevelElement Call !");
             if(levelElement.type == LevelElementType.bumper)
             {
-                lerpT = 0;
-                speed *= bumpSpeedFactor;
-                isMoving = true;
+                print("LevelElementType.bumper");
+                currentTween.Kill();
                 isBumping = true;
                 transform.position = levelElementPosition;
                 initialMovementPosition = levelElementPosition;
-                positionToGo = levelElement.target.position;
+                MakeTweenMovement(levelElement.target.position, MovementState.bumping);
             }
             
             if(levelElement.type == LevelElementType.conveyor && isBumping == false)
             {
-                lerpT = 0;
-                isBumping = false;
-                isMoving = true;
+                print("LevelElementType.conveyor");
+                currentTween.Kill();
                 transform.position = levelElementPosition;
                 initialMovementPosition = transform.position;
-                SetRotation(levelElement.direction);
-                positionToGo = GetNextTarget(levelElement.direction, initialMovementPosition);
+                MakeTweenMovement(GetNextTarget(levelElement.direction, initialMovementPosition), MovementState.convoying);
             }
         }
 
@@ -212,41 +203,32 @@ namespace Mwa.Chronomountain
             directionList.Add(toAdd);
         }
 
+        //! position du joueur reset dans LevelReseter
         public void ResetMovement()
         {
             directionIndex = 0;
             directionList.Clear();
             transform.localScale = Vector3.one;
-
-            isFalling = false;
-            isBumping = false;
-            isMoving = false;
-            isAlreadyFalling = false;
-            lerpT = 0;
         }
 
         void SetRotation(ScriptableDirection direction)
         {
-                     //! direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction
+            //! direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction
             switch(direction.direction)
             {
                 case Pointer.Up :
-                    print(Pointer.Up);
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 break;
 
                 case Pointer.Left :
-                    print(Pointer.Left);
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
                 break;
 
                 case Pointer.Right :
-                    print(Pointer.Right);
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
                 break;
 
                 case Pointer.Down :
-                    print(Pointer.Down);
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
                 break;
             }
