@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: 
   levelSceneName: Level_1
-  isWin: 1
+  isWin: 0

@@ -56,8 +56,15 @@ namespace Mwa.Chronomountain
         //! Call par le button Do Move et onTimerComplete
         public void StartMovement()
         {
+            //! si pas d'input entrer par le joueur, alors on call onMoveSequenceEnd et return
+            if(directionList.Count == 0)
+            {
+                onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+                return;
+            }
             initialMovementPosition = transform.position;
             MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition), MovementState.moving);
+            initialMovementPosition = transform.position;
             onMovementStart.Invoke();
         }
 
@@ -109,8 +116,11 @@ namespace Mwa.Chronomountain
         public void TweenComplete()
         {
             isBumping = false;
+
             if(directionIndex >= directionList.Count)
             {
+                print("directionIndex : " + directionIndex);
+                print("directionList.Count : " + directionList.Count);
                 //! Fin de la sequence de movement, envoi la tile sous le joueur pour etre verifier dans EndLevelCheck
                 onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
             }
@@ -150,6 +160,9 @@ namespace Mwa.Chronomountain
                 Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
                 targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
                 targetSprite = targetTile.sprite;
+                print(targetSprite);
+                if(createDebugTarget)
+                    Instantiate(debugTarget, targetToCheck, Quaternion.identity);
                 if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
@@ -157,7 +170,7 @@ namespace Mwa.Chronomountain
                 }
             }
 
-            // print("Distance to travel = " + distance);
+            print("Distance to travel = " + distance);
             return distance; 
         }
 
