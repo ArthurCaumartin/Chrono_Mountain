@@ -58,12 +58,13 @@ namespace Mwa.Chronomountain
         {
             initialMovementPosition = transform.position;
             MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition), MovementState.moving);
-            // GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
             onMovementStart.Invoke();
         }
 
         public void MakeTweenMovement(Vector3 target, MovementState movementType)
         {
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
+
             speed = speedBackup;
             //TODO prise en compte des tiles de vide
             switch (movementType)
