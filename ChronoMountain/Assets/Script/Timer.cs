@@ -57,6 +57,7 @@ namespace Mwa.Chronomountain
                     //! set le fil de l'image
                     timerImage.fillAmount = currentTime / timeToComplete;
                     timerImage.color = ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
+                    //! le remap fait un super remap de blanc a blanc... yay !!!
                 }
             }
         }

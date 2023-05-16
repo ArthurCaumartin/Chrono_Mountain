@@ -219,7 +219,6 @@ MonoBehaviour:
   - {fileID: 2075963638}
   - {fileID: 637506872}
   - {fileID: 299600468}
-  - {fileID: 1944891298}
 --- !u!4 &93085709
 Transform:
   m_ObjectHideFlags: 0
@@ -2676,17 +2675,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885065709}
   m_CullTransparentMesh: 1
---- !u!114 &1944891298 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8947549066208010097, guid: 02adf2598a6c29c4dba3f2b5a4bb34d8, type: 3}
-  m_PrefabInstance: {fileID: 146359200}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 242ec177b36da8d4392039155f5a5cb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1964429926
 GameObject:
   m_ObjectHideFlags: 0
