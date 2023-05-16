@@ -39,6 +39,7 @@ namespace Mwa.Chronomountain
         [Header("Convoying :")]
         [SerializeField] float convoyingSpeedFactor;
 
+        float lerpt;
         Tweener currentTween;
         Vector3 positionToGo;
         Vector3 initialMovementPosition;
@@ -55,8 +56,6 @@ namespace Mwa.Chronomountain
         //! Call par le button Do Move et onTimerComplete
         public void StartMovement()
         {
-            print("Start Move");
-
             initialMovementPosition = transform.position;
             MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition), MovementState.moving);
             // GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
@@ -72,6 +71,7 @@ namespace Mwa.Chronomountain
                 //TODO voire avec une curve pour jouer sur un effet d'acceleration
                 //! Slide movement
                 case MovementState.moving :
+                    print("MovementState.moving");
                     SetRotation(directionList[directionIndex]);
                     InGameCanvasManager.manager.CollorArrow(directionIndex);
                     currentTween = DOTween.To((lerpT) =>
@@ -94,6 +94,7 @@ namespace Mwa.Chronomountain
                 break;
 
                 case MovementState.convoying :
+                    print("MovementState.convoying");
                     currentTween = DOTween.To((lerpT) =>
                     {
                         transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
@@ -151,7 +152,6 @@ namespace Mwa.Chronomountain
                 if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
-                    // print(distance);
                     break;
                 }
             }
@@ -164,9 +164,9 @@ namespace Mwa.Chronomountain
         //! Set les parametre pour addapter l'update au level element rencontrer
         public void SetLevelElement(LevelElement levelElement, Vector3 levelElementPosition)
         {
-            // print("SetLevelElement Call !");
             if(levelElement.type == LevelElementType.bumper)
             {
+                print("LevelElementType.bumper");
                 currentTween.Kill();
                 isBumping = true;
                 transform.position = levelElementPosition;
@@ -176,6 +176,7 @@ namespace Mwa.Chronomountain
             
             if(levelElement.type == LevelElementType.conveyor && isBumping == false)
             {
+                print("LevelElementType.conveyor");
                 currentTween.Kill();
                 transform.position = levelElementPosition;
                 initialMovementPosition = transform.position;
@@ -202,22 +203,18 @@ namespace Mwa.Chronomountain
             switch(direction.direction)
             {
                 case Pointer.Up :
-                    print(Pointer.Up);
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 break;
 
                 case Pointer.Left :
-                    print(Pointer.Left);
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
                 break;
 
                 case Pointer.Right :
-                    print(Pointer.Right);
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
                 break;
 
                 case Pointer.Down :
-                    print(Pointer.Down);
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
                 break;
             }
