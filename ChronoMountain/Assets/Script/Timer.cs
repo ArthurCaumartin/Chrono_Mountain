@@ -8,11 +8,6 @@ namespace Mwa.Chronomountain
 {
     public class Timer : MonoBehaviour
     {
-<<<<<<< Updated upstream
-=======
-        // [SerializeField] GameOptionDescriptor gameOptionDescriptor;
-
->>>>>>> Stashed changes
         [Header("Timer Data :")]
         [SerializeField] float timeToComplete;
         [SerializeField] UnityEvent onTimerComplete;
@@ -45,11 +40,7 @@ namespace Mwa.Chronomountain
 
         void Update()
         {
-<<<<<<< Updated upstream
-            if(isRuning)
-=======
             if(GameOptionDescriptor.instance.gameOption.isTimerOn)
->>>>>>> Stashed changes
             {
                 if(currentTime >= timeToComplete)
                 {
