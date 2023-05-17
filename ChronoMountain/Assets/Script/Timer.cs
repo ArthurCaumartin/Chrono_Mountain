@@ -8,6 +8,8 @@ namespace Mwa.Chronomountain
 {
     public class Timer : MonoBehaviour
     {
+        [SerializeField] GameOptionDescriptor gameOptionDescriptor;
+
         [Header("Timer Data :")]
         [SerializeField] float timeToComplete;
         [SerializeField] UnityEvent onTimerComplete;
@@ -25,11 +27,11 @@ namespace Mwa.Chronomountain
         void Awake()
         {
             StartTimer();
-            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         }
 
         void Start()
         {
+            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
             timerImage = GameObject.FindGameObjectWithTag("TimerImage").GetComponent<Image>();
         }
 
@@ -40,19 +42,23 @@ namespace Mwa.Chronomountain
 
         void Update()
         {
-            if(GameOptionDescriptor.instance.gameOption.isTimerOn)
+            if(gameOptionDescriptor.gameOption.isTimerOn)
             {
-                if(currentTime >= timeToComplete)
+                if(isRuning)
                 {
-                    playerMovement.StartMovement(); 
-                    isRuning = false;
-                    return;
-                }
+                    if(currentTime >= timeToComplete)
+                    {
+                        playerMovement.StartMovement(); 
+                        isRuning = false;
+                        return;
+                    }
 
-                currentTime += Time.deltaTime;
-                //! set le fil de l'image
-                timerImage.fillAmount = currentTime / timeToComplete;
-                timerImage.color = ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
+                    currentTime += Time.deltaTime;
+                    //! set le fil de l'image
+                    timerImage.fillAmount = currentTime / timeToComplete;
+                    timerImage.color = ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
+                    //! le remap fait un super remap de blanc a blanc... yay !!!
+                }
             }
         }
 

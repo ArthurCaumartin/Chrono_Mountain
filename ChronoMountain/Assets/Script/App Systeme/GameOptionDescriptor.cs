@@ -8,13 +8,6 @@ namespace Mwa.Chronomountain
     {
         public ScriptableGameOption gameOption;
 
-        public static GameOptionDescriptor instance;
-
-        void Awake()
-        {
-            instance = this;
-        }
-
         public void SwitchTimerActivation()
         {
             gameOption.isTimerOn = !gameOption.isTimerOn;
