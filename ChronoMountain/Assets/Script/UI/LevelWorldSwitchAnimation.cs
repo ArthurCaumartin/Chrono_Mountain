@@ -5,11 +5,12 @@ using DG.Tweening;
 
 public class LevelWorldSwitchAnimation : MonoBehaviour
 {
-    public int numberOfWorld;
-    public float offSet;
-    public RectTransform rectTransform;
-    public float animationSpeed;
-    public AnimationCurve curve;
+    [SerializeField] int numberOfWorld;
+    [SerializeField] float swipeThresold;
+    [SerializeField] float offSet;
+    [SerializeField] RectTransform rectTransform;
+    [SerializeField] float animationSpeed;
+    [SerializeField] AnimationCurve curve;
     int indexMovement;
     Vector2 newPos;
     Vector2 initialPosition;
@@ -21,6 +22,18 @@ public class LevelWorldSwitchAnimation : MonoBehaviour
     {
         initialPosition = rectTransform.anchoredPosition;
         AddToIndexMovement(0);
+    }
+
+    public void SwipCheck(Vector2 swipDirection)
+    {
+        if(swipDirection.x > swipeThresold)
+        {
+            AddToIndexMovement(1);
+        }
+        if(swipDirection.x < -swipeThresold)
+        {
+            AddToIndexMovement(-1);
+        }
     }
 
     void Update()
@@ -40,7 +53,6 @@ public class LevelWorldSwitchAnimation : MonoBehaviour
 
         indexMovement += toAdd;
         posToStartMove = rectTransform.anchoredPosition;
-
 
         lerpT = 0;
     }

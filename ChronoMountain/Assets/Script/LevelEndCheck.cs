@@ -11,18 +11,13 @@ namespace Mwa.Chronomountain
         public void EndCheck(Tile underPlayerTile)
         {
             // print("Level Check End tile = " + underPlayerTile);
-            if(underPlayerTile.sprite == LevelSprite.manager.end)
+            if(underPlayerTile.sprite == global::LevelTile.instance.end)//? wtf
             {
-                // print("Win");
-                // print(level.isWin);
                 level.SetIsWin(true);
-                // print(level.isWin);
-
                 InGameCanvasManager.manager.SetWin();
             }
             else
             {
-                // print("Lose");
                 InGameCanvasManager.manager.SetLose();
             }
         }

@@ -11,6 +11,7 @@ namespace Mwa.Chronomountain
 
     public class PlayerMovement : MonoBehaviour
     {
+        public static PlayerMovement instance;
         public enum MovementState
         {
             moving,
@@ -25,11 +26,11 @@ namespace Mwa.Chronomountain
 
         [Header("Movement :")]
         [SerializeField] float speed;
+        float speedBackup;
         [SerializeField] float timeToTravel;
         [SerializeField] AudioClip clipOnMovement;
         public UnityEvent onMovementStart;
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
-        float speedBackup;
 
         [Header("Bumping :")]
         [SerializeField][Range(0, 1)] float bumpSpeedFactor;
@@ -39,14 +40,17 @@ namespace Mwa.Chronomountain
         [Header("Convoying :")]
         [SerializeField] float convoyingSpeedFactor;
 
-        float lerpt;
+        LevelElementType nextElement;
         Tweener currentTween;
-        Vector3 positionToGo;
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
         bool isBumping = false;
 
+        void Awake()
+        {
+            instance = this;
+        }
 
         void Start()
         {
@@ -63,56 +67,67 @@ namespace Mwa.Chronomountain
                 return;
             }
             initialMovementPosition = transform.position;
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition), MovementState.moving);
+            LevelElementBase nextLevelElement;
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), MovementState.moving, nextLevelElement);
             initialMovementPosition = transform.position;
             onMovementStart.Invoke();
         }
 
-        public void MakeTweenMovement(Vector3 target, MovementState movementType)
+        public void MakeTweenMovement(Vector3 target, MovementState movementType, LevelElementBase levelElementBase)
         {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
-
+            this.levelElementBase = levelElementBase;
             speed = speedBackup;
-            //TODO prise en compte des tiles de vide
-            switch (movementType)
+            
+            print("MovementState.moving");
+            SetRotation(directionList[directionIndex]);
+            InGameCanvasManager.manager.CollorArrow(directionIndex);
+            currentTween = DOTween.To((lerpT) =>
             {
-                //TODO voire avec une curve pour jouer sur un effet d'acceleration
-                //! Slide movement
-                case MovementState.moving :
-                    print("MovementState.moving");
-                    SetRotation(directionList[directionIndex]);
-                    InGameCanvasManager.manager.CollorArrow(directionIndex);
-                    currentTween = DOTween.To((lerpT) =>
-                    {
-                        transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
-                    },
-                    0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
-                    directionIndex++;
-                break;
+                transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
+            },
+            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+            directionIndex++;
+            //TODO prise en compte des tiles de vide
+            // switch (movementType)
+            // {
+            //     //TODO voire avec une curve pour jouer sur un effet d'acceleration
+            //     //! Slide movement
+            //     case MovementState.moving :
+            //         print("MovementState.moving");
+            //         SetRotation(directionList[directionIndex]);
+            //         InGameCanvasManager.manager.CollorArrow(directionIndex);
+            //         currentTween = DOTween.To((lerpT) =>
+            //         {
+            //             transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
+            //         },
+            //         0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+            //         directionIndex++;
+            //     break;
 
-                //! Bumping Movement
-                case MovementState.bumping :
-                    currentTween = DOTween.To((lerpT) =>
-                    {
-                        transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
-                        transform.localScale = Vector3.one * bumpAnimationCurve.Evaluate(lerpT);
-                        transform.Rotate(new Vector3(0, 0, bumpingRotationSpeed * Time.deltaTime));
-                    },
-                    0, 1, speed * bumpSpeedFactor).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
-                break;
+            //     //! Bumping Movement
+            //     case MovementState.bumping :
+            //         currentTween = DOTween.To((lerpT) =>
+            //         {
+            //             transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
+            //             transform.localScale = Vector3.one * bumpAnimationCurve.Evaluate(lerpT);
+            //             transform.Rotate(new Vector3(0, 0, bumpingRotationSpeed * Time.deltaTime));
+            //         },
+            //         0, 1, speed * bumpSpeedFactor).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+            //     break;
 
-                case MovementState.convoying :
-                    print("MovementState.convoying");
-                    currentTween = DOTween.To((lerpT) =>
-                    {
-                        transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
-                        transform.Rotate(new Vector3(0, 0, bumpingRotationSpeed * Time.deltaTime));
-                    },
-                    0, 1, speed * convoyingSpeedFactor).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
-                break;
-            }
+            //     case MovementState.convoying :
+            //         print("MovementState.convoying");
+            //         currentTween = DOTween.To((lerpT) =>
+            //         {
+            //             transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
+            //             transform.Rotate(new Vector3(0, 0, bumpingRotationSpeed * Time.deltaTime));
+            //         },
+            //         0, 1, speed * convoyingSpeedFactor).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+            //     break;
+            // }
         }
-
+        LevelElementBase levelElementBase;
         public void TweenComplete()
         {
             isBumping = false;
@@ -127,75 +142,114 @@ namespace Mwa.Chronomountain
             else
             {
                 //! Relance avec une nouvelle target
-                initialMovementPosition = transform.position;
-                MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition), MovementState.moving);
+                if(levelElementBase) {
+                    levelElementBase.OnStep(ChainNextMove);
+                } else {
+                    ChainNextMove();
+                }
             }
         }
 
-        Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
+        void ChainNextMove() {
+            LevelElementBase nextLevelElement;
+            initialMovementPosition = transform.position;
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), MovementState.moving, nextLevelElement);
+        }
+
+        Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase nextLevelElement)
         {
             //TODO Mettre l'invok du son autre par
             //! Joue un son a chaque changement de target
             AudioManager.manager.PlaySfx(clipOnMovement);
 
-            distanceToTravel = DistanceWithNextSprite(direction, playerPosition, LevelSprite.manager.wall);
-            Vector3 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
+            Vector3 nextTarget;
+            Vector3 directionToSetTarget;
 
-            if(createDebugTarget)
+            
+            distanceToTravel = DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
+            if(nextLevelElement)
             {
-                Instantiate(debugTarget, nextTarget, Quaternion.identity);
-            }
+                //! gere le cas des convoyeur
+                // if(nextLevelElement == global::LevelTile.instance.coveyorUp)
+                //     directionToSetTarget = Vector3.up;
+                // if(nextLevelElement == global::LevelTile.instance.coveyorRight)
+                //     directionToSetTarget = Vector3.right;
+                // if(nextLevelElement == global::LevelTile.instance.coveyorDown)
+                //     directionToSetTarget = Vector3.down;
+                // if(nextLevelElement == global::LevelTile.instance.coveyorLeft)
+                //     directionToSetTarget = Vector3.left;
+                
+                nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
 
+                // // lancer un tween
+                // nextLevelElement.OnStep();
+            }
+            else
+            {
+                nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
+            }
             return nextTarget; 
         }
 
-        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, Sprite spriteToCheck)
-        {
+        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase levelElementTile)
+        {//* le gro bordel
             int distance = 0;
-            Tile targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
-            Sprite targetSprite = targetTile.sprite;
+            TileBase targetTile = levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
 
-            for(int i = 0; i < 100; i++) 
+            for(int i = 1; i < 100; i++) 
             {
                 Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
                 targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
-                targetSprite = targetTile.sprite;
-                print(targetSprite);
-                if(createDebugTarget)
+                print(targetTile);
+
+                if(createDebugTarget && Application.isEditor)
                     Instantiate(debugTarget, targetToCheck, Quaternion.identity);
-                if(targetSprite == spriteToCheck)
+
+                // if(targetTile && global::LevelTile.instance.levelElementTile.Contains(targetTile))
+                // {
+                //     levelElementTile = targetTile;
+                //     distance = i;
+                //     return distance;
+                // }
+
+                LevelElementBase le = LevelElementBase.GetAt(targetToCheck);
+                if(le) {
+                    levelElementTile = le;
+                    distance = i;
+                    return distance;
+                }
+
+                if(targetTile == global::LevelTile.instance.wall)
                 {
+                    levelElementTile = null;
                     distance = i - 1;
-                    break;
+                    return distance - 1;
                 }
             }
-
-            print("Distance to travel = " + distance);
-            return distance; 
+            levelElementTile = null;
+            return 0;
         }
-
-
-        //! Set les parametre pour addapter l'update au level element rencontrer
+        
         public void SetLevelElement(LevelElement levelElement, Vector3 levelElementPosition)
         {
-            if(levelElement.type == LevelElementType.bumper)
-            {
-                print("LevelElementType.bumper");
-                currentTween.Kill();
-                isBumping = true;
-                transform.position = levelElementPosition;
-                initialMovementPosition = levelElementPosition;
-                MakeTweenMovement(levelElement.target.position, MovementState.bumping);
-            }
+            // if(levelElement.type == LevelElementType.bumper)
+            // {
+            //     print("LevelElementType.bumper");
+            //     currentTween.Kill();
+            //     isBumping = true;
+            //     transform.position = levelElementPosition;
+            //     initialMovementPosition = levelElementPosition;
+            //     MakeTweenMovement(levelElement.target.position, MovementState.bumping);
+            // }
             
-            if(levelElement.type == LevelElementType.conveyor && isBumping == false)
-            {
-                print("LevelElementType.conveyor");
-                currentTween.Kill();
-                transform.position = levelElementPosition;
-                initialMovementPosition = transform.position;
-                MakeTweenMovement(GetNextTarget(levelElement.direction, initialMovementPosition), MovementState.convoying);
-            }
+            // if(levelElement.type == LevelElementType.conveyor && isBumping == false)
+            // {
+            //     print("LevelElementType.conveyor");
+            //     currentTween.Kill();
+            //     transform.position = levelElementPosition;
+            //     initialMovementPosition = transform.position;
+            //     MakeTweenMovement(GetNextTarget(levelElement.direction, initialMovementPosition), MovementState.convoying);
+            // }
         }
 
         public void AddDirection(ScriptableDirection toAdd)
