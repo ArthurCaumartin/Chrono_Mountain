@@ -87,16 +87,21 @@ namespace Mwa.Chronomountain
             directionIndex++;
         }
 
-        //TODO Voire l'enchainement
+        //TODO Voire l'enchainement pour 
         public void TweenComplete(LevelElementBase levelElementBase)
         {
+            print("directionList.Count : " + directionList.Count);
+            print("directionIndex : " + directionIndex);
+
             if(directionIndex >= directionList.Count)
             {
-                
                 if(levelElementBase)
                 {
+                    print("level element exist lance OnStep");
                     levelElementBase.OnStep(ChainNextMove);
-                } else {
+                }
+                else
+                {
                     print("End Movement Sequence !");
                     onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
                 }
@@ -132,6 +137,7 @@ namespace Mwa.Chronomountain
             return nextTarget; 
         }
 
+        //TODO externaliser la fonction ?
         int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase levelElementTile)
         {//* le gro bordel
             int distance = 0;

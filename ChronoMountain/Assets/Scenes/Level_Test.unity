@@ -1854,7 +1854,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 860107689, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
 --- !u!1001 &1887570735
 PrefabInstance:
@@ -1913,7 +1914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7364366577271293928, guid: 0a4358480bd947f4ab7e5bbe39b8dbef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7364366577271293928, guid: 0a4358480bd947f4ab7e5bbe39b8dbef, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1980,6 +1981,14 @@ PrefabInstance:
     - target: {fileID: 2837080351105074699, guid: 0a4358480bd947f4ab7e5bbe39b8dbef, type: 3}
       propertyPath: m_Name
       value: Bumper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364366577271293928, guid: 0a4358480bd947f4ab7e5bbe39b8dbef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364366577271293928, guid: 0a4358480bd947f4ab7e5bbe39b8dbef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a4358480bd947f4ab7e5bbe39b8dbef, type: 3}
