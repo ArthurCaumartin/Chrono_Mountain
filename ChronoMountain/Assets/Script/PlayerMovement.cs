@@ -12,12 +12,7 @@ namespace Mwa.Chronomountain
     public class PlayerMovement : MonoBehaviour
     {
         public static PlayerMovement instance;
-        public enum MovementState
-        {
-            moving,
-            bumping,
-            convoying
-        }
+
         [SerializeField] bool createDebugTarget;
         [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
@@ -45,7 +40,7 @@ namespace Mwa.Chronomountain
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
-        LevelElementBase levelElementBase;
+        // LevelElementBase levelElementBase;
 
         void Awake()
         {
@@ -68,15 +63,17 @@ namespace Mwa.Chronomountain
             }
             initialMovementPosition = transform.position;
             LevelElementBase nextLevelElement; //! Set par le out de MakeTweenMovement !
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), MovementState.moving, nextLevelElement);
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
             initialMovementPosition = transform.position;
             onMovementStart.Invoke();
         }
-        //? entre le this. et le out je suis un peut perdu pour savoir qui est "nextLevelElement"
-        public void MakeTweenMovement(Vector3 target, MovementState movementType, LevelElementBase levelElementBase)
+
+        //? entre le this. et le out je suis un peut perdu pour savoir qui est "levelElementBase" ou "nextLevelElement"
+
+        public void MakeTweenMovement(Vector3 target, LevelElementBase levelElementBase)
         {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
-            this.levelElementBase = levelElementBase;
+            // this.levelElementBase = levelElementBase;
             speed = speedBackup;
             
             SetRotation(directionList[directionIndex]);
@@ -86,16 +83,23 @@ namespace Mwa.Chronomountain
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
             },
-            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(() => {TweenComplete(levelElementBase); });
             directionIndex++;
         }
 
-        public void TweenComplete()
+        //TODO Voire l'enchainement
+        public void TweenComplete(LevelElementBase levelElementBase)
         {
             if(directionIndex >= directionList.Count)
             {
-                print("End Movement Sequence !");
-                onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+                
+                if(levelElementBase)
+                {
+                    levelElementBase.OnStep(ChainNextMove);
+                } else {
+                    print("End Movement Sequence !");
+                    onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+                }
             }
             else
             {
@@ -114,7 +118,7 @@ namespace Mwa.Chronomountain
         {
             LevelElementBase nextLevelElement;
             initialMovementPosition = transform.position;
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), MovementState.moving, nextLevelElement);
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
         }
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase nextLevelElement)
@@ -122,17 +126,9 @@ namespace Mwa.Chronomountain
             print("GetNextTarget");
             AudioManager.manager.PlaySfx(clipOnMovement);
 
-            Vector3 nextTarget;
-
             distanceToTravel = DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
-            if(nextLevelElement)
-            {
-                nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
-            }
-            else
-            {
-                nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
-            }
+
+            Vector3 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
             return nextTarget; 
         }
 

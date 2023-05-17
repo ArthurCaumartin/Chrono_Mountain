@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7364366577271293928}
+  speed: 1.5
   rotationSpeed: 500
   curve:
     serializedVersion: 2

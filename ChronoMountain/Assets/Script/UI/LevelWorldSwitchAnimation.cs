@@ -6,7 +6,6 @@ using DG.Tweening;
 public class LevelWorldSwitchAnimation : MonoBehaviour
 {
     [SerializeField] int numberOfWorld;
-    [SerializeField] float swipeThresold;
     [SerializeField] float offSet;
     [SerializeField] RectTransform rectTransform;
     [SerializeField] float animationSpeed;
@@ -26,12 +25,15 @@ public class LevelWorldSwitchAnimation : MonoBehaviour
 
     public void SwipCheck(Vector2 swipDirection)
     {
-        if(swipDirection.x > swipeThresold)
+        print("SwipCheck");
+        if(swipDirection.x > .5)
         {
+            print("Add 1");
             AddToIndexMovement(1);
         }
-        if(swipDirection.x < -swipeThresold)
+        if(swipDirection.x < -.5f)
         {
+            print("Remove 1");
             AddToIndexMovement(-1);
         }
     }

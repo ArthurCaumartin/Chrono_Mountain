@@ -8,9 +8,15 @@ namespace Mwa.Chronomountain
     {
         public static List<LevelElementBase> levelObjects = new List<LevelElementBase>();
 
-        public static LevelElementBase GetAt(Vector3 pos) {
-            foreach(var l in levelObjects) {
-                if(Vector3.Distance(l.transform.position, pos) < .5f ) { // should change for a box check
+        //! return l'element a la poses demande en parametre
+        //! avec une tolerence de .5f de distance
+        public static LevelElementBase GetAt(Vector3 pos)
+        {
+            foreach(var l in levelObjects)
+            {
+                //TODO should change for a box check
+                if(Vector3.Distance(l.transform.position, pos) < .5f )
+                { 
                     return l;
                 }
             }
@@ -27,7 +33,9 @@ namespace Mwa.Chronomountain
             levelObjects.Remove(this);
         }
 
-        public virtual void OnStep(System.Action callback) {
+        //! C'est pour sa que l'heritage c ouf
+        public virtual void OnStep(System.Action callback) 
+        {
             print("no method implemented ... pfff u nul");
             if(callback != null) callback();
         }

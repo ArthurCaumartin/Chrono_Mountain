@@ -8,6 +8,7 @@ namespace Mwa.Chronomountain
     public class LevelBumper : LevelElementBase
     {
         [SerializeField] Transform target;
+        [SerializeField] float speed;
         [SerializeField] float rotationSpeed;
         [SerializeField] AnimationCurve curve;
         protected override void OnEnable()
@@ -23,7 +24,7 @@ namespace Mwa.Chronomountain
                 PlayerMovement.instance.transform.Rotate(new Vector3(0, 0, rotationSpeed));
                 PlayerMovement.instance.transform.position = Vector3.Lerp(startPosition, target.position, lerpT);
             },
-            0, 1, .5f).SetSpeedBased().SetEase(Ease.Linear)
+            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear)
             .OnComplete( () =>
             {
                 if(callback != null)
