@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 293089611193793723}
   - component: {fileID: 3544519486692279862}
   m_Layer: 0
-  m_Name: Conveyor
+  m_Name: ConveyorOld
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

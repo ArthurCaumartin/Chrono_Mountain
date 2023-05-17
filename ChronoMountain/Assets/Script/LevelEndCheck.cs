@@ -11,7 +11,7 @@ namespace Mwa.Chronomountain
         public void EndCheck(Tile underPlayerTile)
         {
             // print("Level Check End tile = " + underPlayerTile);
-            if(underPlayerTile.sprite == global::LevelTile.instance.end)//? wtf
+            if(underPlayerTile == LevelTile.instance.end)
             {
                 level.SetIsWin(true);
                 InGameCanvasManager.manager.SetWin();

@@ -45,7 +45,7 @@ namespace Mwa.Chronomountain
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
-        bool isBumping = false;
+        LevelElementBase levelElementBase;
 
         void Awake()
         {
@@ -67,90 +67,51 @@ namespace Mwa.Chronomountain
                 return;
             }
             initialMovementPosition = transform.position;
-            LevelElementBase nextLevelElement;
+            LevelElementBase nextLevelElement; //! Set par le out de MakeTweenMovement !
             MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), MovementState.moving, nextLevelElement);
             initialMovementPosition = transform.position;
             onMovementStart.Invoke();
         }
-
+        //? entre le this. et le out je suis un peut perdu pour savoir qui est "nextLevelElement"
         public void MakeTweenMovement(Vector3 target, MovementState movementType, LevelElementBase levelElementBase)
         {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
             this.levelElementBase = levelElementBase;
             speed = speedBackup;
             
-            print("MovementState.moving");
             SetRotation(directionList[directionIndex]);
             InGameCanvasManager.manager.CollorArrow(directionIndex);
-            currentTween = DOTween.To((lerpT) =>
+
+            currentTween = DOTween.To((lerpT) => //! lerpT == la valeur qui varie de 0 a 1 (je sais pas comment :))
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
             },
             0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
             directionIndex++;
-            //TODO prise en compte des tiles de vide
-            // switch (movementType)
-            // {
-            //     //TODO voire avec une curve pour jouer sur un effet d'acceleration
-            //     //! Slide movement
-            //     case MovementState.moving :
-            //         print("MovementState.moving");
-            //         SetRotation(directionList[directionIndex]);
-            //         InGameCanvasManager.manager.CollorArrow(directionIndex);
-            //         currentTween = DOTween.To((lerpT) =>
-            //         {
-            //             transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
-            //         },
-            //         0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
-            //         directionIndex++;
-            //     break;
-
-            //     //! Bumping Movement
-            //     case MovementState.bumping :
-            //         currentTween = DOTween.To((lerpT) =>
-            //         {
-            //             transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
-            //             transform.localScale = Vector3.one * bumpAnimationCurve.Evaluate(lerpT);
-            //             transform.Rotate(new Vector3(0, 0, bumpingRotationSpeed * Time.deltaTime));
-            //         },
-            //         0, 1, speed * bumpSpeedFactor).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
-            //     break;
-
-            //     case MovementState.convoying :
-            //         print("MovementState.convoying");
-            //         currentTween = DOTween.To((lerpT) =>
-            //         {
-            //             transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
-            //             transform.Rotate(new Vector3(0, 0, bumpingRotationSpeed * Time.deltaTime));
-            //         },
-            //         0, 1, speed * convoyingSpeedFactor).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
-            //     break;
-            // }
         }
-        LevelElementBase levelElementBase;
+
         public void TweenComplete()
         {
-            isBumping = false;
-
             if(directionIndex >= directionList.Count)
             {
-                print("directionIndex : " + directionIndex);
-                print("directionList.Count : " + directionList.Count);
-                //! Fin de la sequence de movement, envoi la tile sous le joueur pour etre verifier dans EndLevelCheck
+                print("End Movement Sequence !");
                 onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
             }
             else
             {
-                //! Relance avec une nouvelle target
-                if(levelElementBase) {
+                if(levelElementBase)
+                {
                     levelElementBase.OnStep(ChainNextMove);
-                } else {
+                }
+                else
+                {
                     ChainNextMove();
                 }
             }
         }
 
-        void ChainNextMove() {
+        void ChainNextMove()
+        {
             LevelElementBase nextLevelElement;
             initialMovementPosition = transform.position;
             MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), MovementState.moving, nextLevelElement);
@@ -158,31 +119,15 @@ namespace Mwa.Chronomountain
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase nextLevelElement)
         {
-            //TODO Mettre l'invok du son autre par
-            //! Joue un son a chaque changement de target
+            print("GetNextTarget");
             AudioManager.manager.PlaySfx(clipOnMovement);
 
             Vector3 nextTarget;
-            Vector3 directionToSetTarget;
 
-            
             distanceToTravel = DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
             if(nextLevelElement)
             {
-                //! gere le cas des convoyeur
-                // if(nextLevelElement == global::LevelTile.instance.coveyorUp)
-                //     directionToSetTarget = Vector3.up;
-                // if(nextLevelElement == global::LevelTile.instance.coveyorRight)
-                //     directionToSetTarget = Vector3.right;
-                // if(nextLevelElement == global::LevelTile.instance.coveyorDown)
-                //     directionToSetTarget = Vector3.down;
-                // if(nextLevelElement == global::LevelTile.instance.coveyorLeft)
-                //     directionToSetTarget = Vector3.left;
-                
                 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
-
-                // // lancer un tween
-                // nextLevelElement.OnStep();
             }
             else
             {
@@ -200,17 +145,10 @@ namespace Mwa.Chronomountain
             {
                 Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
                 targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
-                print(targetTile);
+                // print(targetTile);
 
                 if(createDebugTarget && Application.isEditor)
                     Instantiate(debugTarget, targetToCheck, Quaternion.identity);
-
-                // if(targetTile && global::LevelTile.instance.levelElementTile.Contains(targetTile))
-                // {
-                //     levelElementTile = targetTile;
-                //     distance = i;
-                //     return distance;
-                // }
 
                 LevelElementBase le = LevelElementBase.GetAt(targetToCheck);
                 if(le) {
@@ -219,37 +157,15 @@ namespace Mwa.Chronomountain
                     return distance;
                 }
 
-                if(targetTile == global::LevelTile.instance.wall)
+                if(targetTile == LevelTile.instance.wall)
                 {
                     levelElementTile = null;
-                    distance = i - 1;
+                    distance = i;
                     return distance - 1;
                 }
             }
             levelElementTile = null;
             return 0;
-        }
-        
-        public void SetLevelElement(LevelElement levelElement, Vector3 levelElementPosition)
-        {
-            // if(levelElement.type == LevelElementType.bumper)
-            // {
-            //     print("LevelElementType.bumper");
-            //     currentTween.Kill();
-            //     isBumping = true;
-            //     transform.position = levelElementPosition;
-            //     initialMovementPosition = levelElementPosition;
-            //     MakeTweenMovement(levelElement.target.position, MovementState.bumping);
-            // }
-            
-            // if(levelElement.type == LevelElementType.conveyor && isBumping == false)
-            // {
-            //     print("LevelElementType.conveyor");
-            //     currentTween.Kill();
-            //     transform.position = levelElementPosition;
-            //     initialMovementPosition = transform.position;
-            //     MakeTweenMovement(GetNextTarget(levelElement.direction, initialMovementPosition), MovementState.convoying);
-            // }
         }
 
         public void AddDirection(ScriptableDirection toAdd)
