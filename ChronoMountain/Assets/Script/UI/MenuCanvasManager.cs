@@ -19,7 +19,7 @@ namespace Mwa.Chronomountain
 
         public void RefreshButtonState()
         {
-            print("RefreshButtonState");
+            // print("RefreshButtonState");
             canvasLevelSelection.SetActive(true);
             foreach(var item in levelDescriptorsList)
             {
@@ -39,8 +39,9 @@ namespace Mwa.Chronomountain
             if(levelDescriptorsList[0].IsLevelWin() == false)
                 return;
 
-            for (int i = 1; i < levelDescriptorsList.Count; i++)
+            for(int i = 1; i < levelDescriptorsList.Count; i++)
             {
+                print("levelDescriptors : " + levelDescriptorsList[i]);
                 //! Si le niveau est win active le button
                 if(levelDescriptorsList[i].IsLevelWin())
                 {

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9591587763dae744c9ad582e104999ef, type: 3}
   m_Name: GameOption
   m_EditorClassIdentifier: 
-  isTimerOn: 0
+  isTimerOn: 1
