@@ -16,11 +16,26 @@ public class LevelWorldSwitchAnimation : MonoBehaviour
     Vector2 posToStartMove;
     float lerpT;
     float distance;
+    public SwipeDetect levelSwiper;
 
     void Start()
     {
         initialPosition = rectTransform.anchoredPosition;
         AddToIndexMovement(0);
+        levelSwiper.onSwipe.AddListener(OnSwipe);
+    }
+    
+        
+    public void OnSwipe(Vector2 direction) {
+        Debug.Log("SwipeDetect : " + direction);
+        if(direction.x > .5f) {
+            AddToIndexMovement(1);
+        }
+        else if(direction.x < -.5f) {
+            AddToIndexMovement(-1);
+        } else {
+            Debug.Log("SwipeDetect up or down : " + direction);
+        }
     }
 
     void Update()

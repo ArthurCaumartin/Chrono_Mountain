@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class LevelSprite : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class LevelSprite : MonoBehaviour
     public Sprite bumper;
     public Sprite end;
     public Sprite hole;
+
+    public List<TileBase> levelElementTile;
+    public TileBase bumperTile;
 
     void Awake()
     {

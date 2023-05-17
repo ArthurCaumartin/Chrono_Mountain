@@ -126,10 +126,22 @@ namespace Mwa.Chronomountain
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
-            distanceToTravel = DistanceWithNextSprite(direction, playerPosition, LevelSprite.manager.wall);
+            //TODO Mettre l'invok du son autre par
+            //! Joue un son a chaque changement de target
+            AudioManager.manager.PlaySfx(clipOnMovement);
+            TileBase specific;
+            distanceToTravel = DistanceWithNextSprite(direction, playerPosition, LevelSprite.manager.wall, out specific);
             Vector3 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
 
-            if(createDebugTarget)
+            if(specific) {
+                Debug.Log("Specific tile : " + specific);
+                if(specific == LevelSprite.manager.bumperTile) {
+
+                }
+                return nextTarget;
+            }
+
+            if(createDebugTarget && Application.isEditor)
             {
                 Instantiate(debugTarget, nextTarget, Quaternion.identity);
             }
@@ -138,10 +150,9 @@ namespace Mwa.Chronomountain
 
             return nextTarget; 
         }
-
-        TileBase wallTile;
-        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, Sprite spriteToCheck/* , out TileBase steppedOn */)
+        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, Sprite spriteToCheck, out TileBase specificTile)
         {
+            specificTile = null;
             int distance = 0;
             Tile targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
             Sprite targetSprite = targetTile.sprite;
@@ -151,6 +162,11 @@ namespace Mwa.Chronomountain
                 Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
                 targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
                 targetSprite = targetTile.sprite;
+
+                print(targetSprite);
+                if(createDebugTarget && Application.isEditor)
+                    Instantiate(debugTarget, targetToCheck, Quaternion.identity);
+
                 if(targetSprite == spriteToCheck)
                 {
                     distance = i - 1;
@@ -158,13 +174,13 @@ namespace Mwa.Chronomountain
                     // print(distance);
                     break;
                 }
-                // if(targetSprite == LevelSprite.manager.TileStopOn)
-                // {
-                //     distance = i;
-                //     steppedOn = targetTile;
-                //     break;
-                // }
-                if(wallTile == targetTile) {}
+                
+                if(targetTile && LevelSprite.manager.levelElementTile.Contains(targetTile))
+                {
+                    distance = i;
+                    specificTile = targetTile;
+                    break;
+                }
             }
 
             // steppedOn = null;
