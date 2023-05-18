@@ -7,8 +7,6 @@ using UnityEngine.Events;
 
 namespace Mwa.Chronomountain
 {
-
-
     public class PlayerMovement : MonoBehaviour
     {
         public static PlayerMovement instance;
@@ -20,7 +18,7 @@ namespace Mwa.Chronomountain
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
 
         [Header("Movement :")]
-        [SerializeField] float speed;
+        public float speed;
         float speedBackup;
         [SerializeField] float timeToTravel;
         [SerializeField] AudioClip clipOnMovement;
@@ -83,34 +81,35 @@ namespace Mwa.Chronomountain
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
             },
-            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(() => {TweenComplete(levelElementBase); });
+            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
             directionIndex++;
         }
 
         //TODO Voire l'enchainement pour 
-        public void TweenComplete(LevelElementBase levelElementBase)
+        public void TweenComplete()
         {
-            print("directionList.Count : " + directionList.Count);
-            print("directionIndex : " + directionIndex);
-
+            // print("directionList.Count : " + directionList.Count);
+            // print("directionIndex : " + directionIndex);
+            LevelElementBase levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
+            
             if(directionIndex >= directionList.Count)
             {
-                if(levelElementBase)
+                if(levelElementUnderPlayer)
                 {
-                    print("level element exist lance OnStep");
-                    levelElementBase.OnStep(ChainNextMove);
+                    // print("level element exist lance OnStep from :" + le.name);
+                    levelElementUnderPlayer.OnStep(TweenComplete);
                 }
                 else
                 {
-                    print("End Movement Sequence !");
+                    // print("End Movement Sequence !");
                     onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
                 }
             }
             else
             {
-                if(levelElementBase)
+                if(levelElementUnderPlayer)
                 {
-                    levelElementBase.OnStep(ChainNextMove);
+                    levelElementUnderPlayer.OnStep(TweenComplete);
                 }
                 else
                 {
@@ -131,43 +130,10 @@ namespace Mwa.Chronomountain
             print("GetNextTarget");
             AudioManager.manager.PlaySfx(clipOnMovement);
 
-            distanceToTravel = DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
+            distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
 
-            Vector3 nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
-            return nextTarget; 
-        }
-
-        //TODO externaliser la fonction ?
-        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase levelElementTile)
-        {//* le gro bordel
-            int distance = 0;
-            TileBase targetTile = levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
-
-            for(int i = 1; i < 100; i++) 
-            {
-                Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
-                targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
-                // print(targetTile);
-
-                if(createDebugTarget && Application.isEditor)
-                    Instantiate(debugTarget, targetToCheck, Quaternion.identity);
-
-                LevelElementBase le = LevelElementBase.GetAt(targetToCheck);
-                if(le) {
-                    levelElementTile = le;
-                    distance = i;
-                    return distance;
-                }
-
-                if(targetTile == LevelTile.instance.wall)
-                {
-                    levelElementTile = null;
-                    distance = i;
-                    return distance - 1;
-                }
-            }
-            levelElementTile = null;
-            return 0;
+            Vector3 nextTarget = transform.position + (direction.GetDirection() * distanceToTravel);
+            return nextTarget;
         }
 
         public void AddDirection(ScriptableDirection toAdd)

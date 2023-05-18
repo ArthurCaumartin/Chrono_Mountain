@@ -8,7 +8,7 @@ namespace Mwa.Chronomountain
     public class LevelBumper : LevelElementBase
     {
         [SerializeField] Transform target;
-        [SerializeField] float speed;
+        [SerializeField] float speedFactor;
         [SerializeField] float rotationSpeed;
         [SerializeField] AnimationCurve curve;
         protected override void OnEnable()
@@ -17,6 +17,7 @@ namespace Mwa.Chronomountain
         }
         public override void OnStep(System.Action callback)
         {
+            print("Player bump from : " + name);
             Vector3 startPosition = PlayerMovement.instance.transform.position;
             DOTween.To((lerpT) =>
             {
@@ -24,7 +25,7 @@ namespace Mwa.Chronomountain
                 PlayerMovement.instance.transform.Rotate(new Vector3(0, 0, rotationSpeed));
                 PlayerMovement.instance.transform.position = Vector3.Lerp(startPosition, target.position, lerpT);
             },
-            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear)
+            0, 1, PlayerMovement.instance.speed * speedFactor).SetSpeedBased().SetEase(Ease.Linear)
             .OnComplete( () =>
             {
                 if(callback != null)
