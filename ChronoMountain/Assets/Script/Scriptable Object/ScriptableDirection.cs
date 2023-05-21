@@ -7,12 +7,12 @@ namespace Mwa.Chronomountain
     [CreateAssetMenu(fileName = "Direction", menuName = "ChronoMoutain/Direction")]
     public class ScriptableDirection : ScriptableObject
     {
-        public Pointer direction;
+        public Pointer pointer;
         public Sprite arrowSprite;
         public Vector3 GetDirection()
         {
             Vector3 toReturn = new Vector3(0, 0, 0);
-            switch (direction)
+            switch (pointer)
             {
                 case Pointer.Up :
                     toReturn = new Vector3(0, 1, 0);

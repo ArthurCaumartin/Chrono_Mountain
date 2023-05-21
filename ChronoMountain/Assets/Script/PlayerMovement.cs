@@ -25,15 +25,7 @@ namespace Mwa.Chronomountain
         public UnityEvent onMovementStart;
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
 
-        [Header("Bumping :")]
-        [SerializeField][Range(0, 1)] float bumpSpeedFactor;
-        [SerializeField] AnimationCurve bumpAnimationCurve;
-        [SerializeField] float bumpingRotationSpeed;
-
         [Header("Convoying :")]
-        [SerializeField] float convoyingSpeedFactor;
-
-        LevelElementType nextElement;
         Tweener currentTween;
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
@@ -91,12 +83,12 @@ namespace Mwa.Chronomountain
             // print("directionList.Count : " + directionList.Count);
             // print("directionIndex : " + directionIndex);
             LevelElementBase levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
-            
+            print(levelElementUnderPlayer.name);
             if(directionIndex >= directionList.Count)
             {
                 if(levelElementUnderPlayer)
                 {
-                    // print("level element exist lance OnStep from :" + le.name);
+                    print("level element exist lance OnStep from :" + levelElementUnderPlayer.name);
                     levelElementUnderPlayer.OnStep(TweenComplete);
                 }
                 else
@@ -127,7 +119,7 @@ namespace Mwa.Chronomountain
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase nextLevelElement)
         {
-            print("GetNextTarget");
+            // print("GetNextTarget");
             AudioManager.manager.PlaySfx(clipOnMovement);
 
             distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
@@ -152,7 +144,7 @@ namespace Mwa.Chronomountain
         void SetRotation(ScriptableDirection direction)
         {
             //! direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction
-            switch(direction.direction)
+            switch(direction.pointer)
             {
                 case Pointer.Up :
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d0d39bb81cd004d9b5535f51a0955d, type: 3}
   m_Name: Direction Left
   m_EditorClassIdentifier: 
-  direction: 1
+  pointer: 1
   arrowSprite: {fileID: 21300000, guid: 9107720a6a4e10f4d89f05fa367c04c7, type: 3}

@@ -10,14 +10,26 @@ namespace Mwa.Chronomountain
 
         //! return l'element a la poses demande en parametre
         //! avec une tolerence de .5f de distance
+
+        [ContextMenu("PrintList")]
+        void PrintList()
+        {
+            foreach (var item in levelObjects)
+            {
+                print(item.name);
+            }
+        }
+
         public static LevelElementBase GetAt(Vector3 pos)
         {
-            foreach(var l in levelObjects)
+            print("Get At call !");
+            foreach(var item in levelObjects)
             {
+                // print("Item name : " + item.name);
                 //TODO should change for a box check
-                if(Vector3.Distance(l.transform.position, pos) < .5f )
-                { 
-                    return l;
+                if(Vector3.Distance(item.transform.position, pos) < .5f )
+                {
+                    return item;
                 }
             }
             return null;

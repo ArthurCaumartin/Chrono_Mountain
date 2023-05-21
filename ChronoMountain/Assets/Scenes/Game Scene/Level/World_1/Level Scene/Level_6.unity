@@ -1694,6 +1694,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1193255940433780480, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: levelPathTileMap
+      value: 
+      objectReference: {fileID: 2136443871}
     - target: {fileID: 1994852097792780992, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: level
       value: 
