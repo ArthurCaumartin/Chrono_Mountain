@@ -83,7 +83,7 @@ namespace Mwa.Chronomountain
             // print("directionList.Count : " + directionList.Count);
             // print("directionIndex : " + directionIndex);
             LevelElementBase levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
-            print(levelElementUnderPlayer.name);
+            print(levelElementUnderPlayer);
             if(directionIndex >= directionList.Count)
             {
                 if(levelElementUnderPlayer)

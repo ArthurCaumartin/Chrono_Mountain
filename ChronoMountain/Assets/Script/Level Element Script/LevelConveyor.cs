@@ -43,7 +43,7 @@ namespace Mwa.Chronomountain
         //TODO ajouter un enum pour le choix des directions
         public override void OnStep(System.Action callBack)
         {
-            print(name + " OnStep Call");
+            // print(name + " OnStep Call");
             //! dois set la target puis tween
             float distance = TileDistance.instance.DistanceWithNextSprite(direction, transform.position);
             Vector3 target = transform.position + (direction.GetDirection() * distance);

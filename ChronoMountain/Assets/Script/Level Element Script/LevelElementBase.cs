@@ -26,6 +26,7 @@ namespace Mwa.Chronomountain
             foreach(var item in levelObjects)
             {
                 // print("Item name : " + item.name);
+                // print("Item position : " + item.transform.position);
                 //TODO should change for a box check
                 if(Vector3.Distance(item.transform.position, pos) < .5f )
                 {

@@ -33,7 +33,8 @@ namespace Mwa.Chronomountain
                     Instantiate(debugTarget, targetToCheck, Quaternion.identity);
 
                 LevelElementBase levelElementHit = LevelElementBase.GetAt(targetToCheck);
-                if(levelElementHit) {
+                if(levelElementHit)
+                {
                     levelElementTile = levelElementHit;
                     distance = i;
                     return distance;
@@ -65,7 +66,8 @@ namespace Mwa.Chronomountain
                     Instantiate(debugTarget, targetToCheck, Quaternion.identity);
 
                 LevelElementBase levelElementHit = LevelElementBase.GetAt(targetToCheck);
-                if(levelElementHit) {
+                if(levelElementHit)
+                {
                     distance = i;
                     return distance;
                 }
