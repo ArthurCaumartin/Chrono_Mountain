@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Mwa.Chronomountain
 {
@@ -43,6 +44,13 @@ namespace Mwa.Chronomountain
         protected virtual void OnDisable()
         {
             levelObjects.Remove(this);
+        }
+
+        public virtual Tween GetTween(Vector3 startPosition, out Vector3 nextMovementStartPosition)
+        {
+            print("no tween Set !!");
+            nextMovementStartPosition = Vector3.zero;
+            return null;
         }
 
         //! C'est pour sa que l'heritage c ouf

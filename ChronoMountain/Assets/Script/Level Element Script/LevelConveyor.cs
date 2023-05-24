@@ -39,6 +39,22 @@ namespace Mwa.Chronomountain
         {
             base.OnEnable();
         }
+
+        public override Tween GetTween(Vector3 startPosition, out Vector3 nextMovementStartPosition)
+        {
+
+            float distance = TileDistance.instance.DistanceWithNextSprite(direction, startPosition);
+            Vector3 target = transform.position + (direction.GetDirection() * distance);
+            nextMovementStartPosition = target;
+
+            Tween tween = DOTween.To((lerpT) =>
+            {
+                PlayerMovement.instance.transform.position = Vector3.Lerp(transform.position, target, lerpT);
+            },
+            0, 1, PlayerMovement.instance.speed * speedFactor);
+
+            return tween;
+        }
         
         //TODO ajouter un enum pour le choix des directions
         public override void OnStep(System.Action callBack)

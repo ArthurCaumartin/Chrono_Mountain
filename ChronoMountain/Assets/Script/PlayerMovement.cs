@@ -16,21 +16,19 @@ namespace Mwa.Chronomountain
         [SerializeField] Tilemap levelPathTileMap;
         [SerializeField] Transform playerSpriteTransform;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
+        [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
+
 
         [Header("Movement :")]
         public float speed;
-        float speedBackup;
-        [SerializeField] float timeToTravel;
         [SerializeField] AudioClip clipOnMovement;
-        public UnityEvent onMovementStart;
-        [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
 
-        [Header("Convoying :")]
-        Tweener currentTween;
+        float speedBackup;
+        public UnityEvent onMovementStart;
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
-        // LevelElementBase levelElementBase;
+        
 
         void Awake()
         {
@@ -41,6 +39,45 @@ namespace Mwa.Chronomountain
         {
             speedBackup = speed;
         }
+
+        void CreateTweenSequence()
+        {
+            LevelElementBase potentialLevelElement = null;
+
+            Vector3 startPosition = transform.position;
+            Vector3 targetPosition = GetNextTarget(directionList[0], startPosition, out potentialLevelElement);
+
+            Sequence movementSequence = DOTween.Sequence();
+            for(int i = 0; i < directionList.Count; i++)
+            {
+                movementSequence.Append(DOTween.To((lerpT) =>
+                {
+                    transform.position = Vector3.Lerp(startPosition, targetPosition, lerpT);
+                }, 0, 1, speed));
+
+                //! Si on n'a un levelElement alors on ajoute la tween de l'element
+                if(potentialLevelElement != null)
+                {
+                    movementSequence.Append(potentialLevelElement.GetTween(startPosition, out startPosition));
+                }
+                else //! Sinon on n'ajoute la tween de movement de base
+                {
+
+                }
+            }
+        }
+
+        // List<Vector3> startPositionList;
+        // List<Vector3> targetList;
+        // void SetTargetAndDestinationList()
+        // {
+        //     startPositionList.Add(transform.position);
+
+        //     for (int i = 0; i < directionList.Count; i++)
+        //     {
+        //         targetList.Add(GetNextTarget(directionList[i], startPositionList[i]));
+        //     }
+        // }
 
         //! Call par le button Do Move et onTimerComplete
         public void StartMovement()
@@ -69,7 +106,7 @@ namespace Mwa.Chronomountain
             SetRotation(directionList[directionIndex]);
             InGameCanvasManager.manager.CollorArrow(directionIndex);
 
-            currentTween = DOTween.To((lerpT) => //! lerpT == la valeur qui varie de 0 a 1 (je sais pas comment :))
+            DOTween.To((lerpT) => //! lerpT == la valeur qui varie de 0 a 1 (je sais pas comment :))
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
             },
@@ -117,12 +154,12 @@ namespace Mwa.Chronomountain
             MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
         }
 
-        Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase nextLevelElement)
+        Vector3 GetNextTarget(ScriptableDirection direction, Vector3 startPosition, out LevelElementBase nextLevelElement)
         {
             // print("GetNextTarget");
             AudioManager.manager.PlaySfx(clipOnMovement);
 
-            distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
+            distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, startPosition, out nextLevelElement);
 
             Vector3 nextTarget = transform.position + (direction.GetDirection() * distanceToTravel);
             return nextTarget;
