@@ -23,10 +23,11 @@ namespace Mwa.Chronomountain
 
         public void ResteLevel()
         {
-            player.transform.position = playerTransformSave;
-            player.transform.rotation = Quaternion.Euler(Vector3.zero);
             player.GetComponent<PlayerMovement>().ResetMovement();
-            player.GetComponent<TrailRenderer>().Clear();
+            player.transform.position = playerTransformSave;
+            
+            player.GetComponentInChildren<TrailRenderer>().Clear();
+
             timer.ResetTimer();
 
             InGameCanvasManager.manager.ClearArrow();

@@ -13,7 +13,7 @@ namespace Mwa.Chronomountain
         [SerializeField] UnityEvent onWin;
         [SerializeField] UnityEvent onLose;
 
-        [Header("Direction Button")]
+        [Space]
         [SerializeField] List<GameObject> directionButton;
 
         [Header("Arrow Direction")]
@@ -37,6 +37,7 @@ namespace Mwa.Chronomountain
             GameObject newArrow = Instantiate(arrowObjectPrefab, posToInstantiate, Quaternion.identity, initialPosition);
     
             newArrow.GetComponent<Image>().sprite = direction.arrowSprite;
+            newArrow.transform.rotation = direction.GetRotation();
             arrowPrefabList.Add(newArrow);
             arrowNumber++;
         }

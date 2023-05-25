@@ -7,45 +7,29 @@ using UnityEngine.Events;
 
 namespace Mwa.Chronomountain
 {
-
-
     public class PlayerMovement : MonoBehaviour
     {
         public static PlayerMovement instance;
-        public enum MovementState
-        {
-            moving,
-            bumping,
-            convoying
-        }
+
         [SerializeField] bool createDebugTarget;
         [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
         [SerializeField] Transform playerSpriteTransform;
+        [SerializeField] ScriptableDirection resetDirection;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
 
         [Header("Movement :")]
-        [SerializeField] float speed;
-        float speedBackup;
+        public float speed; //! Valeur use pour les level elements
         [SerializeField] float timeToTravel;
         [SerializeField] AudioClip clipOnMovement;
-        public UnityEvent onMovementStart;
+        public UnityEvent onMovementStart; //! Lisener set dans la canvas Manager
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
 
-        [Header("Bumping :")]
-        [SerializeField][Range(0, 1)] float bumpSpeedFactor;
-        [SerializeField] AnimationCurve bumpAnimationCurve;
-        [SerializeField] float bumpingRotationSpeed;
-
-        [Header("Convoying :")]
-        [SerializeField] float convoyingSpeedFactor;
-
-        LevelElementType nextElement;
+        float speedBackup;
         Tweener currentTween;
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
-        LevelElementBase levelElementBase;
 
         void Awake()
         {
@@ -68,15 +52,17 @@ namespace Mwa.Chronomountain
             }
             initialMovementPosition = transform.position;
             LevelElementBase nextLevelElement; //! Set par le out de MakeTweenMovement !
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), MovementState.moving, nextLevelElement);
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
             initialMovementPosition = transform.position;
             onMovementStart.Invoke();
         }
-        //? entre le this. et le out je suis un peut perdu pour savoir qui est "nextLevelElement"
-        public void MakeTweenMovement(Vector3 target, MovementState movementType, LevelElementBase levelElementBase)
+
+        //? entre le this. et le out je suis un peut perdu pour savoir qui est "levelElementBase" ou "nextLevelElement"
+
+        public void MakeTweenMovement(Vector3 target, LevelElementBase levelElementBase)
         {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
-            this.levelElementBase = levelElementBase;
+            // this.levelElementBase = levelElementBase;
             speed = speedBackup;
             
             SetRotation(directionList[directionIndex]);
@@ -90,18 +76,29 @@ namespace Mwa.Chronomountain
             directionIndex++;
         }
 
+        LevelElementBase levelElementUnderPlayer;
+
+        //TODO Voire l'enchainement pour 
         public void TweenComplete()
         {
+            levelElementUnderPlayer = null;
+            levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
             if(directionIndex >= directionList.Count)
             {
-                print("End Movement Sequence !");
-                onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+                if(levelElementUnderPlayer)
+                {
+                    levelElementUnderPlayer.OnStep(TweenComplete);
+                }
+                else
+                {
+                    onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
+                }
             }
             else
             {
-                if(levelElementBase)
+                if(levelElementUnderPlayer)
                 {
-                    levelElementBase.OnStep(ChainNextMove);
+                    levelElementUnderPlayer.OnStep(TweenComplete);
                 }
                 else
                 {
@@ -114,58 +111,18 @@ namespace Mwa.Chronomountain
         {
             LevelElementBase nextLevelElement;
             initialMovementPosition = transform.position;
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), MovementState.moving, nextLevelElement);
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
         }
 
         Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase nextLevelElement)
         {
-            print("GetNextTarget");
+            // print("GetNextTarget");
             AudioManager.manager.PlaySfx(clipOnMovement);
 
-            Vector3 nextTarget;
+            distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
 
-            distanceToTravel = DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
-            if(nextLevelElement)
-            {
-                nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
-            }
-            else
-            {
-                nextTarget = transform.position + direction.GetDirection() * distanceToTravel;
-            }
-            return nextTarget; 
-        }
-
-        int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase levelElementTile)
-        {//* le gro bordel
-            int distance = 0;
-            TileBase targetTile = levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
-
-            for(int i = 1; i < 100; i++) 
-            {
-                Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
-                targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
-                // print(targetTile);
-
-                if(createDebugTarget && Application.isEditor)
-                    Instantiate(debugTarget, targetToCheck, Quaternion.identity);
-
-                LevelElementBase le = LevelElementBase.GetAt(targetToCheck);
-                if(le) {
-                    levelElementTile = le;
-                    distance = i;
-                    return distance;
-                }
-
-                if(targetTile == LevelTile.instance.wall)
-                {
-                    levelElementTile = null;
-                    distance = i;
-                    return distance - 1;
-                }
-            }
-            levelElementTile = null;
-            return 0;
+            Vector3 nextTarget = transform.position + (direction.GetDirection() * distanceToTravel);
+            return nextTarget;
         }
 
         public void AddDirection(ScriptableDirection toAdd)
@@ -176,15 +133,20 @@ namespace Mwa.Chronomountain
         //! position du joueur reset dans LevelReseter
         public void ResetMovement()
         {
-            directionIndex = 0;
             directionList.Clear();
+            directionIndex = 0;
+            currentTween.Kill();
+            if(levelElementUnderPlayer)
+                levelElementUnderPlayer.KillTween();
+            
             transform.localScale = Vector3.one;
+            SetRotation(resetDirection);
         }
 
-        void SetRotation(ScriptableDirection direction)
+        public void SetRotation(ScriptableDirection direction)
         {
             //! direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction
-            switch(direction.direction)
+            switch(direction.pointer)
             {
                 case Pointer.Up :
                     playerSpriteTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
