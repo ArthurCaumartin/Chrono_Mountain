@@ -6,9 +6,9 @@ public class PauseOverlayAnimation : MonoBehaviour
 {
     [SerializeField] GameObject overlay;
     [SerializeField] float speed;
-    [SerializeField] float newX;
+    [SerializeField] float newY;
     float lerpT = 0;
-    float initialX;
+    float initialY;
     bool isOpen = false;
     RectTransform rectTransform;
     Vector2 newPose;
@@ -17,10 +17,10 @@ public class PauseOverlayAnimation : MonoBehaviour
     void Awake()
     {
         rectTransform = (RectTransform)overlay.transform;
-        initialX = rectTransform.anchoredPosition.x;
+        initialY = rectTransform.anchoredPosition.x;
 
-        newPose = new Vector2(newX, rectTransform.anchoredPosition.y);
-        initialPos = new Vector2(initialX, rectTransform.anchoredPosition.y);
+        newPose = new Vector2(rectTransform.anchoredPosition.x, newY);
+        initialPos = new Vector2(rectTransform.anchoredPosition.y, initialY);
     }
 
     //! call par button pause
