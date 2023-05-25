@@ -15,22 +15,21 @@ namespace Mwa.Chronomountain
         [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
         [SerializeField] Transform playerSpriteTransform;
+        [SerializeField] ScriptableDirection resetDirection;
         [SerializeField] List<ScriptableDirection> directionList = new List<ScriptableDirection>();
 
         [Header("Movement :")]
-        public float speed;
-        float speedBackup;
+        public float speed; //! Valeur use pour les level elements
         [SerializeField] float timeToTravel;
         [SerializeField] AudioClip clipOnMovement;
-        public UnityEvent onMovementStart;
+        public UnityEvent onMovementStart; //! Lisener set dans la canvas Manager
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
 
-        [Header("Convoying :")]
+        float speedBackup;
         Tweener currentTween;
         Vector3 initialMovementPosition;
         int distanceToTravel = 0;
         int directionIndex = 0;
-        // LevelElementBase levelElementBase;
 
         void Awake()
         {
@@ -83,20 +82,15 @@ namespace Mwa.Chronomountain
         public void TweenComplete()
         {
             levelElementUnderPlayer = null;
-            // print("directionList.Count : " + directionList.Count);
-            // print("directionIndex : " + directionIndex);
             levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
-            print(levelElementUnderPlayer);
             if(directionIndex >= directionList.Count)
             {
                 if(levelElementUnderPlayer)
                 {
-                    print("level element exist lance OnStep from :" + levelElementUnderPlayer.name);
                     levelElementUnderPlayer.OnStep(TweenComplete);
                 }
                 else
                 {
-                    // print("End Movement Sequence !");
                     onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
                 }
             }
@@ -142,12 +136,14 @@ namespace Mwa.Chronomountain
             directionList.Clear();
             directionIndex = 0;
             currentTween.Kill();
-            levelElementUnderPlayer.KillTween();
+            if(levelElementUnderPlayer)
+                levelElementUnderPlayer.KillTween();
             
             transform.localScale = Vector3.one;
+            SetRotation(resetDirection);
         }
 
-        void SetRotation(ScriptableDirection direction)
+        public void SetRotation(ScriptableDirection direction)
         {
             //! direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction.direction
             switch(direction.pointer)

@@ -9,6 +9,7 @@ namespace Mwa.Chronomountain
     {
         public Pointer pointer;
         public Sprite arrowSprite;
+
         public Vector3 GetDirection()
         {
             Vector3 toReturn = new Vector3(0, 0, 0);
@@ -31,6 +32,26 @@ namespace Mwa.Chronomountain
                 break;
             }
             return toReturn;
+        }
+
+        public Quaternion GetRotation()
+        {
+            switch(pointer)
+            {
+                case Pointer.Up :
+                    return Quaternion.Euler(new Vector3(0, 0, 0));
+
+                case Pointer.Left :
+                    return Quaternion.Euler(new Vector3(0, 0, 90));
+
+                case Pointer.Right :
+                    return Quaternion.Euler(new Vector3(0, 0, -90));
+
+                case Pointer.Down :
+                    return Quaternion.Euler(new Vector3(0, 0, 180));
+            }
+
+            return Quaternion.Euler(Vector3.zero);
         }
     }
 }

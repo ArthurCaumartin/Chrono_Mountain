@@ -186,6 +186,7 @@ MonoBehaviour:
   debugTarget: {fileID: 3409655635115583703, guid: fb5014d1456f73c4d9fd18d9968bff6d, type: 3}
   levelPathTileMap: {fileID: 0}
   playerSpriteTransform: {fileID: 9210665813871530134}
+  resetDirection: {fileID: 11400000, guid: e299bf3ca031e014d940b664c5824b05, type: 2}
   directionList: []
   speed: 3
   timeToTravel: 1

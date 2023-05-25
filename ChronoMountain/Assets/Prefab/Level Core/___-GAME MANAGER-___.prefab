@@ -146,14 +146,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 11400000, guid: 96f088a879ec9604090e55c9a8094b03, type: 2}
-  path: {fileID: 11400000, guid: cd1a862428363b248a2bf87b28a90fe3, type: 2}
+  door: {fileID: 11400000, guid: b42d406269106af489e8d42e0dd6e937, type: 2}
+  Key: {fileID: 11400000, guid: bc75a53844ba5954d88a6aa0e0e9aa68, type: 2}
   end: {fileID: 11400000, guid: b3aef9ef42c123d44b14dc77f2cc5c6d, type: 2}
   hole: {fileID: 0}
-  coveyorUp: {fileID: 0}
-  coveyorRight: {fileID: 0}
-  coveyorLeft: {fileID: 0}
-  coveyorDown: {fileID: 0}
-  levelElementTile: []
 --- !u!1 &8748450492127325129
 GameObject:
   m_ObjectHideFlags: 0

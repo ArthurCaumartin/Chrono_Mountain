@@ -25,7 +25,7 @@ namespace Mwa.Chronomountain
 
         public override void OnStep(System.Action callback)
         {
-            print("Player bump from : " + name);
+            // print("Player bump from : " + name);
             Vector3 startPosition = PlayerMovement.instance.transform.position;
             curretTween = DOTween.To((lerpT) =>
             {

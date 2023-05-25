@@ -11,6 +11,8 @@ namespace Mwa.Chronomountain
         [SerializeField] bool createDebugTarget;
         [SerializeField] GameObject debugTarget;
         [SerializeField] Tilemap levelPathTileMap;
+        // public bool levelHasDoor = false;
+        public bool isPlayerWayOnKey = false;
 
         void Awake()
         {
@@ -18,8 +20,9 @@ namespace Mwa.Chronomountain
         }
 
         //TODO Prendre en compte les tiles de vide
+        //! Call par les deplacament du joueur
         public int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase levelElementTile)
-        {//* le gro bordel
+        {//* le gro bordel *edit* => en vrais ça va...
             int distance = 0;
             TileBase targetTile = levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
 
@@ -30,8 +33,28 @@ namespace Mwa.Chronomountain
                 // print(targetTile);
 
                 if(createDebugTarget && Application.isEditor)
+                {
                     Instantiate(debugTarget, targetToCheck, Quaternion.identity);
+                }
 
+                //! regarde si le joueut passe sur une key
+                if(targetTile == LevelTile.instance.Key)
+                {
+                    isPlayerWayOnKey = true;
+                }
+
+                //! Regarde si on passe sur une porte
+                if(targetTile == LevelTile.instance.door)
+                {
+                    if(isPlayerWayOnKey == false)
+                    {
+                        levelElementTile = null;
+                        distance = i;
+                        return distance - 1;
+                    }
+                }
+                
+                //! Regarde si on passe sur un level element
                 LevelElementBase levelElementHit = LevelElementBase.GetAt(targetToCheck);
                 if(levelElementHit)
                 {
@@ -40,6 +63,7 @@ namespace Mwa.Chronomountain
                     return distance;
                 }
 
+                //! Regarde si on passe sur un mur
                 if(targetTile == LevelTile.instance.wall)
                 {
                     levelElementTile = null;
@@ -51,6 +75,8 @@ namespace Mwa.Chronomountain
             return 0;
         }
 
+
+        //! Call par les Level element
         public int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition)
         {//* le gro bordel
             int distance = 0;
@@ -63,7 +89,24 @@ namespace Mwa.Chronomountain
                 // print(targetTile);
 
                 if(createDebugTarget && Application.isEditor)
+                {
                     Instantiate(debugTarget, targetToCheck, Quaternion.identity);
+                }
+
+                if(targetTile == LevelTile.instance.Key)
+                {
+                    isPlayerWayOnKey = true;
+                }
+
+                //! Regarde si on passe sur une porte
+                if(targetTile == LevelTile.instance.door)
+                {
+                    if(isPlayerWayOnKey == false)
+                    {
+                        distance = i;
+                        return distance - 1;
+                    }
+                }
 
                 LevelElementBase levelElementHit = LevelElementBase.GetAt(targetToCheck);
                 if(levelElementHit)
@@ -80,9 +123,5 @@ namespace Mwa.Chronomountain
             }
             return 0;
         }
-
-
-
-        
     }
 }

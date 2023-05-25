@@ -16,7 +16,7 @@ public class OnClicAnimation : MonoBehaviour
     
     void PlayAnimation()
     {
-        print("Tween start !");
+        // print("Tween start !");
         DOTween.To((time) => 
         {
             transform.localScale = Vector3.one * curve.Evaluate(time);

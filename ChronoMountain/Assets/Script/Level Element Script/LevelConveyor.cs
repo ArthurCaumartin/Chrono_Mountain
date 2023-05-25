@@ -49,6 +49,7 @@ namespace Mwa.Chronomountain
         //TODO ajouter un enum pour le choix des directions
         public override void OnStep(System.Action callBack)
         {
+            PlayerMovement.instance.SetRotation(direction);
             // print(name + " OnStep Call");
             //! dois set la target puis tween
             float distance = TileDistance.instance.DistanceWithNextSprite(direction, transform.position);
@@ -58,7 +59,8 @@ namespace Mwa.Chronomountain
             {
                 PlayerMovement.instance.transform.position = Vector3.Lerp(transform.position, target, lerpT);
             },
-            0, 1, PlayerMovement.instance.speed * speedFactor).SetSpeedBased().OnComplete(() =>
+            0, 1, PlayerMovement.instance.speed * speedFactor).SetSpeedBased().SetEase(Ease.Linear)
+            .OnComplete(() =>
             {
                 if(callBack != null)
                     callBack();

@@ -7,16 +7,12 @@ public class LevelTile : MonoBehaviour
 {
     public static LevelTile instance;
 
-    public TileBase wall;
-    public TileBase path;
-    public TileBase end;
-    public TileBase hole;
-    public TileBase coveyorUp;
-    public TileBase coveyorRight;
-    public TileBase coveyorLeft;
-    public TileBase coveyorDown;
+    public Tile wall;
+    public Tile door;
+    public Tile Key;
+    public Tile end;
+    public Tile hole;
 
-    public List<TileBase> levelElementTile;
 
     void Awake()
     {

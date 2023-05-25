@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Direction Down
   m_EditorClassIdentifier: 
   pointer: 3
-  arrowSprite: {fileID: 21300000, guid: a2c14e55daa3d4046a30f46c43ddc325, type: 3}
+  arrowSprite: {fileID: 21300000, guid: 4ca30af0de4135046a3f77d2e263c689, type: 3}
