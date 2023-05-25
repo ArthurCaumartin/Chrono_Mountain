@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Cinematic_1
   m_EditorClassIdentifier: 
   backGround: {fileID: 21300000, guid: 8a38bc56fed4af248a7660e93ec12644, type: 3}
-  duration: 5
-  textToPrint: Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_
+  timeToPrintText: 5
+  animationTime: 5
+  mainText: Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_Text_FIN

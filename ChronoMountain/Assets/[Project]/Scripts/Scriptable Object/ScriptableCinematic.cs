@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScriptableCinematic : ScriptableObject
 {
     public Sprite backGround;
-    public float duration;
+    public float timeToPrintText;
+    public float animationTime;
     public string mainText;
 }
