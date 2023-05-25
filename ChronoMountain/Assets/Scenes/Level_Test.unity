@@ -2007,18 +2007,6 @@ PrefabInstance:
       propertyPath: createDebugTarget
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
-      propertyPath: onMoveSequenceEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
-      propertyPath: onMoveSequenceEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TileCheck
-      objectReference: {fileID: 0}
-    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
-      propertyPath: onMoveSequenceEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 9210665812408380731, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: m_RootOrder
       value: 3
