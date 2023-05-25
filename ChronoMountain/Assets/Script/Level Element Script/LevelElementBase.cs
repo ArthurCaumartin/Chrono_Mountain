@@ -13,7 +13,7 @@ namespace Mwa.Chronomountain
         //! avec une tolerence de .5f de distance
         public static LevelElementBase GetAt(Vector3 pos)
         {
-            print("Get At call !");
+            // print("Get At call !");
             foreach(var item in levelObjects)
             {
                 // print("Item name : " + item.name);
