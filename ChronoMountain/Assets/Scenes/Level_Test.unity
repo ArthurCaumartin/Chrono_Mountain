@@ -1910,6 +1910,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5982956674953904260, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240988292261244987, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 6432239516572740116, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
       propertyPath: m_Name
       value: ___-CANVAS-___
@@ -1958,9 +1966,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6432239517203497687, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.9719238
+      objectReference: {fileID: 0}
     - target: {fileID: 7591331823677515282, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000030517578
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851034275182119787, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851034275182119787, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851034275237486487, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851034275301931588, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
