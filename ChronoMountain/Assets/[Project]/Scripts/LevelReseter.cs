@@ -10,10 +10,12 @@ namespace Mwa.Chronomountain
         [SerializeField] GameObject player;
         [SerializeField] Timer timer;
         Vector3 playerTransformSave;
+        Sprite playerSpriteBackup;
 
         void Start()
         {
             SetLevelSave();
+            playerSpriteBackup = player.GetComponentInChildren<SpriteRenderer>().sprite;
         }
 
         void SetLevelSave()
@@ -23,6 +25,7 @@ namespace Mwa.Chronomountain
 
         public void ResteLevel()
         {
+            player.GetComponentInChildren<SpriteRenderer>().sprite = playerSpriteBackup;
             player.GetComponent<PlayerMovement>().ResetMovement();
             player.transform.position = playerTransformSave;
             
