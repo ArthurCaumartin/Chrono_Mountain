@@ -10,6 +10,7 @@ namespace Mwa.Chronomountain
     {
         public float speedFactor;
         public ScriptableDirection direction;
+        Tween curretTween;
 
         public Sprite up;
         public Sprite left;
@@ -35,6 +36,11 @@ namespace Mwa.Chronomountain
             }
         }
 
+        public override void KillTween()
+        {
+            curretTween.Kill();
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -48,7 +54,7 @@ namespace Mwa.Chronomountain
             float distance = TileDistance.instance.DistanceWithNextSprite(direction, transform.position);
             Vector3 target = transform.position + (direction.GetDirection() * distance);
 
-            DOTween.To((lerpT) =>
+            curretTween = DOTween.To((lerpT) =>
             {
                 PlayerMovement.instance.transform.position = Vector3.Lerp(transform.position, target, lerpT);
             },

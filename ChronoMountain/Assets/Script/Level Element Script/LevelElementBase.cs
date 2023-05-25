@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Mwa.Chronomountain
 {
@@ -10,16 +11,6 @@ namespace Mwa.Chronomountain
 
         //! return l'element a la poses demande en parametre
         //! avec une tolerence de .5f de distance
-
-        [ContextMenu("PrintList")]
-        void PrintList()
-        {
-            foreach (var item in levelObjects)
-            {
-                print(item.name);
-            }
-        }
-
         public static LevelElementBase GetAt(Vector3 pos)
         {
             print("Get At call !");
@@ -34,6 +25,11 @@ namespace Mwa.Chronomountain
                 }
             }
             return null;
+        }
+
+        public virtual void KillTween()
+        {
+            print("base fonction, nothing set !");
         }
         
         protected virtual void OnEnable()

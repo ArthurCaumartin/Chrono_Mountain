@@ -77,12 +77,15 @@ namespace Mwa.Chronomountain
             directionIndex++;
         }
 
+        LevelElementBase levelElementUnderPlayer;
+
         //TODO Voire l'enchainement pour 
         public void TweenComplete()
         {
+            levelElementUnderPlayer = null;
             // print("directionList.Count : " + directionList.Count);
             // print("directionIndex : " + directionIndex);
-            LevelElementBase levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
+            levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
             print(levelElementUnderPlayer);
             if(directionIndex >= directionList.Count)
             {
@@ -136,8 +139,11 @@ namespace Mwa.Chronomountain
         //! position du joueur reset dans LevelReseter
         public void ResetMovement()
         {
-            directionIndex = 0;
             directionList.Clear();
+            directionIndex = 0;
+            currentTween.Kill();
+            levelElementUnderPlayer.KillTween();
+            
             transform.localScale = Vector3.one;
         }
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8803471508110352987}
   - component: {fileID: 1433544940766792560}
   - component: {fileID: 5891284552712252518}
+  - component: {fileID: 8076409703946958801}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -134,3 +135,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16816ad29d958844da3dc103c9ee6ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8076409703946958801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110735493984664973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b662c5d8a9d90a14c859d73e00e8a34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.3
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1.2077701
+      outSlope: -1.2077701
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.10692666
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.43075186
+      outSlope: -0.43075186
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11908811
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

@@ -4,8 +4,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine;
 
-// namespace Mwa.Chronomountain
-// {
+namespace Mwa.Chronomountain
+{
     public class SwiperDetector : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] UnityEvent<Vector2> onSwip;
@@ -31,4 +31,4 @@ using UnityEngine;
                 onSwip.Invoke(delta.normalized);
         }
     }
-// }
+}

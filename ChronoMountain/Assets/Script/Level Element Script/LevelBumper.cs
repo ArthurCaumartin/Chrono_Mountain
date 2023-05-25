@@ -11,15 +11,23 @@ namespace Mwa.Chronomountain
         [SerializeField] float speedFactor;
         [SerializeField] float rotationSpeed;
         [SerializeField] AnimationCurve curve;
+        Tween curretTween;
+
+        public override void KillTween()
+        {
+            curretTween.Kill();
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
         }
+
         public override void OnStep(System.Action callback)
         {
             print("Player bump from : " + name);
             Vector3 startPosition = PlayerMovement.instance.transform.position;
-            DOTween.To((lerpT) =>
+            curretTween = DOTween.To((lerpT) =>
             {
                 PlayerMovement.instance.transform.localScale =  curve.Evaluate(lerpT) * Vector3.one;
                 PlayerMovement.instance.transform.Rotate(new Vector3(0, 0, rotationSpeed));

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9210665812408380733
+--- !u!1 &6738583333584572601
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,119 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9210665812408380731}
-  - component: {fileID: 9210665812408380730}
-  - component: {fileID: 9210665812408380729}
-  - component: {fileID: 860107688}
-  - component: {fileID: 860107687}
-  - component: {fileID: 1994852097792780992}
-  - component: {fileID: 8865594114028067492}
-  - component: {fileID: 1193255940433780480}
+  - component: {fileID: 5313149346009947804}
+  - component: {fileID: 8138255538630625844}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
+  m_Name: Trail Renderer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9210665812408380731
+--- !u!4 &5313149346009947804
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9210665812408380733}
+  m_GameObject: {fileID: 6738583333584572601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: -3.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9210665813871530134}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 9210665812408380731}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9210665812408380730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9210665812408380733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d54fc5dcf997624dae428cb0f1bc21e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  createDebugTarget: 0
-  debugTarget: {fileID: 3409655635115583703, guid: fb5014d1456f73c4d9fd18d9968bff6d, type: 3}
-  levelPathTileMap: {fileID: 0}
-  playerSpriteTransform: {fileID: 9210665813871530134}
-  directionList: []
-  speed: 3
-  timeToTravel: 1
-  clipOnMovement: {fileID: 8300000, guid: c5b1daaa10123144b9b4aa32b7d00809, type: 3}
-  onMovementStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onMoveSequenceEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1994852097792780992}
-        m_TargetAssemblyTypeName: Mwa.Chronomountain.LevelEndCheck, Assembly-CSharp
-        m_MethodName: EndCheck
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  bumpSpeedFactor: 0.788
-  bumpAnimationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 1.4099538
-      outSlope: 1.4099538
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.49645996
-      value: 1.6999856
-      inSlope: 0.009912431
-      outSlope: 0.009912431
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -1.390129
-      outSlope: -1.390129
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  bumpingRotationSpeed: -500
-  convoyingSpeedFactor: 1.5
---- !u!96 &9210665812408380729
+--- !u!96 &8138255538630625844
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9210665812408380733}
+  m_GameObject: {fileID: 6738583333584572601}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -212,6 +131,83 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!1 &9210665812408380733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9210665812408380731}
+  - component: {fileID: 9210665812408380730}
+  - component: {fileID: 860107688}
+  - component: {fileID: 860107687}
+  - component: {fileID: 1994852097792780992}
+  - component: {fileID: 8865594114028067492}
+  - component: {fileID: 1193255940433780480}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9210665812408380731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210665812408380733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5, y: -3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9210665813871530134}
+  - {fileID: 5313149346009947804}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9210665812408380730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210665812408380733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d54fc5dcf997624dae428cb0f1bc21e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createDebugTarget: 0
+  debugTarget: {fileID: 3409655635115583703, guid: fb5014d1456f73c4d9fd18d9968bff6d, type: 3}
+  levelPathTileMap: {fileID: 0}
+  playerSpriteTransform: {fileID: 9210665813871530134}
+  directionList: []
+  speed: 3
+  timeToTravel: 1
+  clipOnMovement: {fileID: 8300000, guid: c5b1daaa10123144b9b4aa32b7d00809, type: 3}
+  onMovementStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onMoveSequenceEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1994852097792780992}
+        m_TargetAssemblyTypeName: Mwa.Chronomountain.LevelEndCheck, Assembly-CSharp
+        m_MethodName: EndCheck
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &860107688
 Rigidbody2D:
   serializedVersion: 4
