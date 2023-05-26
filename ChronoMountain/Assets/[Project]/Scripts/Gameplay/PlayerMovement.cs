@@ -50,19 +50,20 @@ namespace Mwa.Chronomountain
                 onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
                 return;
             }
+            
             initialMovementPosition = transform.position;
-            LevelElementBase nextLevelElement; //! Set par le out de MakeTweenMovement !
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
+            Vector3 nextTarget = GetNextTarget(directionList[directionIndex], initialMovementPosition);
+            
+            MakeTweenMovement(nextTarget);
             initialMovementPosition = transform.position;
             onMovementStart.Invoke();
         }
 
         //? entre le this. et le out je suis un peut perdu pour savoir qui est "levelElementBase" ou "nextLevelElement"
 
-        public void MakeTweenMovement(Vector3 target, LevelElementBase levelElementBase)
+        public void MakeTweenMovement(Vector3 target)
         {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
-            // this.levelElementBase = levelElementBase;
             speed = speedBackup;
             
             SetRotation(directionList[directionIndex]);
@@ -109,17 +110,16 @@ namespace Mwa.Chronomountain
 
         void ChainNextMove()
         {
-            LevelElementBase nextLevelElement;
             initialMovementPosition = transform.position;
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition));
         }
 
-        Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase nextLevelElement)
+        Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
             // print("GetNextTarget");
             AudioManager.manager.PlaySfx(clipOnMovement);
 
-            distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
+            distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, playerPosition);
 
             Vector3 nextTarget = transform.position + (direction.GetDirection() * distanceToTravel);
             return nextTarget;
