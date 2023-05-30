@@ -19,19 +19,19 @@ namespace Mwa.Chronomountain
         bool isWin = false;
         public void TileCheck(Tile underPlayerTile)
         {
-            print("Tile Check call !");
+            // print("Tile Check call !");
             if(underPlayerTile == LevelTile.instance.end)
                 isWin = true;
             else
                 isWin = false;
 
-            print("isWin = " + isWin); 
+            // print("isWin = " + isWin); 
             StartCoroutine(EndLevel(isWin, waitDuration));
         }
 
         IEnumerator EndLevel(bool isWin, float waitTime)
         {
-            print("Coroutine Start");
+            // print("Coroutine Start");
             if(isWin)
             {
                 transform.DOScale(Vector3.one * winScaleFactor, waitTime/2).SetEase(Ease.InBounce)

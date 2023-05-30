@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PauseOverlayAnimation : MonoBehaviour
 {
@@ -8,41 +9,53 @@ public class PauseOverlayAnimation : MonoBehaviour
     [SerializeField] AnimationCurve curve;
     [SerializeField] float speed;
     [SerializeField] float newY;
-    float lerpT = 0;
-    float initialY;
-    bool isOpen = false;
     RectTransform rectTransform;
-    Vector2 newPose;
-    Vector2 initialPos;
+    Vector2 newPosition;
+    Vector2 initialPosition;
+    Vector2 target;
+    Tween currentTween;
+    bool isUp = false;
 
-    void Awake()
+
+    void Start()
     {
         rectTransform = (RectTransform)overlay.transform;
-        initialY = rectTransform.anchoredPosition.x;
 
-        newPose = new Vector2(rectTransform.anchoredPosition.x, newY);
-        initialPos = new Vector2(rectTransform.anchoredPosition.y, initialY);
+        initialPosition = rectTransform.anchoredPosition;
+        newPosition = new Vector2(rectTransform.anchoredPosition.x, newY);
+
+        // rectTransform.anchoredPosition = newPosition;
     }
 
     //! call par button pause
     public void SwitchOverlayState()
     {
-        isOpen = !isOpen;
-    }
-    
-    void Update()
-    {
-        if(isOpen && lerpT < 1)
-        {       
-            lerpT += Time.unscaledDeltaTime * speed;
-        }
+        print("call !");
+        isUp = !isUp;
+        Vector2 currentPosition = rectTransform.anchoredPosition;
 
-        if(!isOpen && lerpT > 0)
+        if(isUp == true) //! cas part du haut, va en bas
         {
-            print("je monte !");
-            lerpT += Time.unscaledDeltaTime * speed;
+            target = newPosition;
         }
 
-        rectTransform.anchoredPosition = Vector2.Lerp(newPose, initialPos, lerpT);
+        if(isUp == false) //! cas par du bas, va en haut
+        {
+            target = initialPosition;
+        }
+
+        // if(currentTween.IsActive())
+        // {
+        //     currentTween.Kill();
+        //     currentTween = null;
+        // }
+
+        print("currentPosition = " + currentPosition);
+        print("target = " + target);
+        currentTween = DOTween.To((time) => 
+        {
+            rectTransform.anchoredPosition = Vector2.Lerp(currentPosition, target, curve.Evaluate(time));
+        },
+        0, 1, speed).SetSpeedBased().SetUpdate(true).SetEase(Ease.Linear);
     }
 }

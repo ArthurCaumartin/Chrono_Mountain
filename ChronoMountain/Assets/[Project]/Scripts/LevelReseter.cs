@@ -33,6 +33,7 @@ namespace Mwa.Chronomountain
 
             timer.ResetTimer();
 
+            InGameCanvasManager.manager.SetActiveButtonDirection(true);
             InGameCanvasManager.manager.ClearArrow();
         }
     }

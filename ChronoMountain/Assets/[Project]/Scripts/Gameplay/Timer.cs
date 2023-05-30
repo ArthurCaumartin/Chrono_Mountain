@@ -42,23 +42,24 @@ namespace Mwa.Chronomountain
 
         void Update()
         {
-            if(gameOptionDescriptor.gameOption.isTimerOn)
-            {
-                if(isRuning)
-                {
-                    if(currentTime >= timeToComplete)
-                    {
-                        playerMovement.StartMovement(); 
-                        isRuning = false;
-                        return;
-                    }
+            if(!gameOptionDescriptor.gameOption.isTimerOn)
+                return;
 
-                    currentTime += Time.deltaTime;
-                    //! set le fil de l'image
-                    timerImage.fillAmount = currentTime / timeToComplete;
-                    timerImage.color = ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
-                    //! le remap fait un super remap de blanc a blanc... yay !!!
+            if(isRuning)
+            {
+                if(currentTime >= timeToComplete)
+                {
+                    playerMovement.StartMovement();
+                    InGameCanvasManager.manager.SetActiveButtonDirection(false);
+                    isRuning = false;
+                    return;
                 }
+
+                currentTime += Time.deltaTime;
+                //! set le fil de l'image
+                timerImage.fillAmount = currentTime / timeToComplete;
+                timerImage.color = ColorUtils.RemapColor(timerImage.fillAmount, oMin, oMax, curve);
+                //! le remap fait un super remap de blanc a blanc... yay !!!
             }
         }
 
