@@ -228,6 +228,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: cinematic
+      value: 
+      objectReference: {fileID: 11400000, guid: 8674649ded3b7874f9b2c34223aabf1d, type: 2}
+    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: startAlone
       value: 0
       objectReference: {fileID: 0}
