@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backGroundSprite:
   - {fileID: 21300000, guid: 65a7478538f011141ac5ae7c83fea19e, type: 3}
+  - {fileID: 21300000, guid: 5291fffd29177574f99e5bfa8f8f1f0f, type: 3}
   - {fileID: 21300000, guid: 8fa593eea8472ba4f9b6a442b7c8063c, type: 3}
-  - {fileID: 21300000, guid: 8a38bc56fed4af248a7660e93ec12644, type: 3}
   textList:
   - 'Intro One 111 Intro One 111 Intro One 111 Intro One 111 Intro One 111 Intro
     One 111 Intro One 111 Intro One 111 Intro One 111 '

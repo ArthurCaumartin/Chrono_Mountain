@@ -7,15 +7,28 @@ public class SpriteSwitcher : MonoBehaviour
 {
     [SerializeField] Sprite initialeSprite;
     [SerializeField] Sprite spriteToSwitch;
+    [SerializeField] SpriteRenderer spriteRendererToSet;
     [SerializeField] Image imageToSet;
     bool isInitialSprite = true;
 
     public void SwitchSprite()
     {
-        isInitialSprite = !isInitialSprite;
-        if(isInitialSprite)
-            imageToSet.sprite = initialeSprite;
-        else
-            imageToSet.sprite = spriteToSwitch;
+        if(imageToSet)
+        {
+            isInitialSprite = !isInitialSprite;
+            if(isInitialSprite)
+                imageToSet.sprite = initialeSprite;
+            else
+                imageToSet.sprite = spriteToSwitch;
+        }
+
+        if(spriteRendererToSet)
+        {
+            isInitialSprite = !isInitialSprite;
+            if(isInitialSprite)
+                spriteRendererToSet.sprite = initialeSprite;
+            else
+                spriteRendererToSet.sprite = spriteToSwitch;
+        }
     }
 }
