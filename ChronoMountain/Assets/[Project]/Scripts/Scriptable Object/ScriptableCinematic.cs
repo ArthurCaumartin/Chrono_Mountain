@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScriptableCinematic", menuName = "ChronoMoutain/ScriptableCinematic")]
 public class ScriptableCinematic : ScriptableObject
 {
-    public Sprite backGroundSprite;
-    public float timeToPrintText;
-    public float backgroundMoveDuration;
-    public string mainText;
+    public List<Sprite> backGroundSprite;
+    public List<string> textList;
 }

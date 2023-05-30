@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1193737137}
   - component: {fileID: 1193737136}
   m_Layer: 5
-  m_Name: Back Image
+  m_Name: Black Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -100, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5129733996277900941
 CanvasRenderer:
@@ -199,7 +199,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6149844201326630316}
         m_TargetAssemblyTypeName: CinematicManager, Assembly-CSharp
-        m_MethodName: NextCinematic
+        m_MethodName: Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -643,13 +643,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4c60dd668cb5845ba8adb0b019c302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinematic: {fileID: 11400000, guid: 2b4a1b801e6f76d40841648298b822b8, type: 2}
   mainText: {fileID: 6149844200878938979}
   background: {fileID: 6149844200848359282}
   blackImage: {fileID: 1193737136}
-  skipButton: {fileID: 0}
   rectBackground: {fileID: 6149844200848359283}
+  animationSpeed: 0.2
   yGap: 82.823
+  backgroundAnimationTime: 6
   blackFadeTime: 3
+  timeToPrintText: 2
   onCinematiqueEnd:
     m_PersistentCalls:
       m_Calls:
@@ -665,9 +668,6 @@ MonoBehaviour:
           m_StringArgument: Menu
           m_BoolArgument: 0
         m_CallState: 2
-  cinematicList:
-  - {fileID: 11400000, guid: 2b4a1b801e6f76d40841648298b822b8, type: 2}
-  - {fileID: 11400000, guid: f5ae295bffd5ac94f91e3236a7171c8e, type: 2}
 --- !u!1 &6149844201333884848
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,7 +767,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6149844201581147134}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

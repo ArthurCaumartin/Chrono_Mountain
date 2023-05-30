@@ -292,10 +292,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3596375261899291457, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextCinematic
-      objectReference: {fileID: 0}
     - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -385,16 +381,8 @@ PrefabInstance:
       value: __CINEMATIC_CANVAS__
       objectReference: {fileID: 0}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: cinematicList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: f5ae295bffd5ac94f91e3236a7171c8e, type: 2}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 920654030}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
