@@ -209,6 +209,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  idleSprite: {fileID: 0}
+  movingSprite: {fileID: 0}
 --- !u!50 &860107688
 Rigidbody2D:
   serializedVersion: 4
@@ -268,9 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216bb1a27590db24ab56489becbf79f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitDuration: 0
-  winScaleFactor: 0
-  loseSprite: {fileID: 0}
+  waitDuration: 1.5
+  winScaleFactor: 1.2
+  loseSprite: {fileID: 21300000, guid: f1c1f7121f30fda438ffb84ca709f512, type: 3}
   loseScaleFactor: 0
   level: {fileID: 0}
 --- !u!114 &8865594114028067492
@@ -375,7 +377,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 91655380cc092ee4aa2d72a699796383, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d375b5bb016538f4aa82e46f9d9b4772, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

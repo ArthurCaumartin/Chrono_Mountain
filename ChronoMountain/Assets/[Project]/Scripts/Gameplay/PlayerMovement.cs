@@ -25,6 +25,10 @@ namespace Mwa.Chronomountain
         public UnityEvent onMovementStart; //! Lisener set dans la canvas Manager
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
 
+        [Header("Sprite Player :")]
+        [SerializeField] Sprite idleSprite;
+        [SerializeField] Sprite movingSprite;
+
         float speedBackup;
         Tweener currentTween;
         Vector3 initialMovementPosition;
@@ -82,6 +86,7 @@ namespace Mwa.Chronomountain
         //TODO Voire l'enchainement pour 
         public void TweenComplete()
         {
+            // GetComponentInChildren<SpriteRenderer>().sprite = 
             levelElementUnderPlayer = null;
             levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
             if(directionIndex >= directionList.Count)
