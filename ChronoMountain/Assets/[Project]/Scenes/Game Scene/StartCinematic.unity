@@ -426,6 +426,10 @@ PrefabInstance:
       value: __CINEMATIC_CANVAS__
       objectReference: {fileID: 0}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: gameOption
+      value: 
+      objectReference: {fileID: 11400000, guid: 06709442a4e6dae4ba9dc668760bf0c2, type: 2}
+    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
