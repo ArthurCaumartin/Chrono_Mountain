@@ -128,6 +128,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9210665812408380733, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
   m_PrefabInstance: {fileID: 1885072067}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &681782834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+  m_PrefabInstance: {fileID: 1885072067}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681782828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d54fc5dcf997624dae428cb0f1bc21e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &770934444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3819,9 +3830,49 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7b0da47aadd66004aa3b1321587186dc, type: 2}
     - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: idleSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d375b5bb016538f4aa82e46f9d9b4772, type: 3}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: movingSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2d280b3a79a67a1499558d2908545ecb, type: 3}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: levelPathTileMap
       value: 
       objectReference: {fileID: 2136443871}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onMovementStart.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onMovementStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onMovementStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 681782834}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onMovementStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onMovementStart.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: playerSpriteSetter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onMovementStart.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mwa.Chronomountain.PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onMovementStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 21300000, guid: 2d280b3a79a67a1499558d2908545ecb, type: 3}
+    - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: onMovementStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Sprite, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9210665812408380731, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: m_RootOrder
       value: 2

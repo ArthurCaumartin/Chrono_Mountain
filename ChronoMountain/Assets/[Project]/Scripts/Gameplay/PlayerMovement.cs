@@ -61,6 +61,7 @@ namespace Mwa.Chronomountain
             MakeTweenMovement(nextTarget);
             initialMovementPosition = transform.position;
             onMovementStart.Invoke();
+            playerSpriteSetter(movingSprite);
         }
 
         //? entre le this. et le out je suis un peut perdu pour savoir qui est "levelElementBase" ou "nextLevelElement"
@@ -77,6 +78,7 @@ namespace Mwa.Chronomountain
                 transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
             },
             0, 1, Vector3.Distance(target, initialMovementPosition) * speed).SetEase(Ease.Linear).OnComplete(TweenComplete);
+            //! Le SetSpeed n'a pas d'effet car en transite de 0 a 1
             directionIndex++;
         }
 
@@ -132,6 +134,11 @@ namespace Mwa.Chronomountain
         public void AddDirection(ScriptableDirection toAdd)
         {
             directionList.Add(toAdd);
+        }
+
+        public void playerSpriteSetter(Sprite toSet)
+        {
+            GetComponentInChildren<SpriteRenderer>().sprite = toSet;
         }
 
         //! position du joueur reset dans LevelReseter

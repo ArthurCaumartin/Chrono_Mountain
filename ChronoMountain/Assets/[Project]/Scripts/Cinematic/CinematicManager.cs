@@ -63,9 +63,9 @@ namespace Mwa.Chronomountain
 
         public void StartCineaticSequence()
         {
-            limiteIndex = cinematic.backGroundSprite.Count;
+            limiteIndex = cinematic.dataList.Count;
             // print("Limite index = " + limiteIndex);
-            background.sprite = cinematic.backGroundSprite[0];
+            background.sprite = cinematic.dataList[0].backGround;
 
             FadeBlackTransition(1, 0, SetCinematic);
         }
@@ -87,7 +87,7 @@ namespace Mwa.Chronomountain
                 StopCoroutine(printTextCoroutine);
                 printTextCoroutine = null;
 
-                mainText.text = cinematic.textList[index - 1];
+                mainText.text = cinematic.dataList[index - 1].text;
                 return;
             }
 
@@ -110,21 +110,23 @@ namespace Mwa.Chronomountain
                 StopCoroutine(printTextCoroutine);
 
             // print("Parametre index = " + index);
-            background.sprite = cinematic.backGroundSprite[index];
-            printTextCoroutine = StartCoroutine(PrintTexte(cinematic.textList[index]));
+            background.sprite = cinematic.dataList[index].backGround;
+            printTextCoroutine = StartCoroutine(PrintTexte(cinematic.dataList[index].text, cinematic.dataList[index].printDuration));
             index++;
         }
 
-        IEnumerator PrintTexte(string toPrint)
+        IEnumerator PrintTexte(string toPrint, float printDuration)
         {
             mainText.text = "";
-            float delais =  timeToPrintText / toPrint.Length;
-            //TODO ajouter un petit delais ici ?
+            float delais =  printDuration / toPrint.Length;
             for (int i = 0; i < toPrint.Length; i++)
             {
                 mainText.text = toPrint.Substring(0, i);
                 yield return new WaitForSeconds(delais);
             }
+            //TODO last char not print !!
+            //! fixe moche !
+            mainText.text = toPrint;
         }
 
         void FadeBlackTransition(int startAlpha, int endAlpha, System.Action callback)
