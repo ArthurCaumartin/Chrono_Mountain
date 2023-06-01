@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Conveyor (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -199,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Conveyor
       objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -263,6 +271,10 @@ PrefabInstance:
     - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_Name
       value: Conveyor (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
@@ -398,6 +410,10 @@ PrefabInstance:
     - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_Name
       value: Conveyor (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
@@ -8873,6 +8889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Conveyor (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -8994,6 +9014,10 @@ PrefabInstance:
     - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_Name
       value: Conveyor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
@@ -9129,6 +9153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Conveyor (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9189,6 +9217,10 @@ PrefabInstance:
     - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_Name
       value: Conveyor (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
@@ -9254,6 +9286,10 @@ PrefabInstance:
     - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_Name
       value: Conveyor (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 293089611193793720, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 293089611193793721, guid: 83031ca7b25e2944f89724ab2f1c808b, type: 3}
       propertyPath: m_RootOrder
