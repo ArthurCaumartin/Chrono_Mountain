@@ -10,6 +10,7 @@ namespace Mwa.Chronomountain
         public override void OnInspectorGUI()
         {
             base.DrawDefaultInspector();
+            EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
             if(GUILayout.Button("Up"))
             {
