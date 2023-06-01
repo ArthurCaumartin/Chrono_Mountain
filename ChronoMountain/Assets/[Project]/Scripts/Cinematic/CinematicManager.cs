@@ -10,7 +10,7 @@ using TMPro;
 namespace Mwa.Chronomountain
 {
     public class CinematicManager : MonoBehaviour
-    {//! c pa vraiment une cinematic en faite... ?
+    {//! c pa vraiment une cinematic en faite... ? (fo pa le dire)
         public static CinematicManager instance;
         [SerializeField] ScriptableCinematic cinematic;
         [SerializeField] bool startAlone;
@@ -75,13 +75,26 @@ namespace Mwa.Chronomountain
             // print("Button clic !");
             if(fadeBlackTween != null && fadeBlackTween.active)
             {
+                if(index >= limiteIndex)
+                    return;
+
                 fadeBlackTween.Kill();
                 blackImage.color = new Color(blackImage.color.r, blackImage.color.g, blackImage.color.b, 0);
             }
 
-            if(index >= limiteIndex) 
+            if(printTextCoroutine != null)
             {
-                FadeBlackTransition(0, 1, () => {onCinematiqueEnd.Invoke();});
+                StopCoroutine(printTextCoroutine);
+                printTextCoroutine = null;
+
+                mainText.text = cinematic.textList[index - 1];
+                return;
+            }
+
+            if(index >= limiteIndex)
+            {
+                if(fadeBlackTween != null && !fadeBlackTween.active)
+                    FadeBlackTransition(0, 1, () => {onCinematiqueEnd.Invoke();});
                 return;
             }
             else

@@ -434,28 +434,48 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 920654030}
+      objectReference: {fileID: 1635714228}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1635714228}
+      objectReference: {fileID: 920654030}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SwitchPlayedStartCinematic
       objectReference: {fileID: 0}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Mwa.Chronomountain.GameOptionDescriptor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Mwa.Chronomountain.SceneLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: Menu
       objectReference: {fileID: 0}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

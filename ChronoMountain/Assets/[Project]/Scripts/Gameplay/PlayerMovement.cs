@@ -64,7 +64,6 @@ namespace Mwa.Chronomountain
         }
 
         //? entre le this. et le out je suis un peut perdu pour savoir qui est "levelElementBase" ou "nextLevelElement"
-
         public void MakeTweenMovement(Vector3 target)
         {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
@@ -77,7 +76,7 @@ namespace Mwa.Chronomountain
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
             },
-            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+            0, 1, Vector3.Distance(target, initialMovementPosition) * speed).SetEase(Ease.Linear).OnComplete(TweenComplete);
             directionIndex++;
         }
 
