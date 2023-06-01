@@ -188,7 +188,7 @@ MonoBehaviour:
   playerSpriteTransform: {fileID: 9210665813871530134}
   resetDirection: {fileID: 11400000, guid: e299bf3ca031e014d940b664c5824b05, type: 2}
   directionList: []
-  speed: 0.5
+  speed: 0.05
   timeToTravel: 1
   clipOnMovement: {fileID: 8300000, guid: c5b1daaa10123144b9b4aa32b7d00809, type: 3}
   onMovementStart:
