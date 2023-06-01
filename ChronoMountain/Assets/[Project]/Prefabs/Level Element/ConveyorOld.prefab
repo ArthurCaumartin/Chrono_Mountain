@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecfca4797b7180c469dfcbbab91068bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedFactor: 1.7
+  speedFactor: 0.8
   direction: {fileID: 11400000, guid: e299bf3ca031e014d940b664c5824b05, type: 2}
   up: {fileID: 21300000, guid: 8d9ccd590fa849c47a6fd299fbb95f9b, type: 3}
   left: {fileID: 21300000, guid: 83ecfc4163fa27049b48db7cdcfaa6f7, type: 3}

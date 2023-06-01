@@ -25,6 +25,7 @@ namespace Mwa.Chronomountain
 
         public override void OnStep(System.Action callback)
         {
+            PlayerMovement.instance.PlayerSpriteSetter(PlayerMovement.instance.idleSprite);//! oof ?
             // print("Player bump from : " + name);
             Vector3 startPosition = PlayerMovement.instance.transform.position;
             curretTween = DOTween.To((lerpT) =>
@@ -33,8 +34,8 @@ namespace Mwa.Chronomountain
                 PlayerMovement.instance.transform.Rotate(new Vector3(0, 0, rotationSpeed));
                 PlayerMovement.instance.transform.position = Vector3.Lerp(startPosition, target.position, lerpT);
             },
-            0, 1, PlayerMovement.instance.speed * speedFactor).SetSpeedBased().SetEase(Ease.Linear)
-            .OnComplete( () =>
+            0, 1, (Vector3.Distance(startPosition, target.position) * PlayerMovement.instance.speed) * speedFactor)
+            .SetEase(Ease.Linear).OnComplete( () =>
             {
                 if(callback != null)
                 {

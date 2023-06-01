@@ -59,8 +59,8 @@ namespace Mwa.Chronomountain
             {
                 PlayerMovement.instance.transform.position = Vector3.Lerp(transform.position, target, lerpT);
             },
-            0, 1, PlayerMovement.instance.speed * speedFactor).SetSpeedBased().SetEase(Ease.Linear)
-            .OnComplete(() =>
+            0, 1, (Vector3.Distance(transform.position, target) * PlayerMovement.instance.speed) * speedFactor)
+            .SetEase(Ease.Linear).OnComplete(() =>
             {
                 if(callBack != null)
                     callBack();
