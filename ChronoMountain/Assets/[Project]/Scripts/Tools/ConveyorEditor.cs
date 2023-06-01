@@ -14,7 +14,7 @@ namespace Mwa.Chronomountain
             EditorGUILayout.BeginHorizontal();
             if(GUILayout.Button("Up"))
             {
-                (target as LevelConveyor).direction = DirectionManager.instance.left;
+                (target as LevelConveyor).direction = DirectionManager.instance.up;
                 (target as LevelConveyor).OnValidate();
             }
             if(GUILayout.Button("Left"))
@@ -29,7 +29,7 @@ namespace Mwa.Chronomountain
             }
             if(GUILayout.Button("Down"))
             {
-                (target as LevelConveyor).direction = DirectionManager.instance.right;
+                (target as LevelConveyor).direction = DirectionManager.instance.down;
                 (target as LevelConveyor).OnValidate();
             }
             EditorGUILayout.EndHorizontal();
