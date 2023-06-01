@@ -11,29 +11,29 @@ namespace Mwa.Chronomountain
         public float speedFactor;
         public ScriptableDirection direction;
         Tween curretTween;
-
-        public Sprite up;
-        public Sprite left;
-        public Sprite right;
-        public Sprite down;
+        // public Sprite up;
+        // public Sprite left;
+        // public Sprite right;
+        // public Sprite down;
 
         void OnValidate()
         {
-            switch (direction.pointer)
-            {
-                case Pointer.Up :
-                    GetComponent<SpriteRenderer>().sprite = up;
-                break;
-                case Pointer.Left :
-                    GetComponent<SpriteRenderer>().sprite = left;
-                break;
-                case Pointer.Right :
-                    GetComponent<SpriteRenderer>().sprite = right;
-                break;
-                case Pointer.Down :
-                    GetComponent<SpriteRenderer>().sprite = down;
-                break;
-            }
+            transform.rotation = direction.GetRotation();
+            // switch (direction.pointer)
+            // {
+            //     case Pointer.Up :
+            //         GetComponent<SpriteRenderer>().sprite = up;
+            //     break;
+            //     case Pointer.Left :
+            //         GetComponent<SpriteRenderer>().sprite = left;
+            //     break;
+            //     case Pointer.Right :
+            //         GetComponent<SpriteRenderer>().sprite = right;
+            //     break;
+            //     case Pointer.Down :
+            //         GetComponent<SpriteRenderer>().sprite = down;
+            //     break;
+            // }
         }
 
         public override void KillTween()
