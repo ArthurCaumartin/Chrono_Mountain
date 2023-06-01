@@ -16,10 +16,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 65a7478538f011141ac5ae7c83fea19e, type: 3}
   - {fileID: 21300000, guid: 5291fffd29177574f99e5bfa8f8f1f0f, type: 3}
   - {fileID: 21300000, guid: 8fa593eea8472ba4f9b6a442b7c8063c, type: 3}
+  - {fileID: 21300000, guid: 61e0422abaf90ed45a2711d0dff03c88, type: 3}
+  - {fileID: 21300000, guid: ee4552698ebb7b54b9d12626c28364d4, type: 3}
   textList:
-  - 'Intro One 111 Intro One 111 Intro One 111 Intro One 111 Intro One 111 Intro
-    One 111 Intro One 111 Intro One 111 Intro One 111 '
-  - 'Intro Tow 222 Intro Tow 222 Intro Tow 222 Intro Tow 222 Intro Tow 222 Intro
-    Tow 222 '
-  - 'Intro Tree 333 Intro Tree 333 Intro Tree 333 Intro Tree 333 Intro Tree 333 Intro
-    Tree 333 Intro Tree 333 Intro Tree 333 '
+  - "Cette histoire se d\xE9roule dans un pays imaginaire fort loin d'ici \xE0 une
+    \xE9poque qui n'est pas la notre. Ici, les cr\xE9atures imaginaires et fantastiques
+    des contes pour enfants cohabitent dans la paix et dans l'haromnie.... enfin,
+    cohabitaient dans la paix et l'harmonie."
+  - "Dans ce pays, le peuple des nains est ind\xE9niablement le plus respectable.
+    Leur village est charmant, ses habitants vaillants, et ils poss\xE8dent surtout
+    un grand pouvoir."
+  - "Dans leur ch\xE2teau en haut de la colline sont conserv\xE9s les trois joyaux
+    magiques: l'\xE9meraude de la sagesse, le rubis du pouvoir, et le lapis du temps."
+  - "Ces joyaux sont gard\xE9s f\xE9rocement par le roi des nains en personne, aucun
+    \xEAtre n'oserait se confronter \xE0 lui pour lui d\xE9rober le tr\xE9sor...."
+  - Mais un slime, si!
