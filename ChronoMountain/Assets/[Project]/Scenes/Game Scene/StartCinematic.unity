@@ -337,6 +337,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6149844200878938979, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844200878938979, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d89a20bc0c316cf4c827cee67046127d, type: 2}
+    - target: {fileID: 6149844200878938979, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: m_fontStyle
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844200878938979, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: m_lineSpacing
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844200878938979, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844200878938979, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2532997809620732904, guid: d89a20bc0c316cf4c827cee67046127d, type: 2}
     - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -430,6 +454,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 06709442a4e6dae4ba9dc668760bf0c2, type: 2}
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: timeToPrintText
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -480,6 +508,10 @@ PrefabInstance:
     - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
       propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149844201333884850, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
+      propertyPath: m_Color.a
+      value: 0.46666667
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
