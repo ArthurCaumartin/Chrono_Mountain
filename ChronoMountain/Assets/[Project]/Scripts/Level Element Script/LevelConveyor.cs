@@ -18,7 +18,7 @@ namespace Mwa.Chronomountain
 
         void OnValidate()
         {
-            transform.rotation = direction.GetRotation();
+            transform.rotation = direction.GetRotation() * Quaternion.Euler(new Vector3(0, 0, -90));
             // switch (direction.pointer)
             // {
             //     case Pointer.Up :
