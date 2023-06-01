@@ -271,9 +271,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinematicCanvas: {fileID: 0}
-  waitDuration: 1.5
+  waitDuration: 1
   winScaleFactor: 1.2
-  loseSprite: {fileID: 21300000, guid: f1c1f7121f30fda438ffb84ca709f512, type: 3}
+  loseSprite: {fileID: 21300000, guid: d375b5bb016538f4aa82e46f9d9b4772, type: 3}
   loseScaleFactor: 0
   level: {fileID: 0}
 --- !u!114 &8865594114028067492
@@ -331,7 +331,7 @@ Transform:
   m_GameObject: {fileID: 9210665813871530135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9210665812408380731}

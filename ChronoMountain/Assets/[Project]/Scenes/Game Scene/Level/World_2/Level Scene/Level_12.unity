@@ -2453,18 +2453,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6294721757479596009, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
-      propertyPath: m_text
-      value: Level 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6432239516162200994, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6432239516162200994, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6432239516572740116, guid: b942e8d5300bdbf488080f6ced408ef8, type: 3}
       propertyPath: m_Name
       value: ___-CANVAS-___

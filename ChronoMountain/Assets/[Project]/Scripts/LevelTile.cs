@@ -11,7 +11,7 @@ public class LevelTile : MonoBehaviour
     public Tile door;
     public Tile Key;
     public Tile end;
-    public Tile hole;
+    public Tile water;
 
 
     void Awake()

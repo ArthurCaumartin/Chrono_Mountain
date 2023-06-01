@@ -50,8 +50,8 @@ public class PauseOverlayAnimation : MonoBehaviour
         //     currentTween = null;
         // }
 
-        print("currentPosition = " + currentPosition);
-        print("target = " + target);
+        // print("currentPosition = " + currentPosition);
+        // print("target = " + target);
         currentTween = DOTween.To((time) => 
         {
             rectTransform.anchoredPosition = Vector2.Lerp(currentPosition, target, curve.Evaluate(time));

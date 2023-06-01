@@ -87,7 +87,14 @@ namespace Mwa.Chronomountain
         //TODO Voire l'enchainement pour 
         public void TweenComplete()
         {
-            // GetComponentInChildren<SpriteRenderer>().sprite = 
+            Tile tileUnderPlayer = GetTileUnderPlayer();
+            print(tileUnderPlayer);
+            if(tileUnderPlayer == LevelTile.instance.water)
+            {
+                onMoveSequenceEnd.Invoke(tileUnderPlayer);
+                return;
+            }
+
             levelElementUnderPlayer = null;
             levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
             if(directionIndex >= directionList.Count)

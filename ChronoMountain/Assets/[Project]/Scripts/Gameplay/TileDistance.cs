@@ -67,6 +67,13 @@ namespace Mwa.Chronomountain
                     distance = i;
                     return distance - 1;
                 }
+
+                if(targetTile == LevelTile.instance.water)
+                {
+                    print("On water !");
+                    distance = i;
+                    return distance;
+                }
             }
             return 0;
         }

@@ -10,7 +10,11 @@ namespace Mwa.Chronomountain
     {
         public float speedFactor;
         public ScriptableDirection direction;
+
+        // public bool flag;
+        // public int i;
         Tween curretTween;
+
         // public Sprite up;
         // public Sprite left;
         // public Sprite right;
@@ -19,21 +23,6 @@ namespace Mwa.Chronomountain
         void OnValidate()
         {
             transform.rotation = direction.GetRotation() * Quaternion.Euler(new Vector3(0, 0, -90));
-            // switch (direction.pointer)
-            // {
-            //     case Pointer.Up :
-            //         GetComponent<SpriteRenderer>().sprite = up;
-            //     break;
-            //     case Pointer.Left :
-            //         GetComponent<SpriteRenderer>().sprite = left;
-            //     break;
-            //     case Pointer.Right :
-            //         GetComponent<SpriteRenderer>().sprite = right;
-            //     break;
-            //     case Pointer.Down :
-            //         GetComponent<SpriteRenderer>().sprite = down;
-            //     break;
-            // }
         }
 
         public override void KillTween()
@@ -73,15 +62,14 @@ namespace Mwa.Chronomountain
     // {
     //     public override void OnInspectorGUI()
     //     {
+    //         DrawDefaultInspector();
     //         LevelConveyor levelConveyor = target as LevelConveyor;
 
-    //         levelConveyor.speedFactor = EditorGUILayout.FloatField("Speed Factor", levelConveyor.speedFactor);
-    //         levelConveyor.direction = EditorGUILayout.ObjectField("Direction", levelConveyor.direction, ScriptableDirection, );
 
-
-    //         levelConveyor.flag = GUILayout.Toggle(levelConveyor.flag, "Flag");
-    //         if(levelConveyor.flag)
-    //             levelConveyor.i = EditorGUILayout.FloatField("I field:", levelConveyor.i);
+    //         if(GUILayout.Button())
+    //         // levelConveyor.flag = GUILayout.Toggle(levelConveyor.flag, "Flag");
+    //         // if(levelConveyor.flag)
+    //         //     levelConveyor.i = EditorGUILayout.FloatField("I field:", levelConveyor.i);
     //     }
     // }
 }
