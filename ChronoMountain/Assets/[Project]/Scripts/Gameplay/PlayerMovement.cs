@@ -26,8 +26,8 @@ namespace Mwa.Chronomountain
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
 
         [Header("Sprite Player :")]
-        [SerializeField] Sprite idleSprite;
-        [SerializeField] Sprite movingSprite;
+        public  Sprite idleSprite;
+        public  Sprite movingSprite;
 
         float speedBackup;
         Tweener currentTween;
@@ -61,7 +61,7 @@ namespace Mwa.Chronomountain
             MakeTweenMovement(nextTarget);
             initialMovementPosition = transform.position;
             onMovementStart.Invoke();
-            playerSpriteSetter(movingSprite);
+            PlayerSpriteSetter(movingSprite);
         }
 
         //? entre le this. et le out je suis un peut perdu pour savoir qui est "levelElementBase" ou "nextLevelElement"
@@ -136,7 +136,7 @@ namespace Mwa.Chronomountain
             directionList.Add(toAdd);
         }
 
-        public void playerSpriteSetter(Sprite toSet)
+        public void PlayerSpriteSetter(Sprite toSet)
         {
             GetComponentInChildren<SpriteRenderer>().sprite = toSet;
         }

@@ -188,7 +188,7 @@ MonoBehaviour:
   playerSpriteTransform: {fileID: 9210665813871530134}
   resetDirection: {fileID: 11400000, guid: e299bf3ca031e014d940b664c5824b05, type: 2}
   directionList: []
-  speed: 4
+  speed: 0.5
   timeToTravel: 1
   clipOnMovement: {fileID: 8300000, guid: c5b1daaa10123144b9b4aa32b7d00809, type: 3}
   onMovementStart:
@@ -209,8 +209,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  idleSprite: {fileID: 0}
-  movingSprite: {fileID: 0}
+  idleSprite: {fileID: 21300000, guid: d375b5bb016538f4aa82e46f9d9b4772, type: 3}
+  movingSprite: {fileID: 21300000, guid: 2d280b3a79a67a1499558d2908545ecb, type: 3}
 --- !u!50 &860107688
 Rigidbody2D:
   serializedVersion: 4

@@ -29,9 +29,6 @@ namespace Mwa.Chronomountain
         [SerializeField] float backgroundAnimationTime;
         [SerializeField] float blackFadeTime;
 
-        [Header("Text settings :")]
-        [SerializeField] float timeToPrintText;
-
         [Header("Events :")]
         [SerializeField] UnityEvent onCinematiqueEnd;
 
@@ -127,6 +124,7 @@ namespace Mwa.Chronomountain
             //TODO last char not print !!
             //! fixe moche !
             mainText.text = toPrint;
+            printTextCoroutine = null;
         }
 
         void FadeBlackTransition(int startAlpha, int endAlpha, System.Action callback)
