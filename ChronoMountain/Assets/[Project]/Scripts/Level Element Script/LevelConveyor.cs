@@ -10,17 +10,9 @@ namespace Mwa.Chronomountain
     {
         public float speedFactor;
         public ScriptableDirection direction;
-
-        // public bool flag;
-        // public int i;
         Tween curretTween;
 
-        // public Sprite up;
-        // public Sprite left;
-        // public Sprite right;
-        // public Sprite down;
-
-        void OnValidate()
+        public void OnValidate()
         {
             transform.rotation = direction.GetRotation() * Quaternion.Euler(new Vector3(0, 0, -90));
         }
@@ -56,20 +48,4 @@ namespace Mwa.Chronomountain
             });
         }
     }
-
-    // [CustomEditor(typeof(LevelConveyor))]
-    // public class LevelConveyorEditor : Editor
-    // {
-    //     public override void OnInspectorGUI()
-    //     {
-    //         DrawDefaultInspector();
-    //         LevelConveyor levelConveyor = target as LevelConveyor;
-
-
-    //         if(GUILayout.Button())
-    //         // levelConveyor.flag = GUILayout.Toggle(levelConveyor.flag, "Flag");
-    //         // if(levelConveyor.flag)
-    //         //     levelConveyor.i = EditorGUILayout.FloatField("I field:", levelConveyor.i);
-    //     }
-    // }
 }
