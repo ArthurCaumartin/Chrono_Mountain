@@ -8,6 +8,8 @@ namespace Mwa.Chronomountain
 {
     public class LevelEndCheck : MonoBehaviour
     {
+        [SerializeField] GameObject cinematicCanvas;
+
         [Header("Win Animation :")]
         [SerializeField] float waitDuration;
         [SerializeField] float winScaleFactor;
@@ -43,6 +45,14 @@ namespace Mwa.Chronomountain
                 level.SetIsWin(true);
 
                 yield return new WaitForSeconds(waitTime);
+
+                if(cinematicCanvas != null)
+                {
+                    InGameCanvasManager.manager.gameObject.SetActive(false);
+                    cinematicCanvas.SetActive(true);
+                    CinematicManager.instance.StartCineaticSequence();
+                }
+
                 InGameCanvasManager.manager.SetWin();
             }
             else

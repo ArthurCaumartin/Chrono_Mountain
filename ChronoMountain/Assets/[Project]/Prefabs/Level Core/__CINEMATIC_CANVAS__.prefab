@@ -644,6 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinematic: {fileID: 11400000, guid: 2b4a1b801e6f76d40841648298b822b8, type: 2}
+  startAlone: 1
   mainText: {fileID: 6149844200878938979}
   background: {fileID: 6149844200848359282}
   blackImage: {fileID: 1193737136}

@@ -8,7 +8,10 @@ using TMPro;
 
 public class CinematicManager : MonoBehaviour
 {//! c pa vraiment une cinematic en faite... ?
+    public static CinematicManager instance;
     [SerializeField] ScriptableCinematic cinematic;
+    [SerializeField] bool startAlone;
+    [Space]
     [Header("Scene Object To Set :")]
     [SerializeField] TextMeshProUGUI mainText;
     [SerializeField] Image background;
@@ -35,8 +38,19 @@ public class CinematicManager : MonoBehaviour
     float backgroundLerpT;
     bool animationDirection;
     float newY;
+    
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
+    {
+        if(startAlone)
+            StartCineaticSequence();
+    }
+
+    public void StartCineaticSequence()
     {
         limiteIndex = cinematic.backGroundSprite.Count;
         // print("Limite index = " + limiteIndex);

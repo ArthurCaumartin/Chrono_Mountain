@@ -1707,10 +1707,10 @@ RectTransform:
   m_Father: {fileID: 6432239515873241263}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 800}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00005651403, y: 889}
+  m_SizeDelta: {x: 1000, y: 1778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6432239516572740116
 GameObject:
@@ -5429,6 +5429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialeSprite: {fileID: 21300000, guid: ca65041d8175b2d409464e28a426624a, type: 3}
   spriteToSwitch: {fileID: 21300000, guid: 2c8197bd77d203a4eb7bfae60985888d, type: 3}
+  spriteRendererToSet: {fileID: 0}
   imageToSet: {fileID: 773874567217260562}
 --- !u!224 &5982956674953904260 stripped
 RectTransform:
@@ -5622,6 +5623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialeSprite: {fileID: 21300000, guid: eb2e504174be63b42a84a6f9faea1d2f, type: 3}
   spriteToSwitch: {fileID: 21300000, guid: c3660f4c4b54a0d4a869f38aa6d5dc54, type: 3}
+  spriteRendererToSet: {fileID: 0}
   imageToSet: {fileID: 672814386719065495}
 --- !u!224 &5831229864861379841 stripped
 RectTransform:

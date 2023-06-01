@@ -2028,14 +2028,34 @@ PrefabInstance:
     - target: {fileID: 1994852097792780992, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: loseSprite
       value: 
-      objectReference: {fileID: 21300000, guid: f1c1f7121f30fda438ffb84ca709f512, type: 3}
+      objectReference: {fileID: 21300000, guid: d375b5bb016538f4aa82e46f9d9b4772, type: 3}
     - target: {fileID: 1994852097792780992, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: scaleScale
       value: 1.7
       objectReference: {fileID: 0}
-    - target: {fileID: 1994852097792780992, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
-      propertyPath: waitDuration
-      value: 1.5
+    - target: {fileID: 8138255538630625844, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.20784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138255538630625844, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.14117648
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138255538630625844, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.7960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138255538630625844, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138255538630625844, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.121568635
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138255538630625844, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.6627451
       objectReference: {fileID: 0}
     - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: levelPathTileMap
@@ -2097,6 +2117,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f8438f3df7e09fa4db1795bbb5a51ad5, type: 2}
+    - target: {fileID: 9210665813871530134, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210665813871530134, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
 --- !u!1839735485 &2136443871 stripped
