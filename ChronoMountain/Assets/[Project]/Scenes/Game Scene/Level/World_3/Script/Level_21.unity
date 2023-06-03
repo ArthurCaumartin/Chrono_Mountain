@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 681782828}
+    - target: {fileID: 2485895916475095275, guid: 1336883ba63654045b72505f193ab319, type: 3}
+      propertyPath: timeToComplete
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1336883ba63654045b72505f193ab319, type: 3}
 --- !u!1001 &964668463
@@ -1079,7 +1083,7 @@ PrefabInstance:
     - target: {fileID: 8128193100085853186, guid: f95ee9d9124bbb74f8f0e2123d00743d, type: 3}
       propertyPath: m_TileAssetArray.Array.data[2].m_Data
       value: 
-      objectReference: {fileID: 11400000, guid: eef7ee6faecfb034483911d5c507671a, type: 2}
+      objectReference: {fileID: 11400000, guid: bc75a53844ba5954d88a6aa0e0e9aa68, type: 2}
     - target: {fileID: 8128193100085853186, guid: f95ee9d9124bbb74f8f0e2123d00743d, type: 3}
       propertyPath: m_TileAssetArray.Array.data[3].m_Data
       value: 
@@ -1111,7 +1115,7 @@ PrefabInstance:
     - target: {fileID: 8128193100085853186, guid: f95ee9d9124bbb74f8f0e2123d00743d, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[2].m_Data
       value: 
-      objectReference: {fileID: 21300000, guid: 5b679ff2092286647b59b78b8eb8e57f, type: 3}
+      objectReference: {fileID: 21300000, guid: 23a4230f00e253c45ad0212dd6b40b7e, type: 3}
     - target: {fileID: 8128193100085853186, guid: f95ee9d9124bbb74f8f0e2123d00743d, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[3].m_Data
       value: 
