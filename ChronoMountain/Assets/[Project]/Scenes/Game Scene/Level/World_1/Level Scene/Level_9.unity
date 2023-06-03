@@ -212,6 +212,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23e1988d757252418ed2e1c2aba75a2, type: 3}
+--- !u!1 &54588987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7380322281256450700, guid: d23e1988d757252418ed2e1c2aba75a2, type: 3}
+  m_PrefabInstance: {fileID: 54588986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &54588988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7380322282311995707, guid: d23e1988d757252418ed2e1c2aba75a2, type: 3}
+  m_PrefabInstance: {fileID: 54588986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &67287993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6149844201299948004, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
@@ -414,6 +424,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2485895916475095273, guid: 1336883ba63654045b72505f193ab319, type: 3}
+      propertyPath: key
+      value: 
+      objectReference: {fileID: 54588987}
+    - target: {fileID: 2485895916475095273, guid: 1336883ba63654045b72505f193ab319, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 54588988}
     - target: {fileID: 2485895916475095273, guid: 1336883ba63654045b72505f193ab319, type: 3}
       propertyPath: player
       value: 

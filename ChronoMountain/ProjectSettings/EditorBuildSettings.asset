@@ -39,57 +39,57 @@ EditorBuildSettings:
     path: Assets/[Project]/Scenes/Game Scene/Level/World_1/Level Scene/Level_9.unity
     guid: 159e0d819e75a214490aec57705664f4
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_10.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_10.unity
     guid: ffd2e2ebbc575bf4fb459e02ab42a8e9
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_11.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_11.unity
     guid: c95e5e7a71582ac48b02ee26e11afb5b
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_12.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_12.unity
     guid: 7b84c89438a506442ba9d063b0a4599e
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_13.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_13.unity
     guid: 06b2b65b2bc52dc4cb5f565e03285597
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_14.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_14.unity
     guid: c68a7058f918cac49a25ea8e6d75341d
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_15.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_15.unity
     guid: 836d06a25fecb1741a03c45da7121df4
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_16.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_16.unity
     guid: ce4acf589320d6742a49a3085be8b60d
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_17.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_17.unity
     guid: c48dceca3de7aca468a0f2a3afd5774a
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Script/Level_18.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_2/Level Scene/Level_18.unity
     guid: 415080a553e3b10469cf86b7906bf5ee
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_19.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_19.unity
     guid: 966b701acb292b4438c0d51bab62412e
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_20.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_20.unity
     guid: 0d92526af05b88b40992fe2976585741
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_21.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_21.unity
     guid: c8cbdbde5835bbc4ea8bd9806e9f2f08
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_22.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_22.unity
     guid: a618d8cec65fdd54f98cfc9f60262169
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_23.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_23.unity
     guid: 62ad2db3bebe0cb478a5a9a7db39330e
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_24.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_24.unity
     guid: 459a1340e638f9144b1adcbc730d034a
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_25.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_25.unity
     guid: f7bf57332659b48448004e16691a7858
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_26.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_26.unity
     guid: 5901ab0e36a4bd4458d6970946ff291f
   - enabled: 1
-    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Script/Level_27.unity
+    path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_27.unity
     guid: c55830897cd44f8498ea10a0daacafa7
   m_configObjects: {}
