@@ -30,7 +30,6 @@ namespace Mwa.Chronomountain
         }
 
         //! Avtive les button pour chaque niveau jouable
-        // [ContextMenu("ActivateButtonPlayableLevel")]
         public void ActivateButtonPlayableLevel()
         {
             // print("Activate Button");

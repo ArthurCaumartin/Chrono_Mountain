@@ -14,7 +14,7 @@ namespace Mwa.Chronomountain
         [SerializeField] UnityEvent onLose;
 
         [Space]
-        [SerializeField] List<GameObject> directionButton;
+        [SerializeField] List<Button> directionButton;
 
         [Header("Arrow Direction")]
         [SerializeField] GameObject arrowObjectPrefab;
@@ -58,12 +58,15 @@ namespace Mwa.Chronomountain
             arrowPrefabList.Clear();
         }
 #endregion
-
         public void SetActiveButtonDirection(bool value)
         {
             foreach (var item in directionButton)
             {
-                item.SetActive(value);
+                item.enabled = value;
+                if(value)
+                    item.GetComponent<Image>().color = Color.white;
+                else
+                    item.GetComponent<Image>().color = Color.gray;
             }
         }
 

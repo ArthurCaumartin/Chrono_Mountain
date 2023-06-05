@@ -12,5 +12,10 @@ namespace Mwa.Chronomountain
         {
             gameOption.isTimerOn = !gameOption.isTimerOn;
         }
+
+        public void SwitchPlayedStartCinematic()
+        {
+            gameOption.isStartCinematicPlayed = !gameOption.isStartCinematicPlayed;
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Mwa.Chronomountain
 
         //TODO Prendre en compte les tiles de vide
         //! Call par les deplacament du joueur
-        public int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase levelElementTile)
+        public int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition)
         {//* le gro bordel *edit* => en vrais ça va...
             int distance = 0;
             TileBase targetTile = levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
@@ -48,7 +48,6 @@ namespace Mwa.Chronomountain
                 {
                     if(isPlayerWayOnKey == false)
                     {
-                        levelElementTile = null;
                         distance = i;
                         return distance - 1;
                     }
@@ -58,7 +57,6 @@ namespace Mwa.Chronomountain
                 LevelElementBase levelElementHit = LevelElementBase.GetAt(targetToCheck);
                 if(levelElementHit)
                 {
-                    levelElementTile = levelElementHit;
                     distance = i;
                     return distance;
                 }
@@ -66,62 +64,67 @@ namespace Mwa.Chronomountain
                 //! Regarde si on passe sur un mur
                 if(targetTile == LevelTile.instance.wall)
                 {
-                    levelElementTile = null;
                     distance = i;
                     return distance - 1;
                 }
+
+                if(targetTile == LevelTile.instance.water)
+                {
+                    print("On water !");
+                    distance = i;
+                    return distance;
+                }
             }
-            levelElementTile = null;
             return 0;
         }
 
 
         //! Call par les Level element
-        public int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition)
-        {//* le gro bordel
-            int distance = 0;
-            TileBase targetTile = levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
+        // public int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition)
+        // {//* le gro bordel
+        //     int distance = 0;
+        //     TileBase targetTile = levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
 
-            for(int i = 1; i < 100; i++) 
-            {
-                Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
-                targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
-                // print(targetTile);
+        //     for(int i = 1; i < 100; i++) 
+        //     {
+        //         Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
+        //         targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
+        //         // print(targetTile);
 
-                if(createDebugTarget && Application.isEditor)
-                {
-                    Instantiate(debugTarget, targetToCheck, Quaternion.identity);
-                }
+        //         if(createDebugTarget && Application.isEditor)
+        //         {
+        //             Instantiate(debugTarget, targetToCheck, Quaternion.identity);
+        //         }
 
-                if(targetTile == LevelTile.instance.Key)
-                {
-                    isPlayerWayOnKey = true;
-                }
+        //         if(targetTile == LevelTile.instance.Key)
+        //         {
+        //             isPlayerWayOnKey = true;
+        //         }
 
-                //! Regarde si on passe sur une porte
-                if(targetTile == LevelTile.instance.door)
-                {
-                    if(isPlayerWayOnKey == false)
-                    {
-                        distance = i;
-                        return distance - 1;
-                    }
-                }
+        //         //! Regarde si on passe sur une porte
+        //         if(targetTile == LevelTile.instance.door)
+        //         {
+        //             if(isPlayerWayOnKey == false)
+        //             {
+        //                 distance = i;
+        //                 return distance - 1;
+        //             }
+        //         }
 
-                LevelElementBase levelElementHit = LevelElementBase.GetAt(targetToCheck);
-                if(levelElementHit)
-                {
-                    distance = i;
-                    return distance;
-                }
+        //         LevelElementBase levelElementHit = LevelElementBase.GetAt(targetToCheck);
+        //         if(levelElementHit)
+        //         {
+        //             distance = i;
+        //             return distance;
+        //         }
 
-                if(targetTile == LevelTile.instance.wall)
-                {
-                    distance = i;
-                    return distance - 1;
-                }
-            }
-            return 0;
-        }
+        //         if(targetTile == LevelTile.instance.wall)
+        //         {
+        //             distance = i;
+        //             return distance - 1;
+        //         }
+        //     }
+        //     return 0;
+        // }
     }
 }

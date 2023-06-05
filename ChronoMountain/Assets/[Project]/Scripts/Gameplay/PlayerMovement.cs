@@ -25,6 +25,10 @@ namespace Mwa.Chronomountain
         public UnityEvent onMovementStart; //! Lisener set dans la canvas Manager
         [SerializeField] UnityEvent<Tile> onMoveSequenceEnd;
 
+        [Header("Sprite Player :")]
+        public  Sprite idleSprite;
+        public  Sprite movingSprite;
+
         float speedBackup;
         Tweener currentTween;
         Vector3 initialMovementPosition;
@@ -50,19 +54,20 @@ namespace Mwa.Chronomountain
                 onMoveSequenceEnd.Invoke(GetTileUnderPlayer());
                 return;
             }
+            
             initialMovementPosition = transform.position;
-            LevelElementBase nextLevelElement; //! Set par le out de MakeTweenMovement !
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
+            Vector3 nextTarget = GetNextTarget(directionList[directionIndex], initialMovementPosition);
+            
+            MakeTweenMovement(nextTarget);
             initialMovementPosition = transform.position;
             onMovementStart.Invoke();
+            PlayerSpriteSetter(movingSprite);
         }
 
         //? entre le this. et le out je suis un peut perdu pour savoir qui est "levelElementBase" ou "nextLevelElement"
-
-        public void MakeTweenMovement(Vector3 target, LevelElementBase levelElementBase)
+        public void MakeTweenMovement(Vector3 target)
         {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<Timer>().PauseTimer();
-            // this.levelElementBase = levelElementBase;
             speed = speedBackup;
             
             SetRotation(directionList[directionIndex]);
@@ -72,7 +77,8 @@ namespace Mwa.Chronomountain
             {
                 transform.position = Vector3.Lerp(initialMovementPosition, target, lerpT);
             },
-            0, 1, speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(TweenComplete);
+            0, 1, Vector3.Distance(target, initialMovementPosition) * speed).SetEase(Ease.Linear).OnComplete(TweenComplete);
+            //! Le SetSpeed n'a pas d'effet car en transite de 0 a 1
             directionIndex++;
         }
 
@@ -81,6 +87,14 @@ namespace Mwa.Chronomountain
         //TODO Voire l'enchainement pour 
         public void TweenComplete()
         {
+            Tile tileUnderPlayer = GetTileUnderPlayer();
+            print(tileUnderPlayer);
+            if(tileUnderPlayer == LevelTile.instance.water)
+            {
+                onMoveSequenceEnd.Invoke(tileUnderPlayer);
+                return;
+            }
+
             levelElementUnderPlayer = null;
             levelElementUnderPlayer = LevelElementBase.GetAt(transform.position);
             if(directionIndex >= directionList.Count)
@@ -109,17 +123,16 @@ namespace Mwa.Chronomountain
 
         void ChainNextMove()
         {
-            LevelElementBase nextLevelElement;
             initialMovementPosition = transform.position;
-            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition, out nextLevelElement), nextLevelElement);
+            MakeTweenMovement(GetNextTarget(directionList[directionIndex], initialMovementPosition));
         }
 
-        Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition, out LevelElementBase nextLevelElement)
+        Vector3 GetNextTarget(ScriptableDirection direction, Vector3 playerPosition)
         {
             // print("GetNextTarget");
             AudioManager.manager.PlaySfx(clipOnMovement);
 
-            distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, playerPosition, out nextLevelElement);
+            distanceToTravel = TileDistance.instance.DistanceWithNextSprite(direction, playerPosition);
 
             Vector3 nextTarget = transform.position + (direction.GetDirection() * distanceToTravel);
             return nextTarget;
@@ -128,6 +141,11 @@ namespace Mwa.Chronomountain
         public void AddDirection(ScriptableDirection toAdd)
         {
             directionList.Add(toAdd);
+        }
+
+        public void PlayerSpriteSetter(Sprite toSet)
+        {
+            GetComponentInChildren<SpriteRenderer>().sprite = toSet;
         }
 
         //! position du joueur reset dans LevelReseter

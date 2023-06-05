@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1372984917208779555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7601880061467752543}
+  - component: {fileID: 5588040261536121923}
+  m_Layer: 0
+  m_Name: Editor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7601880061467752543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372984917208779555}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.1598706, y: -0.2442314, z: -8.402995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2485895916475095268}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5588040261536121923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372984917208779555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188efa2ba29f98c4a99af4cf2eb5c24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left: {fileID: 11400000, guid: 2982e7658784fb74da68fb74fee43be6, type: 2}
+  up: {fileID: 11400000, guid: e299bf3ca031e014d940b664c5824b05, type: 2}
+  right: {fileID: 11400000, guid: 50859149d5e81c0469e8a9881470fbdb, type: 2}
+  down: {fileID: 11400000, guid: 33e9d8811eef818429323668acafd039, type: 2}
 --- !u!1 &2485895916475095269
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +83,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8297307819920598402}
+  - {fileID: 7601880061467752543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb42dd3912ad3b4da3020b3563a76a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: {fileID: 0}
+  door: {fileID: 0}
   player: {fileID: 0}
   timer: {fileID: 2485895916475095275}
 --- !u!114 &2485895916475095275
@@ -149,7 +200,7 @@ MonoBehaviour:
   door: {fileID: 11400000, guid: b42d406269106af489e8d42e0dd6e937, type: 2}
   Key: {fileID: 11400000, guid: bc75a53844ba5954d88a6aa0e0e9aa68, type: 2}
   end: {fileID: 11400000, guid: b3aef9ef42c123d44b14dc77f2cc5c6d, type: 2}
-  hole: {fileID: 0}
+  water: {fileID: 11400000, guid: 6800e134d924c2f45b6fc315bfd639f0, type: 2}
 --- !u!1 &8748450492127325129
 GameObject:
   m_ObjectHideFlags: 0

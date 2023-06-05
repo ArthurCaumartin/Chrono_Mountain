@@ -12,28 +12,9 @@ namespace Mwa.Chronomountain
         public ScriptableDirection direction;
         Tween curretTween;
 
-        public Sprite up;
-        public Sprite left;
-        public Sprite right;
-        public Sprite down;
-
-        void OnValidate()
+        public void OnValidate()
         {
-            switch (direction.pointer)
-            {
-                case Pointer.Up :
-                    GetComponent<SpriteRenderer>().sprite = up;
-                break;
-                case Pointer.Left :
-                    GetComponent<SpriteRenderer>().sprite = left;
-                break;
-                case Pointer.Right :
-                    GetComponent<SpriteRenderer>().sprite = right;
-                break;
-                case Pointer.Down :
-                    GetComponent<SpriteRenderer>().sprite = down;
-                break;
-            }
+            transform.rotation = direction.GetRotation() * Quaternion.Euler(new Vector3(0, 0, -90));
         }
 
         public override void KillTween()
@@ -59,29 +40,12 @@ namespace Mwa.Chronomountain
             {
                 PlayerMovement.instance.transform.position = Vector3.Lerp(transform.position, target, lerpT);
             },
-            0, 1, PlayerMovement.instance.speed * speedFactor).SetSpeedBased().SetEase(Ease.Linear)
-            .OnComplete(() =>
+            0, 1, (Vector3.Distance(transform.position, target) * PlayerMovement.instance.speed) * speedFactor)
+            .SetEase(Ease.Linear).OnComplete(() =>
             {
                 if(callBack != null)
                     callBack();
             });
         }
     }
-
-    // [CustomEditor(typeof(LevelConveyor))]
-    // public class LevelConveyorEditor : Editor
-    // {
-    //     public override void OnInspectorGUI()
-    //     {
-    //         LevelConveyor levelConveyor = target as LevelConveyor;
-
-    //         levelConveyor.speedFactor = EditorGUILayout.FloatField("Speed Factor", levelConveyor.speedFactor);
-    //         levelConveyor.direction = EditorGUILayout.ObjectField("Direction", levelConveyor.direction, ScriptableDirection, );
-
-
-    //         levelConveyor.flag = GUILayout.Toggle(levelConveyor.flag, "Flag");
-    //         if(levelConveyor.flag)
-    //             levelConveyor.i = EditorGUILayout.FloatField("I field:", levelConveyor.i);
-    //     }
-    // }
 }

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 559f5951a597f6a45a7ddd53566a0d5d, type: 3}
+  m_Name: Cinematic_IntroGame
+  m_EditorClassIdentifier: 
+  dataList:
+  - backGround: {fileID: 21300000, guid: 65a7478538f011141ac5ae7c83fea19e, type: 3}
+    text: "Cette histoire se d\xE9roule dans un pays imaginaire fort loin d'ici \xE0
+      une \xE9poque qui n'est pas la notre. Ici, les cr\xE9atures imaginaires et
+      fantastiques des contes pour enfants cohabitent dans la paix et dans l'harmonie.
+      Enfin, cohabitaient dans la paix et l'harmonie."
+    printDuration: 10
+  - backGround: {fileID: 21300000, guid: 5291fffd29177574f99e5bfa8f8f1f0f, type: 3}
+    text: "Dans ce pays, le peuple des nains est ind\xE9niablement le plus respectable.
+      Leur village est charmant, ses habitants vaillants, et ils poss\xE8dent surtout
+      un grand pouvoir."
+    printDuration: 8
+  - backGround: {fileID: 21300000, guid: 8fa593eea8472ba4f9b6a442b7c8063c, type: 3}
+    text: "Dans leur ch\xE2teau en haut de la colline sont conserv\xE9s les trois
+      joyaux magiques: l'\xE9meraude de la sagesse, le rubis du pouvoir, et le lapis
+      du temps."
+    printDuration: 6
+  - backGround: {fileID: 21300000, guid: 61e0422abaf90ed45a2711d0dff03c88, type: 3}
+    text: "Ces joyaux sont gard\xE9s f\xE9rocement par le roi des nains en personne,
+      aucun \xEAtre n'oserait se confronter \xE0 lui pour lui d\xE9rober le tr\xE9sor...."
+    printDuration: 6
+  - backGround: {fileID: 21300000, guid: ee4552698ebb7b54b9d12626c28364d4, type: 3}
+    text: Mais un slime, si!
+    printDuration: 2

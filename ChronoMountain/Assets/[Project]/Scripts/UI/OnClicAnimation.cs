@@ -14,7 +14,7 @@ public class OnClicAnimation : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(this.PlayAnimation);
     }
     
-    void PlayAnimation()
+    void PlayAnimation() 
     {
         // print("Tween start !");
         DOTween.To((time) => 

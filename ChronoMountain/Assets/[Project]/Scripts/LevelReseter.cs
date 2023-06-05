@@ -7,13 +7,17 @@ namespace Mwa.Chronomountain
 {
     public class LevelReseter : MonoBehaviour
     {
+        [SerializeField] GameObject key;
+        [SerializeField] GameObject door;
         [SerializeField] GameObject player;
         [SerializeField] Timer timer;
         Vector3 playerTransformSave;
+        Sprite playerSpriteBackup;
 
         void Start()
         {
             SetLevelSave();
+            playerSpriteBackup = player.GetComponentInChildren<SpriteRenderer>().sprite;
         }
 
         void SetLevelSave()
@@ -23,6 +27,12 @@ namespace Mwa.Chronomountain
 
         public void ResteLevel()
         {
+            if(key)
+                key.SetActive(true);
+            if(door)
+                door.GetComponent<SpriteSwitcher>().SwitchSprite();
+
+            player.GetComponentInChildren<SpriteRenderer>().sprite = playerSpriteBackup;
             player.GetComponent<PlayerMovement>().ResetMovement();
             player.transform.position = playerTransformSave;
             
@@ -30,6 +40,7 @@ namespace Mwa.Chronomountain
 
             timer.ResetTimer();
 
+            InGameCanvasManager.manager.SetActiveButtonDirection(true);
             InGameCanvasManager.manager.ClearArrow();
         }
     }

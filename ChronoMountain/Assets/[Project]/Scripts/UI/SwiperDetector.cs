@@ -20,6 +20,7 @@ namespace Mwa.Chronomountain
 
         public void OnDrag(PointerEventData eventData)
         {
+            
         }
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)

@@ -8,6 +8,7 @@ public class TriggerColliderEvent : MonoBehaviour
     [SerializeField] UnityEvent onTirigger;
     void OnTriggerEnter2D(Collider2D other)
     {
+        print(other.name);
         onTirigger.Invoke();
     }
 }

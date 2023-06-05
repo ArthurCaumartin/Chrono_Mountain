@@ -8,6 +8,8 @@ namespace Mwa.Chronomountain
 {
     public class LevelEndCheck : MonoBehaviour
     {
+        [SerializeField] GameObject cinematicCanvas;
+
         [Header("Win Animation :")]
         [SerializeField] float waitDuration;
         [SerializeField] float winScaleFactor;
@@ -19,19 +21,19 @@ namespace Mwa.Chronomountain
         bool isWin = false;
         public void TileCheck(Tile underPlayerTile)
         {
-            print("Tile Check call !");
+            // print("Tile Check call !");
             if(underPlayerTile == LevelTile.instance.end)
                 isWin = true;
             else
                 isWin = false;
 
-            print("isWin = " + isWin); 
+            // print("isWin = " + isWin); 
             StartCoroutine(EndLevel(isWin, waitDuration));
         }
 
         IEnumerator EndLevel(bool isWin, float waitTime)
         {
-            print("Coroutine Start");
+            // print("Coroutine Start");
             if(isWin)
             {
                 transform.DOScale(Vector3.one * winScaleFactor, waitTime/2).SetEase(Ease.InBounce)
@@ -43,6 +45,14 @@ namespace Mwa.Chronomountain
                 level.SetIsWin(true);
 
                 yield return new WaitForSeconds(waitTime);
+
+                if(cinematicCanvas != null)
+                {
+                    InGameCanvasManager.manager.gameObject.SetActive(false);
+                    cinematicCanvas.SetActive(true);
+                    CinematicManager.instance.StartCineaticSequence();
+                }
+
                 InGameCanvasManager.manager.SetWin();
             }
             else
