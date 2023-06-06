@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1615544108047242683, guid: d23e1988d757252418ed2e1c2aba75a2, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1615544108047242683, guid: d23e1988d757252418ed2e1c2aba75a2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -222,144 +222,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7380322282311995707, guid: d23e1988d757252418ed2e1c2aba75a2, type: 3}
   m_PrefabInstance: {fileID: 54588986}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &67287993 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6149844201299948004, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-  m_PrefabInstance: {fileID: 553144837}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &553144837
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299947928, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299948004, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_Name
-      value: __CINEMATIC_CANVAS__
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201299948004, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: cinematic
-      value: 
-      objectReference: {fileID: 11400000, guid: 8674649ded3b7874f9b2c34223aabf1d, type: 2}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: startAlone
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1959453820}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149844201326630316, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
-      propertyPath: onCinematiqueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Mwa.Chronomountain.SceneLoader, Assembly-CSharp
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 04e9120449b8a2e43ac84f0656e010c9, type: 3}
 --- !u!1 &681782828 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9210665812408380733, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
@@ -6038,7 +5900,11 @@ PrefabInstance:
     - target: {fileID: 1994852097792780992, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: cinematicCanvas
       value: 
-      objectReference: {fileID: 67287993}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994852097792780992, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
+      propertyPath: sceneToLoadAtEnd
+      value: Transition1to2
+      objectReference: {fileID: 0}
     - target: {fileID: 9210665812408380730, guid: 324c25b354f99c3468f29169ce206af8, type: 3}
       propertyPath: levelPathTileMap
       value: 
@@ -6135,7 +6001,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &2136443871 stripped
 Tilemap:
