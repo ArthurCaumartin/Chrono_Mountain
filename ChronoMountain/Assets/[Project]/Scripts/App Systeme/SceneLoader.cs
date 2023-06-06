@@ -8,6 +8,13 @@ namespace Mwa.Chronomountain
 {
     public class SceneLoader : MonoBehaviour
     {
+        public static SceneLoader instance;
+
+        void Awake()
+        {
+            instance = this;
+        }
+
         public void LoadScene(string toLoad)
         {
             SceneManager.LoadScene(toLoad);
