@@ -1681,6 +1681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialeSprite: {fileID: 21300000, guid: eb2e504174be63b42a84a6f9faea1d2f, type: 3}
   spriteToSwitch: {fileID: 21300000, guid: c3660f4c4b54a0d4a869f38aa6d5dc54, type: 3}
+  spriteRendererToSet: {fileID: 0}
   imageToSet: {fileID: 1072584827}
 --- !u!1 &1136669703
 GameObject:
@@ -2251,6 +2252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialeSprite: {fileID: 21300000, guid: ca65041d8175b2d409464e28a426624a, type: 3}
   spriteToSwitch: {fileID: 21300000, guid: 2c8197bd77d203a4eb7bfae60985888d, type: 3}
+  spriteRendererToSet: {fileID: 0}
   imageToSet: {fileID: 1375397203}
 --- !u!114 &1423430258 stripped
 MonoBehaviour:
@@ -2438,7 +2440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1490939334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,7 +2805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1885065710
 RectTransform:
   m_ObjectHideFlags: 0
