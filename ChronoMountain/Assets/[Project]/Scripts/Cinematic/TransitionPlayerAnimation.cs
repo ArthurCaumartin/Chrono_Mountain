@@ -12,7 +12,6 @@ namespace Mwa.Chronomountain
         [SerializeField] Transform player;
         [SerializeField] Transform playerSprite;
         [SerializeField] Transform cameraTransform;
-        [SerializeField] Transform cameraFollower;
         [SerializeField] Transform cameraStoper;
         [SerializeField] Image blackImage;
 
@@ -31,8 +30,10 @@ namespace Mwa.Chronomountain
 
         IEnumerator Start()
         {
+            blackImage.color = new Color(blackImage.color.r, blackImage.color.g, blackImage.color.b, 1);
             yield return new WaitForSeconds(.5f);
-            StartMoving();
+            FadeBlack(1, 0, 2, () => {StartMoving();});
+            // StartMoving();
         }
 
         [ContextMenu("StartMoving")]
@@ -64,7 +65,7 @@ namespace Mwa.Chronomountain
                 if(index == targetList.Count - 1)
                 {
                     print("Fin de sequence !");
-                    FadeBlack(0, 1, 3);
+                    FadeBlack(0, 1, 3, () => {SceneLoader.instance.LoadScene(sceneToLoadAtEnd);});
                 }
                 else
                 {
@@ -76,31 +77,32 @@ namespace Mwa.Chronomountain
         float newY;
         float distanceFactor;
         float sinIncrement;
+        Vector3 cameraFollower;
 
         void Update()
         {
             //! Animation de boing boing
-            cameraFollower.position = Camera.main.ScreenToWorldPoint(new Vector2(Camera.main.pixelWidth/2, Camera.main.pixelHeight));
+            cameraFollower = Camera.main.ScreenToWorldPoint(new Vector2(Camera.main.pixelWidth/2, Camera.main.pixelHeight));
 
             currentFramePosition = player.position;
             distanceFactor = Vector3.Distance(currentFramePosition, lastFramPosition);
 
             sinIncrement += Time.deltaTime;
 
-            newY = (yGap * Mathf.Sin(sinIncrement * bumpSpeed)) * distanceFactor;
+            newY = Mathf.InverseLerp(0, 1, (yGap * Mathf.Sin(sinIncrement * bumpSpeed)) * distanceFactor);
             playerSprite.localPosition = new Vector2(playerSprite.localPosition.x, newY);
 
             lastFramPosition = player.position;
 
             //! Condition pour le deplacement de la camera
-            if(player.position.y >= cameraTransform.position.y && cameraFollower.position.y < cameraStoper.position.y)
+            if(player.position.y >= cameraTransform.position.y && cameraFollower.y < cameraStoper.position.y)
             {
                 newCamPosition = new Vector3(cameraTransform.position.x, player.position.y, cameraTransform.position.z);
                 cameraTransform.position = Vector3.Lerp(cameraTransform.position, newCamPosition, Time.deltaTime);
             }
         }
 
-        void FadeBlack(float start, float end, float duration)
+        void FadeBlack(float start, float end, float duration, System.Action callback)
         {
             DOTween.To((time) => 
             {
@@ -108,7 +110,8 @@ namespace Mwa.Chronomountain
             }, start, end, duration)
             .OnComplete(() => 
             {
-                SceneLoader.instance.LoadScene(sceneToLoadAtEnd);
+                // SceneLoader.instance.LoadScene(sceneToLoadAtEnd);
+                callback();
             });
         }
     }

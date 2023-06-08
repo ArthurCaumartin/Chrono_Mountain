@@ -198,6 +198,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 101323641107951034, guid: bf91fb78e0925e8418e5b3a13f9f89b3, type: 3}
+      propertyPath: yGap
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 101323641107951034, guid: bf91fb78e0925e8418e5b3a13f9f89b3, type: 3}
+      propertyPath: tweenSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 101323642587568720, guid: bf91fb78e0925e8418e5b3a13f9f89b3, type: 3}
       propertyPath: m_Name
       value: Transition Animation
