@@ -1,67 +1,118 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
 
-public class TransitionPlayerAnimation : MonoBehaviour
+namespace Mwa.Chronomountain
 {
-    [SerializeField] Transform player;
-    [SerializeField] Transform playerSprite;
-
-    [Header("Animation :")]
-    [SerializeField] float speed;
-    [SerializeField] float yGap;
-
-    [Header("Tween Move :")]
-    [SerializeField] float tweenSpeed;
-    [SerializeField] AnimationCurve scaleCurve;
-    [SerializeField] List<Transform> targetList;
-    Sequence movementSequence;
-    int index;
-
-    //! scale change
-    Vector3 currentFramePosition;
-    Vector3 lastFramPosition;
-
-    IEnumerator Start()
+    public class TransitionPlayerAnimation : MonoBehaviour
     {
-        yield return new WaitForSeconds(.5f);
-        StartMoving();
-    }
+        [SerializeField] string sceneToLoadAtEnd;
+        [SerializeField] Transform player;
+        [SerializeField] Transform playerSprite;
+        [SerializeField] Transform cameraTransform;
+        [SerializeField] Transform cameraStoper;
+        [SerializeField] Image blackImage;
 
-    [ContextMenu("StartMoving")]
-    public void StartMoving()
-    {
-        DOTween.To((time) =>
+        [Header("Animation :")]
+        [SerializeField] float bumpSpeed;
+        [SerializeField] float yGap;
+
+        [Header("Tween Move :")]
+        [SerializeField] float tweenSpeed;
+        [SerializeField] List<Transform> targetList;
+        Sequence movementSequence;
+        int index;
+        Vector3 currentFramePosition;
+        Vector3 lastFramPosition;
+        Vector3 newCamPosition;
+
+        IEnumerator Start()
         {
-            player.position = Vector3.Lerp(targetList[index].position, targetList[index + 1].position, time);
-        },
-        0, 1, Vector3.Distance(targetList[index].position, targetList[index + 1].position) * tweenSpeed)
-        .SetEase(Ease.Linear).OnComplete(() =>
+            blackImage.color = new Color(blackImage.color.r, blackImage.color.g, blackImage.color.b, 1);
+            yield return new WaitForSeconds(.5f);
+            FadeBlack(1, 0, 2, () => {StartMoving();});
+            // StartMoving();
+        }
+
+        [ContextMenu("StartMoving")]
+        public void StartMoving()
         {
-            index++;
-            // if(index < targetList.Count)
+            // player.DOMove(targetList[index].position, speed)
+            // .SetSpeedBased().OnComplete(() => 
             // {
-                StartMoving();
-            // }
+            //     index++;
+            //     if(index != targetList.Count)
+            //     {
+            //         StartMoving();
+            //     }
+            //     else
+            //     {
+            //         print("Fin de sequence !");
+            //     }
+            // });
 
-        });
-    }
+            DOTween.To((time) =>
+            {
+                player.position = Vector3.Lerp(targetList[index].position, targetList[index + 1].position, time);
+            },
+            0, 1, Vector3.Distance(targetList[index].position, targetList[index + 1].position) * tweenSpeed)
+            .SetEase(Ease.Linear).OnComplete(() =>
+            {
+                index++;
+                //! -1 car pour fonctioner l'animation a besoin du n+1
+                if(index == targetList.Count - 1)
+                {
+                    print("Fin de sequence !");
+                    FadeBlack(0, 1, 3, () => {SceneLoader.instance.LoadScene(sceneToLoadAtEnd);});
+                }
+                else
+                {
+                    StartMoving();
+                }
+            });
+        }
 
-    float newY;
-    float distanceFactor;
-    float sinIncrement;
+        float newY;
+        float distanceFactor;
+        float sinIncrement;
+        Vector3 cameraFollower;
 
-    void Update()
-    {
-        currentFramePosition = player.position;
-        distanceFactor = Vector3.Distance(currentFramePosition, lastFramPosition);
+        void Update()
+        {
+            //! Animation de boing boing
+            cameraFollower = Camera.main.ScreenToWorldPoint(new Vector2(Camera.main.pixelWidth/2, Camera.main.pixelHeight));
 
-        sinIncrement += Time.deltaTime;
+            currentFramePosition = player.position;
+            distanceFactor = Vector3.Distance(currentFramePosition, lastFramPosition);
 
-        newY = (yGap * Mathf.Sin(sinIncrement * speed)) * distanceFactor;
-        playerSprite.localPosition = new Vector2(playerSprite.localPosition.x, newY);
+            sinIncrement += Time.deltaTime;
 
-        lastFramPosition = player.position;
+            newY = Mathf.InverseLerp(0, 1, (yGap * Mathf.Sin(sinIncrement * bumpSpeed)) * distanceFactor);
+            playerSprite.localPosition = new Vector2(playerSprite.localPosition.x, newY);
+
+            lastFramPosition = player.position;
+
+            //! Condition pour le deplacement de la camera
+            if(player.position.y >= cameraTransform.position.y && cameraFollower.y < cameraStoper.position.y)
+            {
+                newCamPosition = new Vector3(cameraTransform.position.x, player.position.y, cameraTransform.position.z);
+                cameraTransform.position = Vector3.Lerp(cameraTransform.position, newCamPosition, Time.deltaTime);
+            }
+        }
+
+        void FadeBlack(float start, float end, float duration, System.Action callback)
+        {
+            DOTween.To((time) => 
+            {
+                blackImage.color = new Color(blackImage.color.r, blackImage.color.g, blackImage.color.b, time);
+            }, start, end, duration)
+            .OnComplete(() => 
+            {
+                // SceneLoader.instance.LoadScene(sceneToLoadAtEnd);
+                callback();
+            });
+        }
     }
 }

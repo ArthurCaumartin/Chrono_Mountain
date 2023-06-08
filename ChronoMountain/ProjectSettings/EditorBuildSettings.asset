@@ -92,4 +92,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/[Project]/Scenes/Game Scene/Level/World_3/Level Scene/Level_27.unity
     guid: c55830897cd44f8498ea10a0daacafa7
+  - enabled: 1
+    path: Assets/[Project]/Scenes/Game Scene/Transition/Transition1to2.unity
+    guid: 455dfa6dcdd0d0142ba0d09f99236fa5
   m_configObjects: {}

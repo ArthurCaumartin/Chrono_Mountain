@@ -8,7 +8,8 @@ namespace Mwa.Chronomountain
 {
     public class LevelEndCheck : MonoBehaviour
     {
-        [SerializeField] GameObject cinematicCanvas;
+        [SerializeField] bool loadScene;
+        [SerializeField] string sceneToLoadAtEnd;
 
         [Header("Win Animation :")]
         [SerializeField] float waitDuration;
@@ -46,11 +47,10 @@ namespace Mwa.Chronomountain
 
                 yield return new WaitForSeconds(waitTime);
 
-                if(cinematicCanvas != null)
+                if(loadScene)
                 {
                     InGameCanvasManager.manager.gameObject.SetActive(false);
-                    cinematicCanvas.SetActive(true);
-                    CinematicManager.instance.StartCineaticSequence();
+                    SceneLoader.instance.LoadScene(sceneToLoadAtEnd);
                 }
 
                 InGameCanvasManager.manager.SetWin();
