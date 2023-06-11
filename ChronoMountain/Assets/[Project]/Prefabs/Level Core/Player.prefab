@@ -73,7 +73,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Time: 1
   m_Parameters:
     serializedVersion: 3
@@ -270,7 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216bb1a27590db24ab56489becbf79f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cinematicCanvas: {fileID: 0}
+  loadScene: 0
+  sceneToLoadAtEnd: 
   waitDuration: 1
   winScaleFactor: 1.2
   loseSprite: {fileID: 21300000, guid: d375b5bb016538f4aa82e46f9d9b4772, type: 3}
