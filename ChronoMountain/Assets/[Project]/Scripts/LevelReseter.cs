@@ -30,7 +30,7 @@ namespace Mwa.Chronomountain
             if(key)
                 key.SetActive(true);
             if(door)
-                door.GetComponent<SpriteSwitcher>().SwitchSprite();
+                door.GetComponent<SpriteSwitcher>().ResetSprite();
 
             player.GetComponentInChildren<SpriteRenderer>().sprite = playerSpriteBackup;
             player.GetComponent<PlayerMovement>().ResetMovement();
@@ -42,6 +42,8 @@ namespace Mwa.Chronomountain
 
             InGameCanvasManager.manager.SetActiveButtonDirection(true);
             InGameCanvasManager.manager.ClearArrow();
+
+            GameObject.FindObjectOfType<TileDistance>().ResetKeyCheck();
         }
     }
 }

@@ -78,53 +78,9 @@ namespace Mwa.Chronomountain
             return 0;
         }
 
-
-        //! Call par les Level element
-        // public int DistanceWithNextSprite(ScriptableDirection direction, Vector3 playerPosition)
-        // {//* le gro bordel
-        //     int distance = 0;
-        //     TileBase targetTile = levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(playerPosition));
-
-        //     for(int i = 1; i < 100; i++) 
-        //     {
-        //         Vector3 targetToCheck = playerPosition + (direction.GetDirection() * i);
-        //         targetTile = (Tile)levelPathTileMap.GetTile(levelPathTileMap.WorldToCell(targetToCheck));
-        //         // print(targetTile);
-
-        //         if(createDebugTarget && Application.isEditor)
-        //         {
-        //             Instantiate(debugTarget, targetToCheck, Quaternion.identity);
-        //         }
-
-        //         if(targetTile == LevelTile.instance.Key)
-        //         {
-        //             isPlayerWayOnKey = true;
-        //         }
-
-        //         //! Regarde si on passe sur une porte
-        //         if(targetTile == LevelTile.instance.door)
-        //         {
-        //             if(isPlayerWayOnKey == false)
-        //             {
-        //                 distance = i;
-        //                 return distance - 1;
-        //             }
-        //         }
-
-        //         LevelElementBase levelElementHit = LevelElementBase.GetAt(targetToCheck);
-        //         if(levelElementHit)
-        //         {
-        //             distance = i;
-        //             return distance;
-        //         }
-
-        //         if(targetTile == LevelTile.instance.wall)
-        //         {
-        //             distance = i;
-        //             return distance - 1;
-        //         }
-        //     }
-        //     return 0;
-        // }
+        public void ResetKeyCheck()
+        {
+            isPlayerWayOnKey = false;
+        }
     }
 }

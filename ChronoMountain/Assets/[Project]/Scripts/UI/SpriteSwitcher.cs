@@ -13,22 +13,31 @@ public class SpriteSwitcher : MonoBehaviour
 
     public void SwitchSprite()
     {
-        if(imageToSet)
+        if (imageToSet)
         {
             isInitialSprite = !isInitialSprite;
-            if(isInitialSprite)
+            if (isInitialSprite)
                 imageToSet.sprite = initialeSprite;
             else
                 imageToSet.sprite = spriteToSwitch;
         }
 
-        if(spriteRendererToSet)
+        if (spriteRendererToSet)
         {
             isInitialSprite = !isInitialSprite;
-            if(isInitialSprite)
+            if (isInitialSprite)
                 spriteRendererToSet.sprite = initialeSprite;
             else
                 spriteRendererToSet.sprite = spriteToSwitch;
         }
+    }
+
+    public void ResetSprite()
+    {
+        if (imageToSet)
+            imageToSet.sprite = initialeSprite;
+
+        if (spriteRendererToSet)
+            spriteRendererToSet.sprite = initialeSprite;
     }
 }
