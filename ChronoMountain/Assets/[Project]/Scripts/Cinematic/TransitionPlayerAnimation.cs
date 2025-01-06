@@ -65,6 +65,7 @@ namespace Mwa.Chronomountain
                 if(index == targetList.Count - 1)
                 {
                     print("Fin de sequence !");
+                    PlayerPrefs.SetInt("sceneToLoadAtEnd", 1);
                     FadeBlack(0, 1, 3, () => {SceneLoader.instance.LoadScene(sceneToLoadAtEnd);});
                 }
                 else
@@ -98,7 +99,7 @@ namespace Mwa.Chronomountain
             if(player.position.y >= cameraTransform.position.y && cameraFollower.y < cameraStoper.position.y)
             {
                 newCamPosition = new Vector3(cameraTransform.position.x, player.position.y, cameraTransform.position.z);
-                cameraTransform.position = Vector3.Lerp(cameraTransform.position, newCamPosition, Time.deltaTime);
+                cameraTransform.position = Vector3.Lerp(cameraTransform.position, newCamPosition, Time.deltaTime * 5);
             }
         }
 

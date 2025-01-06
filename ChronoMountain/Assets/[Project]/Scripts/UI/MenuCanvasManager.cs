@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 namespace Mwa.Chronomountain
 {
@@ -20,13 +21,13 @@ namespace Mwa.Chronomountain
         public void RefreshButtonState()
         {
             // print("RefreshButtonState");
-            canvasLevelSelection.SetActive(true);
-            foreach(var item in levelDescriptorsList)
+            // canvasLevelSelection.SetActive(true);
+            foreach (var item in levelDescriptorsList)
             {
                 SetButtonState(item, false);
             }
             ActivateButtonPlayableLevel();
-            canvasLevelSelection.SetActive(false);
+            // canvasLevelSelection.SetActive(false);
         }
 
         //! Avtive les button pour chaque niveau jouable
@@ -35,33 +36,15 @@ namespace Mwa.Chronomountain
             // print("Activate Button");
             SetButtonState(levelDescriptorsList[0], true);
 
-            if(levelDescriptorsList[0].IsLevelWin() == false)
-                return;
-
-            for(int i = 1; i < levelDescriptorsList.Count; i++)
-            {
-                print("levelDescriptors : " + levelDescriptorsList[i]);
-                //! Si le niveau est win active le button
-                if(levelDescriptorsList[i].IsLevelWin())
-                {
-                    SetButtonState(levelDescriptorsList[i], true);
-                }
-                else
-                {
-                    SetButtonState(levelDescriptorsList[i], true);
-                    return;
-                }
-            }
+            for (int i = 1; i < levelDescriptorsList.Count; i++)
+                SetButtonState(levelDescriptorsList[i], levelDescriptorsList[i].IsLevelWin());
         }
 
         void SetButtonState(LevelDescriptor descriptor, bool state)
         {
+            // print($"{(state ? "Diable" : "Enable")} level button");
             descriptor.GetComponent<Button>().enabled = state;
-
-            if(state)
-                descriptor.GetComponent<Image>().color = Color.white;
-            else
-                descriptor.GetComponent<Image>().color = Color.gray;
+            descriptor.GetComponent<Image>().color = state ? Color.white : Color.gray;
         }
     }
 }

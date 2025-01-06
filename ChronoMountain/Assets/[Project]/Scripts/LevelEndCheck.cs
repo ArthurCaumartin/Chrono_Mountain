@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 namespace Mwa.Chronomountain
 {
@@ -23,7 +24,7 @@ namespace Mwa.Chronomountain
         public void TileCheck(Tile underPlayerTile)
         {
             // print("Tile Check call !");
-            if(underPlayerTile == LevelTile.instance.end)
+            if (underPlayerTile == LevelTile.instance.end)
                 isWin = true;
             else
                 isWin = false;
@@ -35,19 +36,21 @@ namespace Mwa.Chronomountain
         IEnumerator EndLevel(bool isWin, float waitTime)
         {
             // print("Coroutine Start");
-            if(isWin)
+            if (isWin)
             {
-                transform.DOScale(Vector3.one * winScaleFactor, waitTime/2).SetEase(Ease.InBounce)
-                .OnComplete(()=> 
+                transform.DOScale(Vector3.one * winScaleFactor, waitTime / 2).SetEase(Ease.InBounce)
+                .OnComplete(() =>
                 {
-                    transform.DOScale(Vector3.one, waitTime/2).SetEase(Ease.InBounce);
+                    transform.DOScale(Vector3.one, waitTime / 2).SetEase(Ease.InBounce);
                 });
 
                 level.SetIsWin(true);
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
+                print("Scene Name : " + SceneManager.GetActiveScene().name + "set to : " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name));
 
                 yield return new WaitForSeconds(waitTime);
 
-                if(loadScene)
+                if (loadScene)
                 {
                     InGameCanvasManager.manager.gameObject.SetActive(false);
                     SceneLoader.instance.LoadScene(sceneToLoadAtEnd);

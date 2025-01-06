@@ -88,7 +88,7 @@ namespace Mwa.Chronomountain
         public void TweenComplete()
         {
             Tile tileUnderPlayer = GetTileUnderPlayer();
-            print(tileUnderPlayer);
+            // print(tileUnderPlayer);
             if(tileUnderPlayer == LevelTile.instance.water)
             {
                 onMoveSequenceEnd.Invoke(tileUnderPlayer);
