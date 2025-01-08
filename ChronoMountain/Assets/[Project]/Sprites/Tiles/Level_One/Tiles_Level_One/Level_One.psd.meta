@@ -115,7 +115,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
+        width: 80
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -134,9 +134,9 @@ TextureImporter:
       name: Level_One_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 93
         y: 0
-        width: 16
+        width: 6
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: Level_One_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 112
         y: 0
         width: 16
-        height: 16
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: Level_One_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 129
         y: 0
-        width: 16
-        height: 16
+        width: 14
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,7 +197,7 @@ TextureImporter:
       name: Level_One_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 144
         y: 0
         width: 16
         height: 16
@@ -218,10 +218,10 @@ TextureImporter:
       name: Level_One_5
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
+        x: 162
+        y: 5
+        width: 14
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,90 +231,6 @@ TextureImporter:
       bones: []
       spriteID: 4b879c86a7fab704189e82619c3c97d9
       internalID: -1155611182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level_One_6
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1df8ca348b810944a464dbbdba81136
-      internalID: -1558554481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level_One_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69fe15a2c31ed904b9550a2e55b17bc1
-      internalID: -1886094600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level_One_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9817fd5d820699d41a949313b8c8ecf8
-      internalID: -1972694221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level_One_9
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bb6f1c2b8951ba479d13aa92038acc4
-      internalID: -1265792304
       vertices: []
       indices: 
       edges: []
@@ -336,10 +252,6 @@ TextureImporter:
       Level_One_3: 629797185
       Level_One_4: -407159533
       Level_One_5: -1155611182
-      Level_One_6: -1558554481
-      Level_One_7: -1886094600
-      Level_One_8: -1972694221
-      Level_One_9: -1265792304
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
